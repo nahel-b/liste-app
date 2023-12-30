@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import couleurs  from './Couleurs';
 
-const numColumns = 3;
 
 const Row1 = ({ image1Source, image2Source }) => {
   return (
@@ -36,11 +36,13 @@ const Row3 = ({ image1Source, image2Source }) => {
 
 const SOSPage = () => {
   return (
+    <View style={{backgroundColor :  couleurs.backgroundColor,flex : 1}}>
     <View>
       <Text style={styles.titre}>SOS</Text>
       <Row1  />
       <Row2  />
       <Row3 />
+    </View>
     </View>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions,TouchableOpacity, Image } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import couleurs from './Couleurs';
 
 const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
 
@@ -14,14 +15,14 @@ const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
 };
 
 const CustomComponent1 = ({ handlePress }) => (
-  <View style={styles.customComponentContainer}>
-    <TouchableOpacity style={[styles.button,{backgroundColor: 'rgb(0,72,171)'}]} onPress={() => handlePress('SOS')}>
+  <View style={[styles.customComponentContainer]}>  
+    <TouchableOpacity style={[styles.button,{backgroundColor: couleurs.buttonColor1}]} onPress={() => handlePress('SOS')}>
       <Text style={styles.buttonText} >SOS/WEL</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={[styles.button,{backgroundColor: 'rgb(55,182,255)'}]}>
+    <TouchableOpacity style={[styles.button,{backgroundColor: couleurs.buttonColor2}]}>
       <Text style={styles.buttonText}>EVENTS LISTE</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={[styles.button,{backgroundColor: 'rgb(90,225,230)'}]}>
+    <TouchableOpacity style={[styles.button,{backgroundColor: couleurs.buttonColor3}]}>
       <Text style={styles.buttonText}>EVENT AUTRE LISTE</Text>
     </TouchableOpacity>
   </View>
@@ -81,7 +82,8 @@ const renderItem = ({ item, index }) => {
   const ITEM_WIDTH = viewportWidth * 0.20;
 
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ flex: 1,backgroundColor :  couleurs.backgroundColor }}>
+    <View style={{ marginTop: 20,flex: 1}}>
       <Carousel
         data={calendrierData}
         renderItem={renderItem}
@@ -93,22 +95,36 @@ const renderItem = ({ item, index }) => {
         removeClippedSubviews={false}
         inactiveSlideScale={0.8} 
         itemHorizontalMargin={1}
+        containerCustomStyle={{ height: 0}}
+        inactiveSlideOpacity={1}
+
 
       />
+      <View style={{ flex: 3  }}>
       {calendrierData[selectedItem]?.elements}
+      </View>
+      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+        <Image
+          source={require('./assets/Logo.png')}
+          style={{ width: 150, height: 150 * 1200 / 1080,marginBottom: 10 }}
+          resizeMode="contain"
+        />
+      </View>
+    </View>
     </View>
   );
-};
+}; 
 
 const styles = StyleSheet.create({
   itemContainer: {
     margin : 0,
     padding: 5, // Ajustez la marge intérieure
-    backgroundColor: 'rgb(6,192,223)',
+    backgroundColor: couleurs.buttonColor3,
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    //height : 100  
+    
+    
   },
   monthText: {
     paddingTop: 5,
@@ -129,11 +145,14 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   customComponentContainer: {
-    marginTop: 20,
+    
+    marginTop: 0,
     padding: 10,
-    backgroundColor: 'transparent',
+    
     borderRadius: 10,
-    alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center' 
+    
   },
   button: {
     width: '95%', // Prend presque toute la largeur
@@ -142,6 +161,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'skyblue',
     borderRadius: 25,
     alignItems: 'center',
+    
+    
   },
   buttonText: {
     padding : 7,
@@ -149,7 +170,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   selectedItem: {
-    backgroundColor: 'rgb(0,72,171)',
+    backgroundColor: couleurs.buttonColor1,
 
   },
 });

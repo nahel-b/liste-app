@@ -3,11 +3,14 @@ import { SafeAreaView, View, Text, Image, Linking, TouchableOpacity, StyleSheet 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import PODPage from './PODPage.js'
 import CALPage from './CALPage.js'
 import SOSPage from './SOSPage.js'
 import WELPage from './WELPage.js'
 import DEFPage from './DEFPage.js'
+import couleurs from './Couleurs.js'
+
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -15,19 +18,20 @@ const Tab = createMaterialTopTabNavigator();
 const CategoryScreen = ({ route }) => {
   const { category } = route.params || {};
 
-  return (
+  return ( 
     <View>
       <Text>{category}</Text>
     </View>
   );
 };
 
-const CustomHeader = () => {
+const HeaderBar = () => {
   const handlePress = (url) => {
     Linking.openURL(url);
   };
 
   return (
+    <View style={{backgroundColor : couleurs.backgroundColor}}>
     <SafeAreaView>
       <View style={styles.header}>
         <View style={styles.logoContainer}>
@@ -42,25 +46,29 @@ const CustomHeader = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.titleHeader}>NOM LISTE</Text>
+          
+          <Image source={require('./assets/petitlogo.png')} style={{ width: 150, height: 150*695/1817 }} resizeMode="contain" />
         </View>
       </View>
     </SafeAreaView>
+    </View>
   );
-};
+}; 
 
 const BottomBar = () => {
   
   return (
+    <View style={{ flex: 1,backgroundColor:couleurs.backgroundColor }}>
     <SafeAreaView style={{ flex: 1 }}>
       <Tab.Navigator
         tabBarPosition="bottom"
         initialRouteName ="CAL"
         tabBarOptions={{
           style: {
-            backgroundColor: '#f1f1f1',
+            backgroundColor: couleurs.backgroundColor,
             borderTopWidth: 1,
-            borderTopColor: '#ccc',
+            borderTopColor: couleurs.barBorderColor,
+            borderTopWidth : 2,
             height : 60,
           },
           labelStyle: {
@@ -70,7 +78,7 @@ const BottomBar = () => {
             justifyContent: 'center',
           },
           indicatorStyle: {
-            backgroundColor: '#3498db',
+            backgroundColor: 'black',
           },
           showLabel: false,
         }}
@@ -141,6 +149,7 @@ const BottomBar = () => {
         />
       </Tab.Navigator>
     </SafeAreaView>
+    </View>
   );
 };
 
@@ -148,10 +157,12 @@ const App = () => {
 
   const bottomBarRef = React.createRef();
   return (
+
     <NavigationContainer>
+         
       <Stack.Navigator
         screenOptions={{
-          header: () => <CustomHeader />,
+          header: () => <HeaderBar />,
         }}
       >
       <Stack.Screen
@@ -159,7 +170,9 @@ const App = () => {
           component={() => <BottomBar ref={bottomBarRef} />}
         />
       </Stack.Navigator>
+
     </NavigationContainer>
+
   );
 };
 
@@ -169,9 +182,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 14,
-    backgroundColor: 'white',
     borderBottomWidth: 2,  // Épaisseur de la bordure
-    borderBottomColor: 'black'
+    borderBottomColor: couleurs.barBorderColor
   },
   titleHeader: {
     fontSize: 40,

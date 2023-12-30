@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions,TouchableOpacity,Image,FlatList } from 'react-native';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import Accordion from 'react-native-collapsible/Accordion';
 
-const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
+import couleurs from './Couleurs';
 
+const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
   return (
     <View style={[styles.itemContainer, isSelected && styles.selectedItem]}>
       <Image source={item.image_src} style={styles.image} />
@@ -11,159 +13,466 @@ const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
   );
 };
 
-const CustomComponent1 = ({ handlePress }) => {
+const dataDefi1 = [
+  { nom: 'D1 5pts', description: 'Description de D1' },
+  { nom: 'D2 5pts', description: 'Description de D2' },
+  { nom: 'D3 5pts', description: 'Description de D3' },
+  { nom: 'D4 5pts', description: 'Description de D4' },
+  { nom: 'D5 5pts', description: 'Description de D5' },
+  { nom: 'D6 5pts', description: 'Description de D6' },
+  { nom: 'D7 5pts', description: 'Description de D7' },
+  { nom: 'D8 5pts', description: 'Description de D8' },
+  { nom: 'D9 5pts', description: 'Description de D9' },
+];
+const dataDefi2 = [
+  { nom: 'F1 5pts', description: 'Description de F1' },
+  { nom: 'F2 15pts', description: 'Description de F2' },
+  { nom: 'F3 10pts', description: 'Description de F3' },
+  { nom: 'F4 5pts', description: 'Description de F4' },
+  { nom: 'F5 50pts', description: 'Description de F5' },
+  { nom: 'F6 25pts', description: 'Description de F6' },
+  { nom: 'F7 15pts', description: 'Description de F7' },
+  { nom: 'F8 20pts', description: 'Description de F8' },
 
-  const dataDefi = [{nom : "D1 5pts"},{nom : "D2 5pts"},{nom : "D3 5pts"},{nom : "D4 5pts"},{nom : "D5 5pts"},{nom : "D6 5pts"},{nom : "D7 5pts"},{nom : "D8 5pts"},{nom : "D9 5pts"},{nom : "D10 5pts"}]
-const renderItem = ({ item }) => (
-    <View style={styles.itemContainer_defi}>
-      <Text style={styles.itemText}>{item.nom}</Text>
+];
+const dataDefi3 = [
+  { nom: 'D1 5pts', description: 'Description de D1' },
+  { nom: 'D2 5pts', description: 'Description de D2' },
+  { nom: 'D3 5pts', description: 'Description de D3' },
+  { nom: 'D4 5pts', description: 'Description de D4' },
+  { nom: 'D5 5pts', description: 'Description de D5' },
+  { nom: 'D6 5pts', description: 'Description de D6' },
+  { nom: 'D7 5pts', description: 'Description de D7' },
+  { nom: 'D8 5pts', description: 'Description de D8' },
+  { nom: 'D9 5pts', description: 'Description de D9' },
+];
+const dataDefi4 = [
+  { nom: 'F1 5pts', description: 'Description de F1' },
+  { nom: 'F2 5pts', description: 'Description de F2' },
+  { nom: 'F3 5pts', description: 'Description de F3' },
+  { nom: 'F4 5pts', description: 'Description de F4' },
+  { nom: 'F5 5pts', description: 'Description de F5' },
+  { nom: 'F6 5pts', description: 'Description de F6' },
+  { nom: 'F7 5pts', description: 'Description de F7' },
+  { nom: 'F8 5pts', description: 'Description de F8' },
+  { nom: 'F9 5pts', description: 'Description de F9' },
+];
+
+
+
+const BoutonDefi1 = () => {
+  const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
+  const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
+
+  const itemContainerRefColonne1 = useRef(null);
+  const itemContainerRefColonne2 = useRef(null);
+
+  // Divise dataDefi1 en deux colonnes
+  const dataDefi1Colonne1 = dataDefi1.filter((_, index) => index % 2 === 0);
+  const dataDefi1Colonne2 = dataDefi1.filter((_, index) => index % 2 !== 0);
+
+  const renderHeader = (content, index, isActive, section, ref) => (
+    <View
+      ref={isActive ? ref : null}
+      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
+    >
+      <Text style={styles.itemText}>{content.nom}</Text>
     </View>
   );
-return(
-  <FlatList
-      data={dataDefi}
-      renderItem={renderItem}
-      keyExtractor={(item, index) => index.toString()}
-      numColumns={2}
-      contentContainerStyle={styles.flatListContainer}
-    />
-  
-  )
-};
 
-const CustomComponent2 = ({ handlePress }) => {
-
-  const dataDefi = [{nom : "D1 5pts"},{nom : "D2 15pts"},{nom : "D3 10pts"},{nom : "D4 5pts"},{nom : "D5 12pts"},{nom : "D6 50pts"},{nom : "D7 8pts"},{nom : "D8 5pts"}]
-const renderItem = ({ item }) => (
-    <View style={styles.itemContainer_defi}>
-      <Text style={styles.itemText}>{item.nom}</Text>
+  const renderContent = (section) => (
+    <View style={styles.descriptionContainer}>
+      <Text style={styles.descriptionText}>{section.description}</Text>
     </View>
   );
-return(
-  <FlatList
-      data={dataDefi}
-      renderItem={renderItem}
-      keyExtractor={(item, index) => index.toString()}
-      numColumns={2}
-      contentContainerStyle={styles.flatListContainer}
-    />
-  
-  )
+
+  const updateSectionsColonne1 = (activeSections) => {
+    setActiveSectionsColonne1(activeSections);
+  };
+
+  const updateSectionsColonne2 = (activeSections) => {
+    setActiveSectionsColonne2(activeSections);
+  };
+
+  const onTransitionEnd = useCallback((ref) => {
+    if (ref.current) {
+      ref.current.setNativeProps({
+        style: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    onTransitionEnd(itemContainerRefColonne1);
+    onTransitionEnd(itemContainerRefColonne2);
+  }, [onTransitionEnd]);
+
+  return (
+    <View style={styles.boutonDefiContainer}>
+      <Accordion
+      style={styles.column}
+        sections={dataDefi1Colonne1}
+        activeSections={activeSectionsColonne1}
+        renderHeader={(content, index, isActive, section) =>
+          renderHeader(content, index, isActive, section, itemContainerRefColonne1)
+        }
+        renderContent={renderContent}
+        onChange={updateSectionsColonne1}
+        underlayColor={'transparent'}
+        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
+        expandMultiple={true}
+      />
+      <Accordion
+      style={styles.column}
+        sections={dataDefi1Colonne2}
+        activeSections={activeSectionsColonne2}
+        renderHeader={(content, index, isActive, section) =>
+          renderHeader(content, index, isActive, section, itemContainerRefColonne2)
+        }
+        renderContent={renderContent}
+        onChange={updateSectionsColonne2}
+        underlayColor={'transparent'}
+        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
+        expandMultiple={true}
+      />
+    </View>
+  );
 };
-const CustomComponent3 = ({ handlePress }) => (
-  <View style={styles.customComponentContainer}>
-   
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>MINP</Text>
-    </TouchableOpacity>
-    
-  </View>
-);
+
+const BoutonDefi2 = () => {
+  const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
+  const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
+
+  const itemContainerRefColonne1 = useRef(null);
+  const itemContainerRefColonne2 = useRef(null);
+
+  // Divise dataDefi1 en deux colonnes
+  const dataDefi1Colonne1 = dataDefi2.filter((_, index) => index % 2 === 0);
+  const dataDefi1Colonne2 = dataDefi2.filter((_, index) => index % 2 !== 0);
+
+  const renderHeader = (content, index, isActive, section, ref) => (
+    <View
+      ref={isActive ? ref : null}
+      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
+    >
+      <Text style={styles.itemText}>{content.nom}</Text>
+    </View>
+  );
+
+  const renderContent = (section) => (
+    <View style={styles.descriptionContainer}>
+      <Text style={styles.descriptionText}>{section.description}</Text>
+    </View>
+  );
+
+  const updateSectionsColonne1 = (activeSections) => {
+    setActiveSectionsColonne1(activeSections);
+  };
+
+  const updateSectionsColonne2 = (activeSections) => {
+    setActiveSectionsColonne2(activeSections);
+  };
+
+  const onTransitionEnd = useCallback((ref) => {
+    if (ref.current) {
+      ref.current.setNativeProps({
+        style: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    onTransitionEnd(itemContainerRefColonne1);
+    onTransitionEnd(itemContainerRefColonne2);
+  }, [onTransitionEnd]);
+
+  return (
+    <View style={styles.boutonDefiContainer}>
+      <Accordion
+      style={styles.column}
+        sections={dataDefi1Colonne1}
+        activeSections={activeSectionsColonne1}
+        renderHeader={(content, index, isActive, section) =>
+          renderHeader(content, index, isActive, section, itemContainerRefColonne1)
+        }
+        renderContent={renderContent}
+        onChange={updateSectionsColonne1}
+        underlayColor={'transparent'}
+        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
+        expandMultiple={true}
+      />
+      <Accordion
+      style={styles.column}
+        sections={dataDefi1Colonne2}
+        activeSections={activeSectionsColonne2}
+        renderHeader={(content, index, isActive, section) =>
+          renderHeader(content, index, isActive, section, itemContainerRefColonne2)
+        }
+        renderContent={renderContent}
+        onChange={updateSectionsColonne2}
+        underlayColor={'transparent'}
+        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
+        expandMultiple={true}
+      />
+    </View>
+  );
+};
+const BoutonDefi3 = () => {
+  const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
+  const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
+
+  const itemContainerRefColonne1 = useRef(null);
+  const itemContainerRefColonne2 = useRef(null);
+
+  // Divise dataDefi1 en deux colonnes
+  const dataDefi1Colonne1 = dataDefi3.filter((_, index) => index % 2 === 0);
+  const dataDefi1Colonne2 = dataDefi3.filter((_, index) => index % 2 !== 0);
+
+  const renderHeader = (content, index, isActive, section, ref) => (
+    <View
+      ref={isActive ? ref : null}
+      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
+    >
+      <Text style={styles.itemText}>{content.nom}</Text>
+    </View>
+  );
+
+  const renderContent = (section) => (
+    <View style={styles.descriptionContainer}>
+      <Text style={styles.descriptionText}>{section.description}</Text>
+    </View>
+  );
+
+  const updateSectionsColonne1 = (activeSections) => {
+    setActiveSectionsColonne1(activeSections);
+  };
+
+  const updateSectionsColonne2 = (activeSections) => {
+    setActiveSectionsColonne2(activeSections);
+  };
+
+  const onTransitionEnd = useCallback((ref) => {
+    if (ref.current) {
+      ref.current.setNativeProps({
+        style: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    onTransitionEnd(itemContainerRefColonne1);
+    onTransitionEnd(itemContainerRefColonne2);
+  }, [onTransitionEnd]);
+
+  return (
+    <View style={styles.boutonDefiContainer}>
+      <Accordion
+      style={styles.column}
+        sections={dataDefi1Colonne1}
+        activeSections={activeSectionsColonne1}
+        renderHeader={(content, index, isActive, section) =>
+          renderHeader(content, index, isActive, section, itemContainerRefColonne1)
+        }
+        renderContent={renderContent}
+        onChange={updateSectionsColonne1}
+        underlayColor={'transparent'}
+        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
+        expandMultiple={true}
+      />
+      <Accordion
+      style={styles.column}
+        sections={dataDefi1Colonne2}
+        activeSections={activeSectionsColonne2}
+        renderHeader={(content, index, isActive, section) =>
+          renderHeader(content, index, isActive, section, itemContainerRefColonne2)
+        }
+        renderContent={renderContent}
+        onChange={updateSectionsColonne2}
+        underlayColor={'transparent'}
+        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
+        expandMultiple={true}
+      />
+    </View>
+  );
+};
+const BoutonDefi4 = () => {
+  const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
+  const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
+
+  const itemContainerRefColonne1 = useRef(null);
+  const itemContainerRefColonne2 = useRef(null);
+
+  // Divise dataDefi1 en deux colonnes
+  const dataDefi1Colonne1 = dataDefi4.filter((_, index) => index % 2 === 0);
+  const dataDefi1Colonne2 = dataDefi4.filter((_, index) => index % 2 !== 0);
+
+  const renderHeader = (content, index, isActive, section, ref) => (
+    <View
+      ref={isActive ? ref : null}
+      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
+    >
+      <Text style={styles.itemText}>{content.nom}</Text>
+    </View>
+  );
+
+  const renderContent = (section) => (
+    <View style={styles.descriptionContainer}>
+      <Text style={styles.descriptionText}>{section.description}</Text>
+    </View>
+  );
+
+  const updateSectionsColonne1 = (activeSections) => {
+    setActiveSectionsColonne1(activeSections);
+  };
+
+  const updateSectionsColonne2 = (activeSections) => {
+    setActiveSectionsColonne2(activeSections);
+  };
+
+  const onTransitionEnd = useCallback((ref) => {
+    if (ref.current) {
+      ref.current.setNativeProps({
+        style: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    onTransitionEnd(itemContainerRefColonne1);
+    onTransitionEnd(itemContainerRefColonne2);
+  }, [onTransitionEnd]);
+
+  return (
+    <View style={styles.boutonDefiContainer}>
+      <Accordion
+      style={styles.column}
+        sections={dataDefi1Colonne1}
+        activeSections={activeSectionsColonne1}
+        renderHeader={(content, index, isActive, section) =>
+          renderHeader(content, index, isActive, section, itemContainerRefColonne1)
+        }
+        renderContent={renderContent}
+        onChange={updateSectionsColonne1}
+        underlayColor={'transparent'}
+        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
+        expandMultiple={true}
+      />
+      <Accordion
+      style={styles.column}
+        sections={dataDefi1Colonne2}
+        activeSections={activeSectionsColonne2}
+        renderHeader={(content, index, isActive, section) =>
+          renderHeader(content, index, isActive, section, itemContainerRefColonne2)
+        }
+        renderContent={renderContent}
+        onChange={updateSectionsColonne2}
+        underlayColor={'transparent'}
+        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
+        expandMultiple={true}
+      />
+    </View>
+  );
+};
+
 
 const CALPage = ({ navigation }) => {
-
   const handlePress = (page) => {
     navigation.navigate(page);
   };
-  
+
   const calendrierData = [
-    { image_src : require("./assets/hublot.png"), elements: <CustomComponent1 handlePress={handlePress} /> },
-    { image_src : require("./assets/hublot.png"), elements: <CustomComponent2 handlePress={handlePress}/> },
-    { image_src : require("./assets/hublot.png"), elements: <CustomComponent3 handlePress={handlePress} /> },
-    
+    { image_src: require('./assets/hublot.png'), elements: <BoutonDefi1 /> },
+    { image_src: require('./assets/hublot.png'), elements: <BoutonDefi2 /> },
+    { image_src: require('./assets/hublot.png'), elements: <BoutonDefi3 /> },
+    { image_src: require('./assets/hublot.png'), elements: <BoutonDefi4 /> },
   ];
- 
-
-  
-
 
   const [selectedItem, setSelectedItem] = useState(0);
-
 
   const onSnapToItem = (index) => {
     setSelectedItem(index);
   };
 
-const renderItem = ({ item, index }) => {
-  return <CalendrierItem item={item} isSelected={(index % calendrierData.length)  === selectedItem % calendrierData.length} selectedItem={selectedItem} index={index}/>;
-};
+  const renderItem = ({ item, index }) => {
+    return <CalendrierItem item={item} isSelected={(index % calendrierData.length) === selectedItem % calendrierData.length} selectedItem={selectedItem} index={index} />;
+  };
 
   const { width: viewportWidth } = Dimensions.get('window');
   const ITEM_WIDTH = viewportWidth * 0.35;
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <Carousel
-        data={calendrierData}
-        renderItem={renderItem}
-        sliderWidth={viewportWidth}
-        itemWidth={ITEM_WIDTH}
-        onSnapToItem={onSnapToItem}
-        loop
-        loopClonesPerSide={calendrierData.length}
-        removeClippedSubviews={false}
-        inactiveSlideScale={0.8} 
-        itemHorizontalMargin={1}
-
-      />
-      {calendrierData[selectedItem]?.elements}
+    <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
+      <View style={{ marginTop: 20 }}>
+        <Carousel
+          data={calendrierData}
+          renderItem={renderItem}
+          sliderWidth={viewportWidth}
+          itemWidth={ITEM_WIDTH}
+          onSnapToItem={onSnapToItem}
+          loop
+          loopClonesPerSide={calendrierData.length}
+          removeClippedSubviews={false}
+          inactiveSlideScale={0.8}
+          itemHorizontalMargin={1}
+        />
+        {calendrierData[selectedItem]?.elements}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   itemContainer: {
-    margin : 0,
-    padding: 5, // Ajustez la marge intérieure
+    margin: 0,
+    padding: 5,
     backgroundColor: 'transparent',
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    //height : 100  
   },
   image: {
-    width : 120,
-    height : 120
+    width: 120,
+    height: 120,
   },
-  customComponentContainer: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: 'transparent',
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  button: {
-    width: '95%', // Prend presque toute la largeur
-    marginVertical: 10,
-    padding: 15,
-    backgroundColor: 'skyblue',
-    borderRadius: 25,
-    alignItems: 'center',
-  },
-  buttonText: {
-    padding : 7,
-    fontSize: 30,
-    color: 'white',
-  },
-  selectedItem: {
-    backgroundColor: 'transparent',
-
-  },
-   flatListContainer: {
-    padding: 16,
+  boutonDefiContainer: {
+    flexDirection: 'row', 
+    // Align accordions in a row
   },
   itemContainer_defi: {
-    flex: 1,
-    margin: 8,
-    backgroundColor: 'rgb(90,223,229)',
-    borderRadius: 30,
+    marginTop: 8,
+    marginHorizontal: 8,
+    backgroundColor: couleurs.buttonColor1,
+    borderRadius: 20,
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
+
+  },
+  selectedHeader: {
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
   },
   itemText: {
-    color: 'black',
+    color: 'white',
     fontSize: 22,
+    fontWeight: 'bold',
+  },
+  descriptionContainer: {
+    backgroundColor: couleurs.buttonColor3,
+    borderRadius: 10,
+    padding: 16,
+    margin: 8,
+    marginTop: -8,
+  },
+  descriptionText: {
+    color: 'gray',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  column: {
+    flex: 1,
+    width: Dimensions.get('window').width / 2,
   },
 });
 

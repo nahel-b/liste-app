@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, FlatList,Image } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, get } from 'firebase/database';
 import { useFonts } from 'expo-font';
+import couleurs from './Couleurs';
+import { useIsFocused } from '@react-navigation/native'; // Importez cette dépendance
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDLiHG0MgpgcjDJ9Ur-c6Rf9svkc29qzvg",
@@ -18,92 +21,171 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const ClassementListe = () => {
-  const [data, setData] = useState([]);
+const renderItem = ({ item, index }) => {
+    let backgroundColor;
+  
+    if (index <= 2) {
+      backgroundColor = couleurs.buttonColor1;
+    } else if (index <= 5) {
+      backgroundColor = couleurs.buttonColor2;
+    } else {
+      backgroundColor = couleurs.buttonColor3;
+    }
+  
+    const dynamicStyles = {
+      backgroundColor: backgroundColor,
+    };
+  
+    return (
+      <View style={[styles.rectangle, dynamicStyles]}>
+        <View style={styles.leftColumn}>
+          <Image
+            source={require('./assets/hublot.png')}
+            style={styles.image} // Ajustez la taille selon vos besoins
+          />
+          <Text style={styles.position}>{index + 1}{index === 0 ? "er " : "eme"}</Text>
+        </View>
+        <View style={styles.rightColumn}>
+          <Text style={styles.textNom}>{item.prenom} {item.nom}</Text>
+          <Text style={styles.textPoint}>Points : {item.point}</Text>
+        </View>
+      </View>
+    );
+  };
 
-  useEffect(() => {
-    const fetchData = async () => {
+
+  const ClassementListe = () => {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+  
+    const fetchData = useCallback(async () => {
       try {
         const utilisateursRef = ref(db, 'utilisateurs');
         const utilisateursSnapshot = await get(utilisateursRef);
-
+  
         if (utilisateursSnapshot.exists()) {
           const utilisateursData = utilisateursSnapshot.val();
-          const newData = Object.entries(utilisateursData).map(([username, userData]) => ({
-            username,
-            prenom: userData.prénom,
-            nom: userData.nom,
-            point: userData.point
-          }));
-
-          // Triez le tableau par points de manière décroissante
+          const newData = Object.entries(utilisateursData).map(([username, userData]) => {
+            if (isNaN(userData.point)) {
+              return null;
+            }
+  
+            return {
+              username,
+              prenom: userData.prénom,
+              nom: userData.nom,
+              point: userData.point
+            };
+          }).filter(item => item !== null);
+  
           newData.sort((a, b) => b.point - a.point);
-
+  
           setData(newData);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      } 
+    }, [setLoading]);
+  
+    const isFocused = useIsFocused(); // Récupérez l'état de focus de l'écran
+  
+    useEffect(() => {
+      // Chargez les données lorsque le composant est monté
+      fetchData();
+    }, [fetchData]);
+  
+    useEffect(() => {
+      // Rechargez les données lorsque l'écran est en focus
+      if (isFocused) {
+        fetchData();
       }
-    };
+    }, [isFocused, fetchData]);
+  
+    const [loaded] = useFonts({
+      // Specify custom fonts if needed
+      // Example: 'Roboto': require('./assets/fonts/Roboto-Regular.ttf'),
+    });
+  
+    if (!loaded || loading) {
+      const dataNull = [
+        { prenom: "Chargement", nom: "--", point: "0" },
+        { prenom: "Chargement", nom: "--", point: "0" },
+        { prenom: "Chargement", nom: "--", point: "0" },
+        { prenom: "Chargement", nom: "--", point: "0" },
+        { prenom: "Chargement", nom: "--", point: "0" },
+        { prenom: "Chargement", nom: "--", point: "0" }
+      ];
+      return (<Text style={{ fontSize: 30, justifyContent: 'center' }}>Chargement...</Text>);
+    }
+  
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.username}
+          renderItem={renderItem} 
+        />
+      </View>
+    );
+  };
+  
+const PODPage = () => 
+(
 
-    fetchData();
-  }, []);
+   
+        <View style={{backgroundColor : couleurs.backgroundColor,flex:1}}>
+            {/*<Text>POD Page</Text>*/}
+            <ClassementListe/>
+        </View>
+    
+)
 
-  const [loaded] = useFonts({
-    // Specify custom fonts if needed
-    // Example: 'Roboto': require('./assets/fonts/Roboto-Regular.ttf'),
-  });
+export default PODPage
 
-  if (!loaded) {
-    return null; // Render a loading component if fonts are not yet loaded
-  }
-
-  return (
-    <View>
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.username}
-        renderItem={({ item, index }) => (
-          <View style={styles.rectangle}>
-            <View style={styles.leftColumn}>
-              <Text style={styles.position}>{index + 1}{index === 0 ? "er " : "eme"}</Text>
-            </View>
-            <View style={styles.rightColumn}>
-              <Text>{item.prenom} {item.nom}</Text>
-              <Text>Points : {item.point}</Text>
-            </View>
-          </View>
-        )}
-      />
-    </View>
-  );
-};
-
-export default ClassementListe
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  rectangle: {
-    flexDirection: 'row',
-    backgroundColor: '#eee',
-    padding: 10,
-    marginVertical: 5,
-    borderRadius: 10,
-    alignItems: 'center'
-  },
-  leftColumn: {
-    marginRight: 10,
-  },
-  rightColumn: {
-    flex: 1
-  },
-  position: {
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-});
+    container: {
+      marginTop: 0,
+      padding: 10,
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+
+    },
+    rectangle: {
+       // Prend presque toute la largeur
+      marginVertical: 5,
+      padding: 10,
+      borderRadius: 25,
+      flexDirection: 'row', // Ajoutez cette ligne pour assurer la disposition en colonne
+    },
+    leftColumn: {
+      marginRight: 10,
+      alignItems  : 'center',
+    },
+    rightColumn: {
+        width: '80%',
+        justifyContent: 'center'
+    },
+    position: {
+      fontWeight: 'bold',
+      marginBottom: 0,
+      color : 'white',
+    },
+    textNom: 
+    {
+        color : 'white',
+        fontSize : 25,
+        fontWeight : 'bold'
+    },
+    textPoint: 
+    {
+        color : 'white',
+        fontSize : 15,
+        fontWeight : 'bold'
+    },
+    image: { width: 40, height: 40 }
+  });
+  
