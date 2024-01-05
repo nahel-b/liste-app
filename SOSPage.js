@@ -54,12 +54,17 @@ const CommandePage = () => {
       padding: 16,
       alignItems: 'center',
       justifyContent: 'center',
-      overflow: 'hidden',
-  
+      //overflow: 'hidden',
+      shadowColor: 'black',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.5,
+      shadowRadius: 3,
+      marginBottom: 5,
     },
     selectedHeader: {
       borderBottomRightRadius: 0,
       borderBottomLeftRadius: 0,
+      marginBottom: 0,
     },
     itemText: {
       color: 'white',
@@ -70,8 +75,9 @@ const CommandePage = () => {
       backgroundColor: couleurs.buttonColor3,
       borderRadius: 10,
       padding: 16,
-      margin: 8,
+      marginHorizontal: 8,
       marginTop: -8,
+      
     },
     descriptionText: {
       color: 'white',
@@ -138,7 +144,7 @@ const SOSPageAccueil = () => {
 
   const navigation = useNavigation();
 
-  
+
   const Row1 = ({ image1Source, image2Source }) => {
     return (
       <View style={styles.row}>
