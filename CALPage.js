@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions,TouchableOpacity, Image } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import couleurs from './Couleurs';
+import { ScrollView } from 'react-native-gesture-handler';
+//import { loadFonts, body_font } from './FontManager';
+// const body_font = ''
+// const loadFonts = () => {}
 
 const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
 
@@ -14,54 +18,51 @@ const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
   );
 };
 
-const CustomComponent1 = ({ handlePress }) => (
-  <View style={[styles.customComponentContainer]}>  
-    <TouchableOpacity style={[styles.button,{backgroundColor: couleurs.buttonColor1}]} onPress={() => handlePress('SOS')}>
-      <Text style={styles.buttonText} >SOS/WEL</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={[styles.button,{backgroundColor: couleurs.buttonColor2}]}>
-      <Text style={styles.buttonText}>EVENTS LISTE</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={[styles.button,{backgroundColor: couleurs.buttonColor3}]}>
-      <Text style={styles.buttonText}>EVENT AUTRE LISTE</Text>
-    </TouchableOpacity>
-  </View>
-);
+const CustomComponent = ({ selectedButtons, handlePress }) => {
 
-const CustomComponent2 = ({ handlePress }) => (
-  <View style={styles.customComponentContainer}>
-    <TouchableOpacity style={styles.button} onPress={() => handlePress('SOS')}>
-      <Text style={styles.buttonText}>SOS/WEL</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>MINP</Text>
-    </TouchableOpacity>
-    
-  </View>
-);
-const CustomComponent3 = ({ handlePress }) => (
-  <View style={styles.customComponentContainer}>
-   
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>MINP</Text>
-    </TouchableOpacity>
-    
-  </View>
-);
+  const availableButtons = {
+    SOS: { label: 'SOS', backgroundColor: couleurs.buttonColor1 },
+    WEL: { label: 'WEL', backgroundColor: couleurs.buttonColor2 },
+    EL : { label: 'EVENTS LISTE', backgroundColor: couleurs.buttonColor3 },
+    EAL : { label: 'EVENTS AUTRE LISTE', backgroundColor: couleurs.buttonColor3 },
+  };
+
+  return (
+    <View style={[styles.customComponentContainer]}>  
+      {selectedButtons.map((buttonName, index) => {
+        const button = availableButtons[buttonName];
+        if (button) {
+          return (
+            <TouchableOpacity key={index} style={[styles.button, { backgroundColor: button.backgroundColor }]} onPress={() => handlePress(buttonName)}>
+              <Text style={styles.buttonText}>{button.label}</Text>
+            </TouchableOpacity>
+          );
+        }
+        return null; // Ignorer les boutons inconnus
+      })}
+    </View>
+  );
+};
+
 
 const CALPage = ({ navigation }) => {
+
+  // useEffect(() => {
+  //   loadFonts();
+  // }, []);
 
   const handlePress = (page) => {
     navigation.navigate(page);
   };
+ 
   
   const calendrierData = [
-    { jour: 'Lun', num: '30', mois: 'Janvier', elements: <CustomComponent1 handlePress={handlePress} /> },
-    { jour: 'Mar', num: '31', mois: 'Janvier', elements: <CustomComponent2 handlePress={handlePress}/> },
-    { jour: 'Mer', num: '01', mois: 'Février', elements: <CustomComponent3 handlePress={handlePress} /> },
-    { jour: 'Jeu', num: '02', mois: 'Février', elements: <CustomComponent2 handlePress={handlePress}/> },
-    { jour: 'Ven', num: '03', mois: 'Février', elements: <CustomComponent1 handlePress={handlePress}/> },
-    { jour: 'Sam', num: '04', mois: 'Février', elements: <CustomComponent2 handlePress={handlePress}/> },
+    { jour: 'Lun', num: '30', mois: 'Janvier', selectedButtons: ['SOS', 'WEL','EL','EAL'] },
+    { jour: 'Mar', num: '31', mois: 'Janvier',selectedButtons: ['SOS', 'WEL'] },
+    { jour: 'Mer', num: '01', mois: 'Février', selectedButtons: ['SOS', 'EL'] },
+    { jour: 'Jeu', num: '02', mois: 'Février', selectedButtons: ['WEL', 'EAL'] },
+    { jour: 'Ven', num: '03', mois: 'Février', selectedButtons: ['SOS', 'WEL'] },
+    { jour: 'Sam', num: '04', mois: 'Février', selectedButtons: ['SOS', ] },
   ];
 
   
@@ -83,7 +84,7 @@ const renderItem = ({ item, index }) => {
 
   return (
     <View style={{ flex: 1,backgroundColor :  couleurs.backgroundColor }}>
-    <View style={{ marginTop: 20,flex: 1}}>
+    <View style={{ marginTop: 20}}>
       <Carousel
         data={calendrierData}
         renderItem={renderItem}
@@ -95,21 +96,23 @@ const renderItem = ({ item, index }) => {
         removeClippedSubviews={false}
         inactiveSlideScale={0.8} 
         itemHorizontalMargin={1}
-        containerCustomStyle={{ height: 0}}
+        containerCustomStyle={{ height: 'auto'}}
         inactiveSlideOpacity={1}
 
 
       />
-      <View style={{ flex: 3  }}>
-      {calendrierData[selectedItem]?.elements}
-      </View>
-      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}>
+      <ScrollView style={{  }}>
+      {<CustomComponent selectedButtons={calendrierData[selectedItem]?.selectedButtons} handlePress={handlePress} />
+}
+      
+      <View style={{  alignItems: 'center',justifyContent: 'flex-end' }}>
         <Image
           source={require('./assets/Logo.png')}
-          style={{ width: 150, height: 150 * 1200 / 1080,marginBottom: 10 }}
+          style={{ width: 150, height: 150 * 1200 / 1080,marginBottom: 50 }}
           resizeMode="contain"
         />
       </View>
+      </ScrollView>
     </View>
     </View>
   );
@@ -130,19 +133,22 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     fontSize: 15,
     marginBottom: 5,
-    color : "white"
+    color : "white",
+    //fontFamily: body_font,
   },
   numText: {
     marginTop : -15, 
     marginBottom : -15,
     fontSize: 50,
-    color : "white"
+    color : "white",
+    //fontFamily: body_font,
   },
   dayText: {
     fontSize: 15,
     marginTop: 5,
     color : "white",
-    paddingBottom: 5
+    paddingBottom: 5,
+    //fontFamily: body_font,
   },
   customComponentContainer: {
     
@@ -157,17 +163,17 @@ const styles = StyleSheet.create({
   button: {
     width: '95%', // Prend presque toute la largeur
     marginVertical: 10,
-    padding: 15,
-    backgroundColor: 'skyblue',
-    borderRadius: 25,
+    padding: 10,
+    borderRadius: 20,
     alignItems: 'center',
-    
     
   },
   buttonText: {
-    padding : 7,
-    fontSize: 30,
+    margin : 10 ,
+    fontSize: 32,
     color: 'white',
+    fontWeight: 'bold',
+    //fontFamily: body_font,
   },
   selectedItem: {
     backgroundColor: couleurs.buttonColor1,

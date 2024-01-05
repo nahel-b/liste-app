@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import couleurs from './Couleurs';
+//import { loadFonts, body_font } from './FontManager';
 
-const numColumns = 3;
 
 const Row1 = ({ image1Source, image2Source }) => {
   return (
@@ -24,12 +25,15 @@ const Row2 = ({ image1Source, image2Source }) => {
 
 
 const WELPage = () => {
+
+  
+  //useEffect(() => {loadFonts();}, []);
+
   return (
-    <View>
+    <View style={{flex:1,backgroundColor : couleurs.backgroundColor}}>
       <Text style={styles.titre}>WEL</Text>
       <Row1  />
-      <Row2  />
-
+      <Row2  /> 
     </View>
   );
 };
@@ -52,6 +56,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     overflow: 'hidden',
+    fontWeight: 'bold',
+    //fontFamily: body_font,
   },
 });
 

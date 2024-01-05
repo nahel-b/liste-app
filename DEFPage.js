@@ -1,9 +1,111 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image,TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Accordion from 'react-native-collapsible/Accordion';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer,useNavigation } from '@react-navigation/native';
+//import { loadFonts, body_font } from './FontManager';
 
 import couleurs from './Couleurs';
+import { ScrollView } from 'react-native-gesture-handler';
+
+
+const DEFPage = () => {
+
+  
+
+
+  const Stack = createStackNavigator();
+
+
+  const [selectedItem, setSelectedItem] = useState(0);
+
+  //useEffect(() => {loadFonts();}, []);
+
+  
+    return (
+     <Stack.Navigator headerMode="none">
+      <Stack.Screen name="DEFPageContent" component={DEFPageContent} />
+      <Stack.Screen name="PageOuverte" component={PageOuverte} />
+    </Stack.Navigator>
+  );
+};
+
+const DEFPageContent = () => {
+
+
+const Row1 = ({ handlePress }) => {
+  return (
+    <View style={[stylesPage.row]}>
+      <TouchableOpacity onPress={() => handlePress(0)} style={stylesPage.imageContainer}>
+        <Image source={require("./assets/hublots/DEF/quotidien.png")} style={stylesPage.image} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handlePress(1)} style={stylesPage.imageContainer}>
+        <Image source={require("./assets/hublots/DEF/classique.png")} style={stylesPage.image} />
+      </TouchableOpacity>
+    </View>
+  ); 
+};
+
+const Row2 = ({ handlePress }) => {
+  return (
+    <View style={[stylesPage.row]}>
+      <TouchableOpacity onPress={() => handlePress(2)}  style={stylesPage.imageContainer} >
+        <Image source={require("./assets/hublots/DEF/la_liste.png")} style={stylesPage.image} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handlePress(3)} style={stylesPage.imageContainer}>
+        <Image source={require("./assets/hublots/DEF/liste.png")} style={stylesPage.image} />
+      </TouchableOpacity>
+    </View>
+  );
+};
+  const navigation = useNavigation();
+  const [selectedItem, setSelectedItem] = useState(0);
+
+  const handlePress = (index) => {
+    setSelectedItem(index);
+    navigation.navigate('PageOuverte', { selectedIndex: index });
+  };
+
+  return (
+    <View style={{ flex: 1, backgroundColor: couleurs.backgroundColor }}>
+      <Text style={stylesPage.titre}>DEFIS</Text>
+      <Row1 handlePress={handlePress} />
+      <Row2 handlePress={handlePress} />
+    </View>
+  );
+};
+
+const stylesPage = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 0,
+  },
+  
+  image: {
+    width: Dimensions.get('window').width/2,
+    height: Dimensions.get('window').width/2,
+    resizeMode: 'cover',
+    borderRadius: 8, // Optional: Add border radius for rounded corners
+  },
+  titre: {
+    marginTop: 10,
+    borderRadius: 30,
+    fontSize: 130, // Ajustez la taille de la police selon vos besoins
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    overflow: 'hidden',
+    fontWeight: 'bold',
+    //fontFamily: body_font,
+  },
+});
+
+
+
+
+
+// CATEGORIE OUVERTE
 
 const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
   return (
@@ -14,7 +116,7 @@ const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
 };
 
 const dataDefi1 = [
-  { nom: 'D1 5pts', description: 'Description de D1' },
+  { nom: 'D1 5pts quotidien', description: 'Description de D1 ugo' },
   { nom: 'D2 5pts', description: 'Description de D2' },
   { nom: 'D3 5pts', description: 'Description de D3' },
   { nom: 'D4 5pts', description: 'Description de D4' },
@@ -25,7 +127,7 @@ const dataDefi1 = [
   { nom: 'D9 5pts', description: 'Description de D9' },
 ];
 const dataDefi2 = [
-  { nom: 'F1 5pts', description: 'Description de F1' },
+  { nom: 'F1 5pts classique', description: 'Description de F1' },
   { nom: 'F2 15pts', description: 'Description de F2' },
   { nom: 'F3 10pts', description: 'Description de F3' },
   { nom: 'F4 5pts', description: 'Description de F4' },
@@ -36,7 +138,7 @@ const dataDefi2 = [
 
 ];
 const dataDefi3 = [
-  { nom: 'D1 5pts', description: 'Description de D1' },
+  { nom: 'D1 5pts la l', description: 'Description de D1' },
   { nom: 'D2 5pts', description: 'Description de D2' },
   { nom: 'D3 5pts', description: 'Description de D3' },
   { nom: 'D4 5pts', description: 'Description de D4' },
@@ -47,7 +149,7 @@ const dataDefi3 = [
   { nom: 'D9 5pts', description: 'Description de D9' },
 ];
 const dataDefi4 = [
-  { nom: 'F1 5pts', description: 'Description de F1' },
+  { nom: 'F144 5pts l', description: 'Description de F1' },
   { nom: 'F2 5pts', description: 'Description de F2' },
   { nom: 'F3 5pts', description: 'Description de F3' },
   { nom: 'F4 5pts', description: 'Description de F4' },
@@ -57,8 +159,6 @@ const dataDefi4 = [
   { nom: 'F8 5pts', description: 'Description de F8' },
   { nom: 'F9 5pts', description: 'Description de F9' },
 ];
-
-
 
 const BoutonDefi1 = () => {
   const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
@@ -76,7 +176,7 @@ const BoutonDefi1 = () => {
       ref={isActive ? ref : null}
       style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
     >
-      <Text style={styles.itemText}>{content.nom}</Text>
+      <Text style={[styles.itemText]}>{content.nom}</Text>
     </View>
   );
 
@@ -375,26 +475,30 @@ const BoutonDefi4 = () => {
 };
 
 
-const CALPage = ({ navigation }) => {
-  const handlePress = (page) => {
-    navigation.navigate(page);
-  };
+const PageOuverte = ({ route }) => {
+  const { selectedIndex } = route.params;
+  const [selectedItem, setSelectedItem] = useState(selectedIndex);
 
   const calendrierData = [
-    { image_src: require('./assets/hublot.png'), elements: <BoutonDefi1 /> },
-    { image_src: require('./assets/hublot.png'), elements: <BoutonDefi2 /> },
-    { image_src: require('./assets/hublot.png'), elements: <BoutonDefi3 /> },
-    { image_src: require('./assets/hublot.png'), elements: <BoutonDefi4 /> },
+    { image_src: require('./assets/hublots/DEF/quotidien.png'), elements: <BoutonDefi1 /> },
+    { image_src: require('./assets/hublots/DEF/classique.png'), elements: <BoutonDefi2 /> },
+    { image_src: require('./assets/hublots/DEF/la_liste.png'), elements: <BoutonDefi3 /> },
+    { image_src: require('./assets/hublots/DEF/liste.png'), elements: <BoutonDefi4 /> },
   ];
-
-  const [selectedItem, setSelectedItem] = useState(0);
 
   const onSnapToItem = (index) => {
     setSelectedItem(index);
   };
 
   const renderItem = ({ item, index }) => {
-    return <CalendrierItem item={item} isSelected={(index % calendrierData.length) === selectedItem % calendrierData.length} selectedItem={selectedItem} index={index} />;
+    return (
+      <CalendrierItem
+        item={item}
+        isSelected={(index % calendrierData.length) === selectedItem % calendrierData.length}
+        selectedItem={selectedItem}
+        index={index}
+      />
+    );
   };
 
   const { width: viewportWidth } = Dimensions.get('window');
@@ -402,7 +506,7 @@ const CALPage = ({ navigation }) => {
 
   return (
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
-      <View style={{ marginTop: 20 }}>
+      <View style={{ marginTop: 0 }}>
         <Carousel
           data={calendrierData}
           renderItem={renderItem}
@@ -414,28 +518,39 @@ const CALPage = ({ navigation }) => {
           removeClippedSubviews={false}
           inactiveSlideScale={0.8}
           itemHorizontalMargin={1}
+          initialScrollIndex={selectedItem}
+          firstItem={selectedItem}
+          getItemLayout={(data, index) => ({
+            length: ITEM_WIDTH,
+            offset: ITEM_WIDTH * index,
+            index,
+          })}
         />
+        <ScrollView style={{ marginBottom : 150}}>
         {calendrierData[selectedItem]?.elements}
+      </ScrollView>
       </View>
     </View>
   );
 };
 
+
 const styles = StyleSheet.create({
   itemContainer: {
     margin: 0,
-    padding: 5,
+    padding: 0,
     backgroundColor: 'transparent',
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
   },
   image: {
-    width: 120,
-    height: 120,
+    width: 200,
+    height: 200,
   },
   boutonDefiContainer: {
     flexDirection: 'row', 
+    justifyContent : 'center',
     // Align accordions in a row
   },
   itemContainer_defi: {
@@ -447,7 +562,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-
+    width : Dimensions.get('window').width/2.2,
   },
   selectedHeader: {
     borderBottomRightRadius: 0,
@@ -470,10 +585,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
-  column: {
-    flex: 1,
-    width: Dimensions.get('window').width / 2,
+  column: 
+  {
+    
+    
   },
 });
 
-export default CALPage;
+export  {DEFPage,PageOuverte,DEFPageContent};
+ 

@@ -4,26 +4,20 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+
+//https://docs.expo.dev/versions/latest/sdk/splash-screen/ <- pour le splash screen
+
 import PODPage from './PODPage.js'
 import CALPage from './CALPage.js'
 import SOSPage from './SOSPage.js'
 import WELPage from './WELPage.js'
-import DEFPage from './DEFPage.js'
+import {DEFPage,PageOuverte} from './DEFPage.js'
 import couleurs from './Couleurs.js'
-
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
-const CategoryScreen = ({ route }) => {
-  const { category } = route.params || {};
 
-  return ( 
-    <View>
-      <Text>{category}</Text>
-    </View>
-  );
-};
 
 const HeaderBar = () => {
   const handlePress = (url) => {
@@ -155,6 +149,8 @@ const BottomBar = () => {
 
 const App = () => {
 
+
+
   const bottomBarRef = React.createRef();
   return (
 
@@ -165,10 +161,9 @@ const App = () => {
           header: () => <HeaderBar />,
         }}
       >
-      <Stack.Screen
-          name="Home"
-          component={() => <BottomBar ref={bottomBarRef} />}
-        />
+      <Stack.Screen name="Home">
+    {() => <BottomBar ref={bottomBarRef} />}
+  </Stack.Screen>
       </Stack.Navigator>
 
     </NavigationContainer>
@@ -178,6 +173,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   header: {
+    
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -204,6 +200,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft : 0
   }
 });
  
