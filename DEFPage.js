@@ -161,6 +161,7 @@ const dataDefi4 = [
 ];
 
 const BoutonDefi1 = () => {
+  
   const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
   const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
 
@@ -220,6 +221,7 @@ const BoutonDefi1 = () => {
         onChange={updateSectionsColonne1}
         underlayColor={'transparent'}
         onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
+        
         expandMultiple={true}
       />
       <Accordion
@@ -238,7 +240,7 @@ const BoutonDefi1 = () => {
     </View>
   );
 };
-
+////////////////////////////
 const BoutonDefi2 = () => {
   const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
   const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
@@ -469,6 +471,7 @@ const BoutonDefi4 = () => {
         underlayColor={'transparent'}
         onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
         expandMultiple={true}
+        
       />
     </View>
   );
@@ -557,7 +560,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginHorizontal: 8,
     backgroundColor: couleurs.buttonColor1,
-    borderRadius: 20,
+    borderRadius: 10,
+
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
@@ -565,8 +569,8 @@ const styles = StyleSheet.create({
     width : Dimensions.get('window').width/2.2,
   },
   selectedHeader: {
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   itemText: {
     color: 'white',
@@ -579,6 +583,8 @@ const styles = StyleSheet.create({
     padding: 16,
     margin: 8,
     marginTop: -8,
+    alignSelf : 'center',
+    width : Dimensions.get('window').width/2.4,
   },
   descriptionText: {
     color: 'gray',
