@@ -58,7 +58,7 @@ const CALPage = ({ navigation }) => {
   
   const calendrierData = [
     { jour: 'Lun', num: '30', mois: 'Janvier', selectedButtons: ['SOS', 'WEL','EL','EAL'] },
-    { jour: 'Mar', num: '31', mois: 'Janvier',selectedButtons: ['SOS', 'WEL'] },
+    { jour: 'Mar', num: '31', mois: 'Janvier', selectedButtons: ['SOS', 'WEL'] },
     { jour: 'Mer', num: '01', mois: 'Février', selectedButtons: ['SOS', 'EL'] },
     { jour: 'Jeu', num: '02', mois: 'Février', selectedButtons: ['WEL', 'EAL'] },
     { jour: 'Ven', num: '03', mois: 'Février', selectedButtons: ['SOS', 'WEL'] },
@@ -85,6 +85,7 @@ const renderItem = ({ item, index }) => {
   return (
     <View style={{ flex: 1,backgroundColor :  couleurs.backgroundColor }}>
     <View style={{ marginTop: 20}}>
+      <View style={{ alignItems: 'center' }}>
       <Carousel
         data={calendrierData}
         renderItem={renderItem}
@@ -101,14 +102,15 @@ const renderItem = ({ item, index }) => {
 
 
       />
+      </View>
       <ScrollView style={{  }}>
       {<CustomComponent selectedButtons={calendrierData[selectedItem]?.selectedButtons} handlePress={handlePress} />
 }
       
-      <View style={{  alignItems: 'center',justifyContent: 'flex-end' }}>
+      <View style={{  alignItems: 'center' }}>
         <Image
           source={require('./assets/Logo.png')}
-          style={{ width: 150, height: 150 * 1200 / 1080,marginBottom: 50 }}
+          style={{ width: 150, height: 150 * 1200 / 1080,marginBottom: 150 }}
           resizeMode="contain"
         />
       </View>

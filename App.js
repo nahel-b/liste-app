@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   logoContainer: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginLeft: -15,
+    marginLeft: 0,
   },
   logo: {
     height: 32,

@@ -90,10 +90,10 @@ const stylesPage = StyleSheet.create({
     borderRadius: 8, // Optional: Add border radius for rounded corners
   },
   titre: {
-    marginTop: 10,
+    marginTop: 20,
     borderRadius: 30,
     fontSize: 130, // Ajustez la taille de la police selon vos besoins
-    textAlign: 'center',
+    textAlign: 'center',  
     textAlignVertical: 'center',
     overflow: 'hidden',
     fontWeight: 'bold',
