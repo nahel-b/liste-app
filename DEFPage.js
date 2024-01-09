@@ -12,16 +12,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 const DEFPage = () => {
 
-  
-
-
   const Stack = createStackNavigator();
-
-
   const [selectedItem, setSelectedItem] = useState(0);
-
-  //useEffect(() => {loadFonts();}, []);
-
   
     return (
      <Stack.Navigator headerMode="none">

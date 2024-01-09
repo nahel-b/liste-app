@@ -11,7 +11,7 @@ import PODPage from './PODPage.js'
 import CALPage from './CALPage.js'
 import SOSPage from './SOSPage.js'
 import WELPage from './WELPage.js'
-import {DEFPage,PageOuverte} from './DEFPage.js'
+import {DEFPage} from './DEFPage.js'
 import couleurs from './Couleurs.js'
 
 const Stack = createStackNavigator();
