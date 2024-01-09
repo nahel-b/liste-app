@@ -8,6 +8,7 @@ import { NavigationContainer,useNavigation } from '@react-navigation/native';
 
 import couleurs from './Couleurs';
 import { ScrollView } from 'react-native-gesture-handler';
+import { specificStyles } from './specificStyles';
 
 
 const DEFPage = () => {
@@ -152,102 +153,20 @@ const dataDefi4 = [
   { nom: 'F9 5pts', description: 'Description de F9' },
 ];
 
-const BoutonDefi1 = () => {
-  
+const BoutonsDeroulant = ({ data, key }) => {
   const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
   const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
 
   const itemContainerRefColonne1 = useRef(null);
   const itemContainerRefColonne2 = useRef(null);
 
-  // Divise dataDefi1 en deux colonnes
-  const dataDefi1Colonne1 = dataDefi1.filter((_, index) => index % 2 === 0);
-  const dataDefi1Colonne2 = dataDefi1.filter((_, index) => index % 2 !== 0);
+  const dataColonne1 = data.filter((_, index) => index % 2 === 0);
+  const dataColonne2 = data.filter((_, index) => index % 2 !== 0);
 
   const renderHeader = (content, index, isActive, section, ref) => (
     <View
       ref={isActive ? ref : null}
-      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
-    >
-      <Text style={[styles.itemText]}>{content.nom}</Text>
-    </View>
-  );
-
-  const renderContent = (section) => (
-    <View style={styles.descriptionContainer}>
-      <Text style={styles.descriptionText}>{section.description}</Text>
-    </View>
-  );
-
-  const updateSectionsColonne1 = (activeSections) => {
-    setActiveSectionsColonne1(activeSections);
-  };
-
-  const updateSectionsColonne2 = (activeSections) => {
-    setActiveSectionsColonne2(activeSections);
-  };
-
-  const onTransitionEnd = useCallback((ref) => {
-    if (ref.current) {
-      ref.current.setNativeProps({
-        style: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    onTransitionEnd(itemContainerRefColonne1);
-    onTransitionEnd(itemContainerRefColonne2);
-  }, [onTransitionEnd]);
-
-  return (
-    <View style={styles.boutonDefiContainer}>
-      <Accordion
-      style={styles.column}
-        sections={dataDefi1Colonne1}
-        activeSections={activeSectionsColonne1}
-        renderHeader={(content, index, isActive, section) =>
-          renderHeader(content, index, isActive, section, itemContainerRefColonne1)
-        }
-        renderContent={renderContent}
-        onChange={updateSectionsColonne1}
-        underlayColor={'transparent'}
-        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
-        
-        expandMultiple={true}
-      />
-      <Accordion
-      style={styles.column}
-        sections={dataDefi1Colonne2}
-        activeSections={activeSectionsColonne2}
-        renderHeader={(content, index, isActive, section) =>
-          renderHeader(content, index, isActive, section, itemContainerRefColonne2)
-        }
-        renderContent={renderContent}
-        onChange={updateSectionsColonne2}
-        underlayColor={'transparent'}
-        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
-        expandMultiple={true}
-      />
-    </View>
-  );
-};
-////////////////////////////
-const BoutonDefi2 = () => {
-  const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
-  const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
-
-  const itemContainerRefColonne1 = useRef(null);
-  const itemContainerRefColonne2 = useRef(null);
-
-  // Divise dataDefi1 en deux colonnes
-  const dataDefi1Colonne1 = dataDefi2.filter((_, index) => index % 2 === 0);
-  const dataDefi1Colonne2 = dataDefi2.filter((_, index) => index % 2 !== 0);
-
-  const renderHeader = (content, index, isActive, section, ref) => (
-    <View
-      ref={isActive ? ref : null}
-      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
+      style={[styles.itemContainer_defi, isActive && styles.selectedHeader,specificStyles.shadowBoutonDeroulant]}
     >
       <Text style={styles.itemText}>{content.nom}</Text>
     </View>
@@ -278,13 +197,14 @@ const BoutonDefi2 = () => {
   useEffect(() => {
     onTransitionEnd(itemContainerRefColonne1);
     onTransitionEnd(itemContainerRefColonne2);
-  }, [onTransitionEnd]);
+  }, [onTransitionEnd, key]);
 
   return (
     <View style={styles.boutonDefiContainer}>
       <Accordion
-      style={styles.column}
-        sections={dataDefi1Colonne1}
+        key={key}
+        style={styles.column}
+        sections={dataColonne1}
         activeSections={activeSectionsColonne1}
         renderHeader={(content, index, isActive, section) =>
           renderHeader(content, index, isActive, section, itemContainerRefColonne1)
@@ -296,8 +216,9 @@ const BoutonDefi2 = () => {
         expandMultiple={true}
       />
       <Accordion
-      style={styles.column}
-        sections={dataDefi1Colonne2}
+        key={key}
+        style={styles.column}
+        sections={dataColonne2}
         activeSections={activeSectionsColonne2}
         renderHeader={(content, index, isActive, section) =>
           renderHeader(content, index, isActive, section, itemContainerRefColonne2)
@@ -311,163 +232,7 @@ const BoutonDefi2 = () => {
     </View>
   );
 };
-const BoutonDefi3 = () => {
-  const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
-  const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
 
-  const itemContainerRefColonne1 = useRef(null);
-  const itemContainerRefColonne2 = useRef(null);
-
-  // Divise dataDefi1 en deux colonnes
-  const dataDefi1Colonne1 = dataDefi3.filter((_, index) => index % 2 === 0);
-  const dataDefi1Colonne2 = dataDefi3.filter((_, index) => index % 2 !== 0);
-
-  const renderHeader = (content, index, isActive, section, ref) => (
-    <View
-      ref={isActive ? ref : null}
-      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
-    >
-      <Text style={styles.itemText}>{content.nom}</Text>
-    </View>
-  );
-
-  const renderContent = (section) => (
-    <View style={styles.descriptionContainer}>
-      <Text style={styles.descriptionText}>{section.description}</Text>
-    </View>
-  );
-
-  const updateSectionsColonne1 = (activeSections) => {
-    setActiveSectionsColonne1(activeSections);
-  };
-
-  const updateSectionsColonne2 = (activeSections) => {
-    setActiveSectionsColonne2(activeSections);
-  };
-
-  const onTransitionEnd = useCallback((ref) => {
-    if (ref.current) {
-      ref.current.setNativeProps({
-        style: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    onTransitionEnd(itemContainerRefColonne1);
-    onTransitionEnd(itemContainerRefColonne2);
-  }, [onTransitionEnd]);
-
-  return (
-    <View style={styles.boutonDefiContainer}>
-      <Accordion
-      style={styles.column}
-        sections={dataDefi1Colonne1}
-        activeSections={activeSectionsColonne1}
-        renderHeader={(content, index, isActive, section) =>
-          renderHeader(content, index, isActive, section, itemContainerRefColonne1)
-        }
-        renderContent={renderContent}
-        onChange={updateSectionsColonne1}
-        underlayColor={'transparent'}
-        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
-        expandMultiple={true}
-      />
-      <Accordion
-      style={styles.column}
-        sections={dataDefi1Colonne2}
-        activeSections={activeSectionsColonne2}
-        renderHeader={(content, index, isActive, section) =>
-          renderHeader(content, index, isActive, section, itemContainerRefColonne2)
-        }
-        renderContent={renderContent}
-        onChange={updateSectionsColonne2}
-        underlayColor={'transparent'}
-        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
-        expandMultiple={true}
-      />
-    </View>
-  );
-};
-const BoutonDefi4 = () => {
-  const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
-  const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
-
-  const itemContainerRefColonne1 = useRef(null);
-  const itemContainerRefColonne2 = useRef(null);
-
-  // Divise dataDefi1 en deux colonnes
-  const dataDefi1Colonne1 = dataDefi4.filter((_, index) => index % 2 === 0);
-  const dataDefi1Colonne2 = dataDefi4.filter((_, index) => index % 2 !== 0);
-
-  const renderHeader = (content, index, isActive, section, ref) => (
-    <View
-      ref={isActive ? ref : null}
-      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
-    >
-      <Text style={styles.itemText}>{content.nom}</Text>
-    </View>
-  );
-
-  const renderContent = (section) => (
-    <View style={styles.descriptionContainer}>
-      <Text style={styles.descriptionText}>{section.description}</Text>
-    </View>
-  );
-
-  const updateSectionsColonne1 = (activeSections) => {
-    setActiveSectionsColonne1(activeSections);
-  };
-
-  const updateSectionsColonne2 = (activeSections) => {
-    setActiveSectionsColonne2(activeSections);
-  };
-
-  const onTransitionEnd = useCallback((ref) => {
-    if (ref.current) {
-      ref.current.setNativeProps({
-        style: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    onTransitionEnd(itemContainerRefColonne1);
-    onTransitionEnd(itemContainerRefColonne2);
-  }, [onTransitionEnd]);
-
-  return (
-    <View style={styles.boutonDefiContainer}>
-      <Accordion
-      style={styles.column}
-        sections={dataDefi1Colonne1}
-        activeSections={activeSectionsColonne1}
-        renderHeader={(content, index, isActive, section) =>
-          renderHeader(content, index, isActive, section, itemContainerRefColonne1)
-        }
-        renderContent={renderContent}
-        onChange={updateSectionsColonne1}
-        underlayColor={'transparent'}
-        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
-        expandMultiple={true}
-      />
-      <Accordion
-      style={styles.column}
-        sections={dataDefi1Colonne2}
-        activeSections={activeSectionsColonne2}
-        renderHeader={(content, index, isActive, section) =>
-          renderHeader(content, index, isActive, section, itemContainerRefColonne2)
-        }
-        renderContent={renderContent}
-        onChange={updateSectionsColonne2}
-        underlayColor={'transparent'}
-        onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
-        expandMultiple={true}
-        
-      />
-    </View>
-  );
-};
 
 
 const PageOuverte = ({ route }) => {
@@ -475,10 +240,10 @@ const PageOuverte = ({ route }) => {
   const [selectedItem, setSelectedItem] = useState(selectedIndex);
 
   const calendrierData = [
-    { image_src: require('./assets/hublots/DEF/quotidien.png'), elements: <BoutonDefi1 /> },
-    { image_src: require('./assets/hublots/DEF/classique.png'), elements: <BoutonDefi2 /> },
-    { image_src: require('./assets/hublots/DEF/la_liste.png'), elements: <BoutonDefi3 /> },
-    { image_src: require('./assets/hublots/DEF/liste.png'), elements: <BoutonDefi4 /> },
+    { key: '1',image_src: require('./assets/hublots/DEF/quotidien.png'), elements: <BoutonsDeroulant data={dataDefi1} key="1" /> },
+    { key: '2',image_src: require('./assets/hublots/DEF/classique.png'), elements: <BoutonsDeroulant data={dataDefi2} key="2" /> },
+    { key: '3',image_src: require('./assets/hublots/DEF/la_liste.png'), elements: <BoutonsDeroulant data={dataDefi3} key="3" /> },
+    { key: '4',image_src: require('./assets/hublots/DEF/liste.png'), elements: <BoutonsDeroulant data={dataDefi4} key="4" /> },
   ];
 
   const onSnapToItem = (index) => {
@@ -546,6 +311,7 @@ const styles = StyleSheet.create({
   boutonDefiContainer: {
     flexDirection: 'row', 
     justifyContent : 'center',
+    marginBottom : 10
     // Align accordions in a row
   },
   itemContainer_defi: {
@@ -557,7 +323,6 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
     width : Dimensions.get('window').width/2.2,
   },
   selectedHeader: {

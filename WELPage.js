@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer,useNavigation } from '@react-navigation/native';
 //import { loadFonts, body_font } from './FontManager';
 import { ScrollView } from 'react-native-gesture-handler';
+import { specificStyles } from './specificStyles';
 
 
 const WELPage = () => {
@@ -148,9 +149,9 @@ const BoutonsDeroulant = ({ data, key }) => {
   const renderHeader = (content, index, isActive, section, ref) => (
     <View
       ref={isActive ? ref : null}
-      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
+      style={[styles.itemContainer_defi, isActive && styles.selectedHeader,specificStyles.shadowBoutonDeroulant]}
     >
-      <Text style={styles.itemText}>{content.nom}</Text>
+      <Text style={[styles.itemText]}>{content.nom}</Text>
     </View>
   );
 
@@ -182,7 +183,7 @@ const BoutonsDeroulant = ({ data, key }) => {
   }, [onTransitionEnd, key]);
 
   return (
-    <View style={styles.boutonDefiContainer}>
+    <View style={[styles.boutonDefiContainer]}>
       <Accordion
         key={key}
         style={styles.column}
@@ -221,9 +222,9 @@ const PageOuverte = ({ route }) => {
   const [selectedItem, setSelectedItem] = useState(selectedIndex);
 
   const calendrierData = [
-    { key: 'defi1', image_src: require('./assets/hublots/DEF/quotidien.png'), elements: <BoutonsDeroulant data={data1} key="defi1" /> },
-    { key: 'defi2', image_src: require('./assets/hublots/DEF/classique.png'), elements: <BoutonsDeroulant data={data2} key="defi2" /> },
-    { key: 'defi3', image_src: require('./assets/hublots/DEF/la_liste.png'), elements: <BoutonsDeroulant data={data3} key="defi3" /> },
+    { key: '1', image_src: require('./assets/hublots/DEF/quotidien.png'), elements: <BoutonsDeroulant data={data1} key="1" /> },
+    { key: '2', image_src: require('./assets/hublots/DEF/classique.png'), elements: <BoutonsDeroulant data={data2} key="2" /> },
+    { key: '3', image_src: require('./assets/hublots/DEF/la_liste.png'), elements: <BoutonsDeroulant data={data3} key="3" /> },
   ];
 
   const onSnapToItem = (index) => {
@@ -267,9 +268,9 @@ const PageOuverte = ({ route }) => {
             index,
           })}
         />
-        <ScrollView style={{ marginBottom : 150}}>
+        <View style={{ marginBottom : 150}}>
         {calendrierData[selectedItem]?.elements}
-      </ScrollView>
+      </View>
       </View>
     </View>
   );
@@ -292,6 +293,8 @@ const styles = StyleSheet.create({
   boutonDefiContainer: {
     flexDirection: 'row', 
     justifyContent : 'center',
+    marginBottom : 10,
+    
     // Align accordions in a row
   },
   itemContainer_defi: {
@@ -299,11 +302,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     backgroundColor: couleurs.buttonColor1,
     borderRadius: 10,
-
+    
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'hidden',
+
     width : Dimensions.get('window').width/2.2,
   },
   selectedHeader: {
@@ -316,6 +319,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   descriptionContainer: {
+    
     backgroundColor: couleurs.buttonColor3,
     borderRadius: 10,
     padding: 16,
@@ -323,6 +327,7 @@ const styles = StyleSheet.create({
     marginTop: -8,
     alignSelf : 'center',
     width : Dimensions.get('window').width/2.4,
+    
   },
   descriptionText: {
     color: 'gray',
