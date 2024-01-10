@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Dimensions,TouchableOpacity, Image } from 'reac
 import Carousel from 'react-native-snap-carousel';
 import couleurs from './Couleurs';
 import { ScrollView } from 'react-native-gesture-handler';
+import Accordion from 'react-native-collapsible/Accordion';
+
 //import { loadFonts, body_font } from './FontManager';
 // const body_font = ''
 // const loadFonts = () => {}
@@ -18,19 +20,113 @@ const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
   );
 };
 
+
+const BoutonDeroulant = ({ data }) => 
+{
+
+  const stylesAccordion = StyleSheet.create({
+
+
+    itemContainer_defi: {
+      marginTop: 18,
+      marginHorizontal: 8,
+      backgroundColor: couleurs.buttonColor3,
+      borderRadius: 20,
+      padding: 16,
+      alignItems: 'center',
+      justifyContent: 'center',
+      //overflow: 'hidden',
+      shadowColor: 'black',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.5,
+      shadowRadius: 3,
+      marginBottom: 0,
+      width: Dimensions.get('window').width*0.9,
+    },
+    selectedHeader: {
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
+      marginBottom: 0,
+    },
+    itemText: {
+      color: 'white',
+      fontSize: 32,
+      fontWeight: 'bold',
+    },
+    descriptionContainer: {
+      backgroundColor: couleurs.buttonColor2,
+      borderRadius: 10,
+      padding: 16,
+      marginHorizontal: 8,
+      marginTop: -8,
+      width: Dimensions.get('window').width*0.8,
+      alignSelf: 'center',
+      
+    },
+    descriptionText: {
+      color: 'white',
+      fontSize: 20,
+      textAlign: 'center',
+    },
+
+  });
+  
+  const renderHeader = (content, index, isActive, section) => 
+  {
+    return(  
+    <View  style={[stylesAccordion.itemContainer_defi]} >
+      <Text style={stylesAccordion.itemText}>{content.nom}</Text>
+    </View>
+  )}
+  
+  const renderContent = (section) => (
+    <View style={stylesAccordion.descriptionContainer}>
+      <Text style={stylesAccordion.descriptionText}>{section.description}</Text>
+    </View>
+  );
+
+
+  const [activeSections, setActiveSections] = useState([]);
+
+  const updateSections = (activeSections) => {
+    setActiveSections(activeSections);
+  };
+
+  return (
+
+    <Accordion
+    activeSections={activeSections}
+      
+      sections={data}
+      renderHeader={
+        renderHeader
+      }
+      renderContent={renderContent}
+      onChange={updateSections}
+      underlayColor={'transparent'}
+    />
+    
+  );
+}
+
 const CustomComponent = ({ selectedButtons, handlePress }) => {
 
   const availableButtons = {
     SOS: { label: 'SOS', backgroundColor: couleurs.buttonColor1 },
     WEL: { label: 'WEL', backgroundColor: couleurs.buttonColor2 },
+    
+  };
+  const availableAccordion = 
+  {
     EL : { label: 'EVENTS LISTE', backgroundColor: couleurs.buttonColor3 },
     EAL : { label: 'EVENTS AUTRE LISTE', backgroundColor: couleurs.buttonColor3 },
-  };
+  }
 
   return (
     <View style={[styles.customComponentContainer]}>  
       {selectedButtons.map((buttonName, index) => {
         const button = availableButtons[buttonName];
+        const accor = availableAccordion[buttonName]
         if (button) {
           return (
             <TouchableOpacity key={index} style={[styles.button, { backgroundColor: button.backgroundColor }]} onPress={() => handlePress(buttonName)}>
@@ -38,6 +134,10 @@ const CustomComponent = ({ selectedButtons, handlePress }) => {
             </TouchableOpacity>
           );
         }
+        else if (buttonName["nom"]) {
+          return <BoutonDeroulant data={[{ nom: buttonName["nom"], description: buttonName["description"]}]} />;
+        }
+        
         return null; // Ignorer les boutons inconnus
       })}
     </View>
@@ -57,7 +157,7 @@ const CALPage = ({ navigation }) => {
  
   
   const calendrierData = [
-    { jour: 'Lun', num: '30', mois: 'Janvier', selectedButtons: ['SOS', 'WEL','EL','EAL'] },
+    { jour: 'Lun', num: '30', mois: 'Janvier', selectedButtons: ['SOS', 'WEL',{nom : 'EVENT LISTE', description : 'desc 1'},{nom : 'EVENT AUTRE LISTE', description : 'desc 2'}] },
     { jour: 'Mar', num: '31', mois: 'Janvier', selectedButtons: ['SOS', 'WEL'] },
     { jour: 'Mer', num: '01', mois: 'Février', selectedButtons: ['SOS', 'EL'] },
     { jour: 'Jeu', num: '02', mois: 'Février', selectedButtons: ['WEL', 'EAL'] },
@@ -167,7 +267,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '95%', // Prend presque toute la largeur
-    marginVertical: 10,
+    marginTop: 18,
     padding: 10,
     borderRadius: 20,
     alignItems: 'center',

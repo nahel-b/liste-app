@@ -27,15 +27,15 @@ const WELPageContent = () => {
 
   const Row1 = ({ handlePress }) => {
     return (
-      <View style={[styles.row, { marginTop: 20 }]}>
+      <View style={[styles.row, { marginTop: 0 }]}>
           <TouchableOpacity onPress={() => handlePress(0)} style={{margin : 10}}>
-              <Image source={require("./assets/hublot.png")} style={styles.image} />
+              <Image source={require("./assets/hublots/WEL/j.png")} style={styles.image} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handlePress(1)} style={{marginTop : 130}} >
-              <Image source={require("./assets/hublot.png")} style={styles.image} />
+          <TouchableOpacity onPress={() => handlePress(1)} style={{marginTop : 110}} >
+              <Image source={require("./assets/hublots/WEL/s.png")} style={styles.image} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress(1)} style={{margin : 10}}>
-              <Image source={require("./assets/hublot.png")} style={styles.image} />
+              <Image source={require("./assets/hublots/WEL/d.png")} style={styles.image} />
           </TouchableOpacity>
       </View>
     );
@@ -43,9 +43,9 @@ const WELPageContent = () => {
   
   const Row2 = ({ handlePress }) => {
     return (
-      <View style={[styles.row, { marginTop: -30 }]}>
+      <View style={[styles.row, { marginTop: 0 }]}>
           <TouchableOpacity onPress={() => handlePress(2)} >
-              <Image source={require("./assets/bateau.png")} style={[styles.image,{ marginTop: 50 }]} />
+              <Image source={require("./assets/bateau.png")} style={[styles.image,{ marginTop: 20, width: Dimensions.get('window').width/3, height: Dimensions.get('window').width/3}]} />
           </TouchableOpacity>
       </View>
     );
@@ -59,8 +59,8 @@ const WELPageContent = () => {
       marginBottom: 10,
     },
     image: {
-      width: 120, // Ajustez la largeur selon vos besoins
-      height: 120, // Ajustez la hauteur selon vos besoins
+      width: Dimensions.get('window').width/2.2, // Ajustez la largeur selon vos besoins
+      height: Dimensions.get('window').width/2.2, // Ajustez la hauteur selon vos besoins
       resizeMode: 'cover',
     },
     titre: {
@@ -222,9 +222,9 @@ const PageOuverte = ({ route }) => {
   const [selectedItem, setSelectedItem] = useState(selectedIndex);
 
   const calendrierData = [
-    { key: '1', image_src: require('./assets/hublots/DEF/quotidien.png'), elements: <BoutonsDeroulant data={data1} key="1" /> },
-    { key: '2', image_src: require('./assets/hublots/DEF/classique.png'), elements: <BoutonsDeroulant data={data2} key="2" /> },
-    { key: '3', image_src: require('./assets/hublots/DEF/la_liste.png'), elements: <BoutonsDeroulant data={data3} key="3" /> },
+    { key: '1', image_src: require('./assets/hublots/WEL/j.png'), elements: <BoutonsDeroulant data={data1} key="1" /> },
+    { key: '2', image_src: require('./assets/hublots/WEL/s.png'), elements: <BoutonsDeroulant data={data2} key="2" /> },
+    { key: '3', image_src: require('./assets/hublots/WEL/d.png'), elements: <BoutonsDeroulant data={data3} key="3" /> },
   ];
 
   const onSnapToItem = (index) => {
