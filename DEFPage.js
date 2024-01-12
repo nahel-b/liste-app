@@ -62,7 +62,7 @@ const Row2 = ({ handlePress }) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: couleurs.backgroundColor }}>
-      <Text style={stylesPage.titre}>DEFIS</Text>
+      <Text style={[stylesPage.titre,{height: Dimensions.get('window').height/3}]}>DEFIS</Text>
       <Row1 handlePress={handlePress} />
       <Row2 handlePress={handlePress} />
     </View>

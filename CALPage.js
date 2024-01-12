@@ -4,6 +4,7 @@ import Carousel from 'react-native-snap-carousel';
 import couleurs from './Couleurs';
 import { ScrollView } from 'react-native-gesture-handler';
 import Accordion from 'react-native-collapsible/Accordion';
+import Footer from './foot';
 
 //import { loadFonts, body_font } from './FontManager';
 // const body_font = ''
@@ -186,8 +187,8 @@ const renderItem = ({ item, index }) => {
 
   return (
     <View style={{ flex: 1,backgroundColor :  couleurs.backgroundColor }}>
-    <View style={{ marginTop: 20}}>
-      <View style={{ alignItems: 'center' }}>
+    <View style={{flex : 1, marginTop: 0}}>
+      <View style={{justifyContent : 'flex-start', alignItems: 'center' }}>
       <Carousel
         data={calendrierData}
         renderItem={renderItem}
@@ -205,17 +206,22 @@ const renderItem = ({ item, index }) => {
 
       />
       </View>
-      <ScrollView style={{  }}>
+      <ScrollView style={{ flex : 1 }}>
       {<CustomComponent selectedButtons={calendrierData[selectedItem]?.selectedButtons} handlePress={handlePress} />
 }
       
-      <View style={{  alignItems: 'center' }}>
+      <View style={{ flex : 1, alignItems: 'center' }}>
+        
         <Image
           source={require('./assets/Logo.png')}
-          style={{ width: 150, height: 150 * 1200 / 1080,marginBottom: 150 }}
+          style={{ width: 150, height: 150 * 1200 / 1080,marginBottom: 0 }}
           resizeMode="contain"
         />
+        <Footer/>
+        <View style={{ backgroundColor : 'black' }}>
+        </View>
       </View>
+
       </ScrollView>
     </View>
     </View>

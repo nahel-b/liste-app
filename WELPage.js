@@ -8,7 +8,7 @@ import { NavigationContainer,useNavigation } from '@react-navigation/native';
 //import { loadFonts, body_font } from './FontManager';
 import { ScrollView } from 'react-native-gesture-handler';
 import { specificStyles } from './specificStyles';
-
+import Footer from './foot'
 
 const WELPage = () => {
 
@@ -28,13 +28,13 @@ const WELPageContent = () => {
   const Row1 = ({ handlePress }) => {
     return (
       <View style={[styles.row, { marginTop: 0 }]}>
-          <TouchableOpacity onPress={() => handlePress(0)} style={{margin : 10}}>
+          <TouchableOpacity onPress={() => handlePress(0)} style={{margin : 0}}>
               <Image source={require("./assets/hublots/WEL/j.png")} style={styles.image} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handlePress(1)} style={{marginTop : 110}} >
+          <TouchableOpacity onPress={() => handlePress(1)} style={{alignSelf : 'flex-end'}} >
               <Image source={require("./assets/hublots/WEL/s.png")} style={styles.image} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handlePress(1)} style={{margin : 10}}>
+          <TouchableOpacity onPress={() => handlePress(1)} style={{margin : 0}}>
               <Image source={require("./assets/hublots/WEL/d.png")} style={styles.image} />
           </TouchableOpacity>
       </View>
@@ -45,7 +45,7 @@ const WELPageContent = () => {
     return (
       <View style={[styles.row, { marginTop: 0 }]}>
           <TouchableOpacity onPress={() => handlePress(2)} >
-              <Image source={require("./assets/bateau.png")} style={[styles.image,{ marginTop: 20, width: Dimensions.get('window').width/3, height: Dimensions.get('window').width/3}]} />
+              <Image source={require("./assets/bateau.png")} style={[{flex : 1,aspectRatio: 1}]} />
           </TouchableOpacity>
       </View>
     );
@@ -54,19 +54,23 @@ const WELPageContent = () => {
 
   const styles = StyleSheet.create({
     row: {
+      flex : 1,
       flexDirection: 'row',
       justifyContent: 'space-around',
-      marginBottom: 10,
+      //marginBottom: 0,
     },
     image: {
-      width: Dimensions.get('window').width/2.2, // Ajustez la largeur selon vos besoins
-      height: Dimensions.get('window').width/2.2, // Ajustez la hauteur selon vos besoins
+      flex : 0.6,
+       // ajustez la largeur selon vos besoins
+      aspectRatio: 1,// Ajustez la hauteur selon vos besoins
       resizeMode: 'cover',
     },
     titre: {
-      marginTop: 10,
+      marginTop: 0,
       borderRadius: 30,
-      fontSize: 140, // Ajustez la taille de la police selon vos besoins
+      flex : 1,
+      display: 'flex',
+      fontSize: 100, // Ajustez la taille de la police selon vos besoins
       textAlign: 'center',
       textAlignVertical: 'center',
       overflow: 'hidden',
@@ -75,7 +79,7 @@ const WELPageContent = () => {
       textShadowColor:'#585858',
       textShadowOffset:{width: 5, height: 5},
       textShadowRadius:0 ,
-      textShadow: '0px 0px 0px red, 0 0 1em blue, 0 0 0.2em blue'
+      
     },
    
   });
@@ -90,11 +94,26 @@ const WELPageContent = () => {
 
 
   return (
-    <View style={{flex:1,backgroundColor : couleurs.backgroundColor}}>
-      <Text style={[styles.titre]}>WEL</Text>
-      <Row1  handlePress={handlePress} />
-      <Row2  handlePress={handlePress} /> 
+    <ScrollView contentContainerStyle={{
+      flex: 1,
+      justifyContent: 'space-between'
+  }} style={{ backgroundColor: couleurs.backgroundColor}}>
+      <View style={{flex : 1, paddingHorizontal : 10, flexDirection: 'column',justifyContent :'space-around', backgroundColor: couleurs.backgroundColor}}>
+    <View style={{ flex: 0.6, backgroundColor: 'transparent',justifyContent :'flex-start' }}>
+      {<Text style={styles.titre}>WEL</Text>
+      }
     </View>
+    <View style={{ flex: 1.5 }}>
+      {<Row1 handlePress={handlePress} />
+      }
+    </View>
+    <View style={{ flex: 0.6, backgroundColor : 'transparent' }}>
+      {
+        <Row2 handlePress={handlePress} />
+      }
+    </View>
+    </View>
+  </ScrollView>
   );
   
 };
@@ -188,7 +207,7 @@ const BoutonsDeroulant = ({ data, key }) => {
   }, [onTransitionEnd, key]);
 
   return (
-    <View style={[styles.boutonDefiContainer]}>
+    <View style={[styles.boutonDefiContainer,{marginBottom : 0}]}>
       <Accordion
         key={key}
         style={styles.column}
@@ -252,7 +271,7 @@ const PageOuverte = ({ route }) => {
 
   return (
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
-      <View style={{ marginTop: 0,marginBottom : -100 }}>
+      <View style={{ marginTop: 0,marginBottom : 0 }}>
         <Carousel
           data={calendrierData}
           renderItem={renderItem}
@@ -273,10 +292,14 @@ const PageOuverte = ({ route }) => {
             index,
           })}
         />
-        <ScrollView style={{  marginBottom : 200}}>
+        </View>
+        <ScrollView style={{ flex: 1 }}>
+        
         {calendrierData[selectedItem]?.elements}
+        <Footer/>
+        
       </ScrollView>
-      </View>
+      
     </View>
   );
 };

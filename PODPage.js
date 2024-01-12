@@ -6,7 +6,7 @@ import { getDatabase, ref, get } from 'firebase/database';
 import { useFonts } from 'expo-font';
 import couleurs from './Couleurs';
 import { useIsFocused } from '@react-navigation/native'; // Importez cette dépendance
-
+import Footer from './foot';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDLiHG0MgpgcjDJ9Ur-c6Rf9svkc29qzvg",
@@ -127,6 +127,7 @@ const renderItem = ({ item, index }) => {
           keyExtractor={(item) => item.username}
           renderItem={renderItem} 
         />
+        
       </View>
     );
   };
