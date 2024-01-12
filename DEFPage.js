@@ -5,7 +5,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer,useNavigation } from '@react-navigation/native';
 //import { loadFonts, body_font } from './FontManager';
-
+import {Footer,Retour} from './foot';
 import couleurs from './Couleurs';
 import { ScrollView } from 'react-native-gesture-handler';
 import { specificStyles } from './specificStyles';
@@ -61,36 +61,66 @@ const Row2 = ({ handlePress }) => {
   };
 
   return (
+    <ScrollView contentContainerStyle={{
+      flex: 1,
+      justifyContent: 'space-between'
+  }} style={{ backgroundColor: couleurs.backgroundColor}}>
+
+  
     <View style={{ flex: 1, backgroundColor: couleurs.backgroundColor }}>
-      <Text style={[stylesPage.titre,{height: Dimensions.get('window').height/3}]}>DEFIS</Text>
+     
+    <View style={{ flex: 0.6, backgroundColor: 'transparent',justifyContent :'flex-end' }}>
+
+{    //  <Text style={[stylesPage.titre,{height: Dimensions.get('window').height/3}]}>DEFIS</Text>
+}    
+<Image source={require("./assets/DEF_titre.png")} 
+      style={{flex : 0.8,aspectRatio : 2.8, resizeMode: 'contain',alignSelf : "center"}}/>
+      
+
+
+ </View>
+     
+     <View style={{ flex: 1,backgroundColor : 'transparent' }}>
+
       <Row1 handlePress={handlePress} />
+      </View>
+
+    <View style={{ flex: 1, backgroundColor : 'transparent' }}>
+
       <Row2 handlePress={handlePress} />
+      </View>
+
+
     </View>
+    </ScrollView>
   );
 };
 
 const stylesPage = StyleSheet.create({
   row: {
+    marginHorizontal : 10,
+    flex : 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: 0,
   },
   
   image: {
-    width: Dimensions.get('window').width/2,
-    height: Dimensions.get('window').width/2,
-    resizeMode: 'cover',
-    borderRadius: 8, // Optional: Add border radius for rounded corners
+    flex : 0.9,
+       // ajustez la largeur selon vos besoins
+      aspectRatio: 1,// Ajustez la hauteur selon vos besoins
+      resizeMode: 'cover', // Optional: Add border radius for rounded corners
   },
   titre: {
-    marginTop: 20,
+    marginTop: 0,
     borderRadius: 30,
+    flex : 1,
     fontSize: 130, // Ajustez la taille de la police selon vos besoins
     textAlign: 'center',  
     textAlignVertical: 'center',
     overflow: 'hidden',
     fontWeight: 'bold',
-    //fontFamily: body_font,
+    fontFamily: 'body_font',
   },
 });
 
@@ -276,33 +306,41 @@ const PageOuverte = ({ route }) => {
   const { width: viewportWidth } = Dimensions.get('window');
   const ITEM_WIDTH = viewportWidth * 0.35;
 
+  const navigation = useNavigation();
   return (
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
-      <View style={{ marginTop: 0 }}>
-        <Carousel
-          data={calendrierData}
-          renderItem={renderItem}
-          sliderWidth={viewportWidth}
-          itemWidth={ITEM_WIDTH}
-          onSnapToItem={onSnapToItem}
-          loop
-          loopClonesPerSide={calendrierData.length}
-          removeClippedSubviews={false}
-          inactiveSlideScale={0.8}
-          itemHorizontalMargin={1}
-          initialScrollIndex={selectedItem}
-          firstItem={selectedItem}
-          getItemLayout={(data, index) => ({
-            length: ITEM_WIDTH,
-            offset: ITEM_WIDTH * index,
-            index,
-          })}
-        />
-        <ScrollView style={{ marginBottom : 150}}>
-        {calendrierData[selectedItem]?.elements}
-      </ScrollView>
+            <Retour onPress={() => navigation.navigate('DEFPageContent')}/>
+
+    <View style={{ marginTop: 0,marginBottom : 0 }}>
+      <Carousel
+        data={calendrierData}
+        renderItem={renderItem}
+        sliderWidth={viewportWidth}
+        itemWidth={ITEM_WIDTH}
+        onSnapToItem={onSnapToItem}
+        loop
+        enableSnap={true}
+        loopClonesPerSide={calendrierData.length}
+        removeClippedSubviews={false}
+        inactiveSlideScale={0.8}
+        itemHorizontalMargin={1}
+        initialScrollIndex={selectedItem}
+        firstItem={selectedItem}
+        getItemLayout={(data, index) => ({
+          length: ITEM_WIDTH,
+          offset: ITEM_WIDTH * index,
+          index,
+        })}
+      />
       </View>
-    </View>
+      <ScrollView style={{ flex: 1 }}>
+      
+      {calendrierData[selectedItem]?.elements}
+      <Footer/>
+      
+    </ScrollView>
+    
+  </View>
   );
 };
 

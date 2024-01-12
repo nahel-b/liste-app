@@ -91,7 +91,7 @@ const BottomBar = () => {
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={require('./assets/classement.png')}
-                style={{ width: 35, height: 35, tintColor: color }}
+                style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
               />
             ),
           }}
@@ -102,8 +102,8 @@ const BottomBar = () => {
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image
-                source={require('./assets/burger.png')}
-                style={{ width: 30, height: 30, tintColor: color }}
+                source={require('./assets/sos.png')}
+                style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
               />
             ),
           }}
@@ -115,7 +115,7 @@ const BottomBar = () => {
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={require('./assets/calendrier.png')}
-                style={{ width: 30, height: 30, tintColor: color }}
+                style={{ width: 30, height: 30, tintColor: color, alignSelf: 'center' }}
               />
             ),
           }}
@@ -126,8 +126,8 @@ const BottomBar = () => {
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image
-                source={require('./assets/wel.png')}
-                style={{ width: 50, height: 40, tintColor: color }}
+                source={require('./assets/burger.png')}
+                style={{ width: 30, height: 30, tintColor: color, alignSelf: 'center' }}
               
               />
               
@@ -141,7 +141,7 @@ const BottomBar = () => {
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={require('./assets/defi.png')}
-                style={{ width: 35, height: 35, tintColor: color }}
+                style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
               
               />
               

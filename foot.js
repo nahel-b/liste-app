@@ -3,14 +3,14 @@ import { SafeAreaView, View, Text, Image, Linking, TouchableOpacity, StyleSheet 
 import couleurs from './Couleurs';
 
 
-const Footer = () => {
+export const Footer = () => {
 
     const handlePress = (url) => {
         Linking.openURL(url);
       };
 
     return (
-      <View style={{ flex : 1, backgroundColor: 'transparent', padding: 10,marginTop : 30 , justifyContent:'center'}}>
+      <View style={{ flex : 1, backgroundColor: 'transparent', padding: 0,marginTop : 0 , justifyContent:'center'}}>
         <View style={{alignContent:'flex-start',flexDirection: 'row',justifyContent:'center',alignItems:'center' }} > 
         
         <TouchableOpacity onPress={() => handlePress('https://www.instagram.com/nsigmaje')}>
@@ -24,5 +24,14 @@ const Footer = () => {
       </View>
     );
   };
+
+  export const Retour = ({onPress}) => 
+  {
+    return (
+    <TouchableOpacity style={{zIndex : 10}} onPress={onPress}>
+        <Image source={require('./assets/retour.png')} style={{position : "absolute",margin:10,width: 25, height: 30, aspectRatio: 1, alignSelf: 'flex-start' }} />
+    </TouchableOpacity>
+    )
+  }
   
   export default Footer;

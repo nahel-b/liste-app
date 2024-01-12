@@ -217,7 +217,9 @@ const renderItem = ({ item, index }) => {
           style={{ width: 150, height: 150 * 1200 / 1080,marginBottom: 0 }}
           resizeMode="contain"
         />
-        <Footer/>
+        <View style={{flex : 1, marginTop:20}} >
+        <Footer />
+        </View>
         <View style={{ backgroundColor : 'black' }}>
         </View>
       </View>

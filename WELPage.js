@@ -8,7 +8,126 @@ import { NavigationContainer,useNavigation } from '@react-navigation/native';
 //import { loadFonts, body_font } from './FontManager';
 import { ScrollView } from 'react-native-gesture-handler';
 import { specificStyles } from './specificStyles';
-import Footer from './foot'
+import Footer, { Retour } from './foot'
+
+const CommandePage = () => {
+  const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
+  const itemContainerRefColonne1 = useRef();
+  const itemContainerRefColonne2 = useRef();
+
+
+  const navigation = useNavigation();
+
+  const renderHeader = (content, index, isActive, section, ref) => (
+    <View
+      ref={isActive ? ref : null}
+      style={[styles.itemContainer_defi, isActive && styles.selectedHeader]}
+    >
+      <Text style={styles.itemText}>{content.nom}</Text>
+    </View>
+  );
+
+  const renderContent = (section) => (
+    <View style={styles.descriptionContainer}>
+      <Text style={styles.descriptionText}>{section.description}</Text>
+    </View>
+  );
+
+  const updateSectionsColonne1 = (activeSections) => {
+    setActiveSectionsColonne1(activeSections);
+  };
+
+  const onTransitionEnd = useCallback((ref) => {
+    if (ref.current) {
+      ref.current.setNativeProps({
+        style: { borderBottomRightRadius: 20, borderBottomLeftRadius: 20 },
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    onTransitionEnd(itemContainerRefColonne1);
+    onTransitionEnd(itemContainerRefColonne2);
+  }, [onTransitionEnd]);
+
+  const styles = StyleSheet.create({
+
+
+    itemContainer_defi: {
+      marginTop: 8,
+      marginHorizontal: 8,
+      backgroundColor: couleurs.buttonColor1,
+      borderRadius: 20,
+      padding: 16,
+      alignItems: 'center',
+      justifyContent: 'center',
+      //overflow: 'hidden',
+      shadowColor: 'black',
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.5,
+      shadowRadius: 3,
+      marginBottom: 5,
+    },
+    selectedHeader: {
+      borderBottomRightRadius: 0,
+      borderBottomLeftRadius: 0,
+      marginBottom: 0,
+    },
+    itemText: {
+      color: 'white',
+      fontSize: 22,
+      fontWeight: 'bold',
+    },
+    descriptionContainer: {
+      backgroundColor: couleurs.buttonColor3,
+      borderRadius: 10,
+      padding: 16,
+      marginHorizontal: 8,
+      marginTop: -8,
+      
+    },
+    descriptionText: {
+      color: 'white',
+      fontSize: 20,
+      textAlign: 'center',
+    },
+
+  });
+
+  const dataJour = [
+    { nom: 'LUNDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+    { nom: 'MARDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+    { nom: 'MERCREDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+    { nom: 'JEUDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+    { nom: 'VENDREDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+    { nom: 'SAMEDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+  ];
+
+  return (
+    <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
+            <Retour onPress={() => navigation.navigate('WELPageContent')}/>
+
+      <Image source={require('./assets/carte.jpg')} style={{ margin : 10,height: 200, aspectRatio: 1, alignSelf: 'center' }} />
+      <ScrollView style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
+
+        <Accordion
+          style={{}}
+          sections={dataJour}
+          activeSections={activeSectionsColonne1}
+          renderHeader={(content, index, isActive, section) =>
+            renderHeader(content, index, isActive, section, itemContainerRefColonne1)
+          }
+          renderContent={renderContent}
+          onChange={updateSectionsColonne1}
+          underlayColor={'transparent'}
+          onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
+          expandMultiple={true}
+        />
+      </ScrollView>
+    </View>
+  );
+};
+
 
 const WELPage = () => {
 
@@ -19,11 +138,15 @@ const WELPage = () => {
      <Stack.Navigator headerMode="none">
       <Stack.Screen name="WELPageContent" component={WELPageContent} />
       <Stack.Screen name="PageOuverte" component={PageOuverte} />
+    <Stack.Screen name="CommandePage" component={CommandePage} />
     </Stack.Navigator>
   );
 };
 
 const WELPageContent = () => {
+
+  const navigation = useNavigation();
+
 
   const Row1 = ({ handlePress }) => {
     return (
@@ -44,7 +167,7 @@ const WELPageContent = () => {
   const Row2 = ({ handlePress }) => {
     return (
       <View style={[styles.row, { marginTop: 0 }]}>
-          <TouchableOpacity onPress={() => handlePress(2)} >
+          <TouchableOpacity onPress={() => navigation.navigate('CommandePage')} >
               <Image source={require("./assets/bateau.png")} style={[{flex : 1,aspectRatio: 1}]} />
           </TouchableOpacity>
       </View>
@@ -57,7 +180,7 @@ const WELPageContent = () => {
       flex : 1,
       flexDirection: 'row',
       justifyContent: 'space-around',
-      //marginBottom: 0,
+      marginHorizontal : 10,
     },
     image: {
       flex : 0.6,
@@ -84,7 +207,6 @@ const WELPageContent = () => {
    
   });
   
-  const navigation = useNavigation();
   const [selectedItem, setSelectedItem] = useState(0);
 
   const handlePress = (index) => {
@@ -99,9 +221,12 @@ const WELPageContent = () => {
       justifyContent: 'space-between'
   }} style={{ backgroundColor: couleurs.backgroundColor}}>
       <View style={{flex : 1, paddingHorizontal : 10, flexDirection: 'column',justifyContent :'space-around', backgroundColor: couleurs.backgroundColor}}>
-    <View style={{ flex: 0.6, backgroundColor: 'transparent',justifyContent :'flex-start' }}>
-      {<Text style={styles.titre}>WEL</Text>
+    <View style={{marginTop : 10, flex: 0.6, backgroundColor: 'transparent',justifyContent :'flex-end' }}>
+      {//<Text style={styles.titre}>WEL</Text>
       }
+      <Image source={require("./assets/wes.png")} 
+      style={{flex : 0.8,aspectRatio : 3, resizeMode: 'contain',alignSelf : "center"}}/>
+      
     </View>
     <View style={{ flex: 1.5 }}>
       {<Row1 handlePress={handlePress} />
@@ -269,8 +394,11 @@ const PageOuverte = ({ route }) => {
   const { width: viewportWidth } = Dimensions.get('window');
   const ITEM_WIDTH = viewportWidth * 0.35;
 
+  const navigation = useNavigation();
+
   return (
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
+      <Retour onPress={() => navigation.navigate('WELPageContent')}/>
       <View style={{ marginTop: 0,marginBottom : 0 }}>
         <Carousel
           data={calendrierData}
@@ -294,8 +422,9 @@ const PageOuverte = ({ route }) => {
         />
         </View>
         <ScrollView style={{ flex: 1 }}>
-        
+        <View style={{ flex : 1, alignItems: 'center',marginBottom:20 }}>
         {calendrierData[selectedItem]?.elements}
+        </View>
         <Footer/>
         
       </ScrollView>

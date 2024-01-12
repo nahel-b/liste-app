@@ -145,48 +145,81 @@ const SOSPageAccueil = () => {
   const navigation = useNavigation();
 
 
-  const Row1 = ({ image1Source, image2Source }) => {
+  const Row1 = ({ handlePress }) => {
     return (
-      <View style={styles.row}>
-        <Image source={require("./assets/hublot.png")} style={styles.image} />
-        <Image
-          source={require("./assets/hublot.png")}
-          style={[styles.image, { marginTop: 50 }]} // Ajoutez le style marginTop ici
-        />
-        <Image source={require("./assets/hublot.png")} style={styles.image} />
+      <View style={[styles.row, { marginTop: 0 }]}>
+          <TouchableOpacity onPress={() => handlePress(0)} style={{margin : 0}}>
+              <Image source={require("./assets/hublots/SOS/bob.png")} style={styles.image} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handlePress(1)} style={{alignSelf : 'flex-end'}} >
+              <Image source={require("./assets/hublots/SOS/phlow_talent.png")} style={styles.image} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handlePress(1)} style={{margin : 0}}>
+              <Image source={require("./assets/hublots/SOS/alter.png")} style={styles.image} />
+          </TouchableOpacity>
       </View>
     );
   };
   
-  const Row2 = ({ image1Source, image2Source }) => {
+  const Row2 = ({ handlePress }) => {
     return (
-      <View style={[styles.row, { marginTop: -30 }]}>
-        <Image source={require("./assets/hublot.png")} style={styles.image} />
-        <Image source={require("./assets/hublot.png")} style={styles.image} />
+      <View style={[styles.row, { marginTop: 0 }]}>
+          <TouchableOpacity onPress={() => handlePress(0)} style={{margin : 0}}>
+              <Image source={require("./assets/hublots/SOS/phlow_talent.png")} style={[styles.image,{flex : 1}]} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handlePress(1)} style={{alignSelf : 'flex-end'}} >
+              <Image source={require("./assets/hublots/SOS/phlow_talent.png")}  style={[styles.image,{flex : 1}]} />
+          </TouchableOpacity>
+          
       </View>
     );
   };
   const Row3 = ({ image1Source, image2Source }) => {
     return (
-      <View style={styles.row}>
-        <Image source={require("./assets/hublot.png")} style={styles.image} />
-        <TouchableOpacity onPress={() => navigation.navigate('CommandePage')}>
-        <Image source={require("./assets/bateau.png")} style={styles.image} />
-        </TouchableOpacity>
-        <Image source={require("./assets/hublot.png")} style={styles.image} />
+      <View style={[styles.row, { marginTop: 0 }]}>
+          <TouchableOpacity onPress={() => navigation.navigate('CommandePage')} >
+              <Image source={require("./assets/bateau.png")} style={[{flex : 1,aspectRatio: 1}]} />
+          </TouchableOpacity>
       </View>
     );
   };
 
+  const handlePress = (index) => {
+    setSelectedItem(index);
+    navigation.navigate('PageOuverte', { selectedIndex: index });
+  };
+
   return (
-    <View style={{backgroundColor :  couleurs.backgroundColor,flex : 1}}>
-    <View>
-      <Text style={styles.titre}>SOS</Text>
-      <Row1  />
-      <Row2  />
-      <Row3 />
+    <ScrollView contentContainerStyle={{
+      flex: 1,
+      justifyContent: 'space-between'
+  }} style={{ backgroundColor: couleurs.backgroundColor}}>
+
+    <View style={{flex : 1, backgroundColor :  couleurs.backgroundColor,flex : 1}}>
+    <View style={{ flex: 0.8, backgroundColor: 'transparent',justifyContent :'flex-end' }}>
+     {// <Text style={styles.titre}>SOS</Text>
+     }
+     <Image source={require("./assets/SOS_titre.png")} 
+      style={{flex : 0.8,aspectRatio : 3, resizeMode: 'contain',alignSelf : "center"}}/>
+      
+
+    </View>
+    <View style={{ flex: 1, backgroundColor : 'transparent' }}>
+      {<Row1 handlePress={handlePress} />
+      }
+    </View>
+    <View style={{ flex: 1, backgroundColor : 'transparent' }}>
+      {
+        <Row2 handlePress={handlePress} />
+      }
+    </View>
+    <View style={{ flex: 0.7, backgroundColor : 'transparent' }}>
+      {
+        <Row3 handlePress={handlePress} />
+      }
     </View>
     </View>
+    </ScrollView>
   );
 };
 
@@ -194,20 +227,24 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 10,
-  },
+    alignContent : "center",
+    flex : 1,
+    },
   image: {
-    width: 120, // Ajustez la largeur selon vos besoins
-    height: 120, // Ajustez la hauteur selon vos besoins
+    flex : 1,
+    aspectRatio: 1, // Ajustez la largeur selon vos besoins
     resizeMode: 'cover',
+    alignSelf : 'center',
+    margin : 10,
   },
   titre: {
     marginTop: 10,
     borderRadius: 30,
-    fontSize: 150, // Ajustez la taille de la police selon vos besoins
+    fontSize: 100, // Ajustez la taille de la police selon vos besoins
     textAlign: 'center',
     textAlignVertical: 'center',
     overflow: 'hidden',
+    fontFamily: 'body_font',
   },
 });
 
