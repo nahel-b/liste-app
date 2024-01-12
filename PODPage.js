@@ -117,7 +117,7 @@ const renderItem = ({ item, index }) => {
         { prenom: "Chargement", nom: "--", point: "0" },
         { prenom: "Chargement", nom: "--", point: "0" }
       ];
-      return (<Text style={{ fontSize: 30, justifyContent: 'center' }}>Chargement...</Text>);
+      return (<Text style={{margin : 10, fontSize: 40, alignSelf: 'center',fontFamily:'body_font' }}>Chargement...</Text>);
     }
   
     return (

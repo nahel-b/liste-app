@@ -425,8 +425,9 @@ const PageOuverte = ({ route }) => {
         <View style={{ flex : 1, alignItems: 'center',marginBottom:20 }}>
         {calendrierData[selectedItem]?.elements}
         </View>
+        <View style={{ flex : 1, alignItems: 'center',justifyContent : 'flex-end' }}>
         <Footer/>
-        
+        </View>
       </ScrollView>
       
     </View>
