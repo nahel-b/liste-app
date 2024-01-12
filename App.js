@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect,useCallback,useRef} from 'react';
 import { SafeAreaView, View, Text, Image, Linking, TouchableOpacity, StyleSheet } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import * as Font from 'expo-font';
+
+import customFonts from './FontManager.js'
+
+
+console.log(customFonts)
 
 
 //https://docs.expo.dev/versions/latest/sdk/splash-screen/ <- pour le splash screen
@@ -148,6 +155,20 @@ const BottomBar = () => {
 };
 
 const App = () => {
+
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+  async function loadFontsAsync() {
+    await Font.loadAsync(customFonts);
+    setFontsLoaded(true);
+  }
+
+  useEffect(() => {
+    loadFontsAsync();
+  }, []);
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
 
 

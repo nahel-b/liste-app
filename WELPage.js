@@ -66,13 +66,18 @@ const WELPageContent = () => {
     titre: {
       marginTop: 10,
       borderRadius: 30,
-      fontSize: 150, // Ajustez la taille de la police selon vos besoins
+      fontSize: 140, // Ajustez la taille de la police selon vos besoins
       textAlign: 'center',
       textAlignVertical: 'center',
       overflow: 'hidden',
       fontWeight: 'bold',
-      //fontFamily: body_font,
+      fontFamily: 'body_font',
+      textShadowColor:'#585858',
+      textShadowOffset:{width: 5, height: 5},
+      textShadowRadius:0 ,
+      textShadow: '0px 0px 0px red, 0 0 1em blue, 0 0 0.2em blue'
     },
+   
   });
   
   const navigation = useNavigation();
@@ -86,7 +91,7 @@ const WELPageContent = () => {
 
   return (
     <View style={{flex:1,backgroundColor : couleurs.backgroundColor}}>
-      <Text style={styles.titre}>WEL</Text>
+      <Text style={[styles.titre]}>WEL</Text>
       <Row1  handlePress={handlePress} />
       <Row2  handlePress={handlePress} /> 
     </View>
@@ -196,7 +201,7 @@ const BoutonsDeroulant = ({ data, key }) => {
         onChange={updateSectionsColonne1}
         underlayColor={'transparent'}
         onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
-        expandMultiple={true}
+        expandMultiple={false}
       />
       <Accordion
         key={key}
@@ -210,7 +215,7 @@ const BoutonsDeroulant = ({ data, key }) => {
         onChange={updateSectionsColonne2}
         underlayColor={'transparent'}
         onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
-        expandMultiple={true}
+        expandMultiple={false}
       />
     </View>
   );
@@ -247,7 +252,7 @@ const PageOuverte = ({ route }) => {
 
   return (
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
-      <View style={{ marginTop: 0 }}>
+      <View style={{ marginTop: 0,marginBottom : -100 }}>
         <Carousel
           data={calendrierData}
           renderItem={renderItem}
@@ -268,9 +273,9 @@ const PageOuverte = ({ route }) => {
             index,
           })}
         />
-        <View style={{ marginBottom : 150}}>
+        <ScrollView style={{  marginBottom : 200}}>
         {calendrierData[selectedItem]?.elements}
-      </View>
+      </ScrollView>
       </View>
     </View>
   );

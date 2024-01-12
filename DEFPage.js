@@ -108,17 +108,22 @@ const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
   );
 };
 
+
+//defis DD
 const dataDefi1 = [
-  { nom: 'D1 5pts quotidien', description: 'Description de D1 ugo' },
-  { nom: 'D2 5pts', description: 'Description de D2' },
-  { nom: 'D3 5pts', description: 'Description de D3' },
-  { nom: 'D4 5pts', description: 'Description de D4' },
-  { nom: 'D5 5pts', description: 'Description de D5' },
-  { nom: 'D6 5pts', description: 'Description de D6' },
-  { nom: 'D7 5pts', description: 'Description de D7' },
-  { nom: 'D8 5pts', description: 'Description de D8' },
-  { nom: 'D9 5pts', description: 'Description de D9' },
+  { nom: 'Lundi vert', description: 'Manger végé le lundi (et faire une photo?)' },
+  { nom: 'Affiche green', description: 'Faire une affiche de sensibilisation pour afficher dans Phelma (ex: pollution des cigarettes, éteindre les lumières, pollution de l’avion…)' },
+  { nom: 'Clean Walk', description: 'Faire une clean walk et ramener un sac de déchet' },
+  { nom: 'Bilan carbone', description: 'Faire son bilan carbone sur Nos Gestes Climats.fr' },
+  { nom: 'Nouvelle cuisine', description: 'Cuisiner des épluchures' },
+  { nom: 'Achat local', description: 'Acheter des légumes d’un producteur à moins de 50km de Grenoble' },
+  { nom: 'Range tes mails', description: 'Supprimer ses mails lus et inutiles' },
+  { nom: 'Compost', description: 'Composter les déchets alimentaires de ses repas pendant une semaine (ou plus)' },
+  { nom: 'Seconde main', description: 'Trier et donner ses vêtements qu’on ne porte plus' },
+  { nom: 'Home-made', description: 'Fabriquer soi-même un produit ménager (gel nettoyant, produit à vitre…)' },
 ];
+
+//defie la liste
 const dataDefi2 = [
   { nom: 'F1 5pts classique', description: 'Description de F1' },
   { nom: 'F2 15pts', description: 'Description de F2' },
@@ -130,17 +135,23 @@ const dataDefi2 = [
   { nom: 'F8 20pts', description: 'Description de F8' },
 
 ];
+
+//défis phlow
 const dataDefi3 = [
-  { nom: 'D1 5pts la l', description: 'Description de D1' },
-  { nom: 'D2 5pts', description: 'Description de D2' },
-  { nom: 'D3 5pts', description: 'Description de D3' },
-  { nom: 'D4 5pts', description: 'Description de D4' },
-  { nom: 'D5 5pts', description: 'Description de D5' },
-  { nom: 'D6 5pts', description: 'Description de D6' },
-  { nom: 'D7 5pts', description: 'Description de D7' },
-  { nom: 'D8 5pts', description: 'Description de D8' },
-  { nom: 'D9 5pts', description: 'Description de D9' },
+  { nom: 'D1', description: 'Photo à la piscine' },
+  { nom: 'D2', description: 'Faire même Spiderman à chaque événement' },
+  { nom: 'D3', description: 'Ne parler qu’en Spiderman avec un inconnu' },
+  { nom: 'D4', description: 'Venir en cours avec des accessoires de plongée (tuba, combi, palme...)' },
+  { nom: 'D5', description: 'Faire un aqua poppy' },
+  { nom: 'D6', description: 'Descendre une piste de ski en maillot' },
+  { nom: 'D7', description: 'Venir en marinière à la soirée' },
+  { nom: 'D8', description: 'Pêcher un poisson dans l’Isère' },
+  { nom: 'D9', description: 'Boire avec le tuba' },
+  { nom: 'D10', description: 'Danser le refrain de la chorée' },
+  { nom: 'D11', description: 'Faire un showcase au chalet avec notre rap' },
 ];
+
+//Défis classiques
 const dataDefi4 = [
   { nom: 'F144 5pts l', description: 'Description de F1' },
   { nom: 'F2 5pts', description: 'Description de F2' },
@@ -153,6 +164,7 @@ const dataDefi4 = [
   { nom: 'F9 5pts', description: 'Description de F9' },
 ];
 
+//Défis quotidiens
 const BoutonsDeroulant = ({ data, key }) => {
   const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
   const [activeSectionsColonne2, setActiveSectionsColonne2] = useState([]);
@@ -213,7 +225,7 @@ const BoutonsDeroulant = ({ data, key }) => {
         onChange={updateSectionsColonne1}
         underlayColor={'transparent'}
         onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne1)}
-        expandMultiple={true}
+        expandMultiple={false}
       />
       <Accordion
         key={key}
@@ -227,7 +239,7 @@ const BoutonsDeroulant = ({ data, key }) => {
         onChange={updateSectionsColonne2}
         underlayColor={'transparent'}
         onTransitionEnd={() => onTransitionEnd(itemContainerRefColonne2)}
-        expandMultiple={true}
+        expandMultiple={false}
       />
     </View>
   );
@@ -311,7 +323,7 @@ const styles = StyleSheet.create({
   boutonDefiContainer: {
     flexDirection: 'row', 
     justifyContent : 'center',
-    marginBottom : 10
+    marginBottom : 50
     // Align accordions in a row
   },
   itemContainer_defi: {

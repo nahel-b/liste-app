@@ -32,7 +32,7 @@ const BoutonDeroulant = ({ data }) =>
       marginHorizontal: 8,
       backgroundColor: couleurs.buttonColor3,
       borderRadius: 20,
-      padding: 16,
+      padding: 10,
       alignItems: 'center',
       justifyContent: 'center',
       //overflow: 'hidden',
@@ -50,13 +50,14 @@ const BoutonDeroulant = ({ data }) =>
     },
     itemText: {
       color: 'white',
-      fontSize: 32,
+      fontSize: 45,
       fontWeight: 'bold',
+      fontFamily: 'body_font',
     },
     descriptionContainer: {
       backgroundColor: couleurs.buttonColor2,
       borderRadius: 10,
-      padding: 16,
+      padding: 10,
       marginHorizontal: 8,
       marginTop: -8,
       width: Dimensions.get('window').width*0.8,
@@ -65,8 +66,9 @@ const BoutonDeroulant = ({ data }) =>
     },
     descriptionText: {
       color: 'white',
-      fontSize: 20,
+      fontSize: 22,
       textAlign: 'center',
+      fontFamily: 'body_font',
     },
 
   });
@@ -236,24 +238,24 @@ const styles = StyleSheet.create({
   },
   monthText: {
     paddingTop: 5,
-    fontSize: 15,
+    fontSize: 17,
     marginBottom: 5,
     color : "white",
-    //fontFamily: body_font,
+    fontFamily: 'body_font',
   },
   numText: {
     marginTop : -15, 
     marginBottom : -15,
-    fontSize: 50,
+    fontSize: 55,
     color : "white",
-    //fontFamily: body_font,
+    fontFamily: 'body_font',
   },
   dayText: {
-    fontSize: 15,
+    fontSize: 20,
     marginTop: 5,
     color : "white",
-    paddingBottom: 5,
-    //fontFamily: body_font,
+    paddingBottom: 0,
+    fontFamily: 'body_font',
   },
   customComponentContainer: {
     
@@ -277,11 +279,11 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   buttonText: {
-    margin : 10 ,
-    fontSize: 32,
+    margin : 0 ,
+    fontSize: 45,
     color: 'white',
     fontWeight: 'bold',
-    //fontFamily: body_font,
+    fontFamily: 'body_font',
   },
   selectedItem: {
     backgroundColor: couleurs.buttonColor1,
