@@ -88,6 +88,9 @@ const renderItem = ({ item, index }) => {
         setLoading(false);
       } 
     }, [setLoading]);
+
+
+    
   
     const isFocused = useIsFocused(); // Récupérez l'état de focus de l'écran
   
@@ -117,7 +120,12 @@ const renderItem = ({ item, index }) => {
         { prenom: "Chargement", nom: "--", point: "0" },
         { prenom: "Chargement", nom: "--", point: "0" }
       ];
-      return (<Text style={{margin : 10, fontSize: 40, alignSelf: 'center',fontFamily:'body_font' }}>Chargement...</Text>);
+      return (
+      <View>
+      <Text style={{marginTop : 10, fontSize: 40, alignSelf: 'center',fontFamily:'body_font' }}>Chargement...</Text>
+      <Text style={{margin : 0, fontSize: 20, alignSelf: 'center',fontFamily:'body_font' }}>Vérifie ta connexion</Text>
+      </View>
+      );
     }
   
     return (

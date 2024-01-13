@@ -257,30 +257,30 @@ const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
 
 //Jeudi Soir
 const data1 = [
-  { nom: 'Wok aux légumes', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons' },
-  { nom: 'Wok au poulet', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons, poulet' },
-  { nom: 'Dessert', description: 'mousse au choc' },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes' },
+  { nom: 'Wok aux légumes', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons',source : require('./assets/defaut_photo.png') },
+  { nom: 'Wok au poulet', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons, poulet',source : require('./assets/defaut_photo.png') },
+  { nom: 'Dessert', description: 'mousse au choc',source : require('./assets/defaut_photo.png') },
+  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png') },
 ];
 
 //Samedi
 const data2 = [
-  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane' },
-  { nom: 'Burger raclette végé', description: 'servi avec des frites : oignon, steak végé, salade, tomate, raclette, sauce' },
-  { nom: 'Burger raclette', description: 'servi, avec des frites : oignon, steak de bœuf, salade, tomate, raclette, sauce' },
-  { nom: 'Desserts', description: '??' },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes' },
+  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/defaut_photo.png') },
+  { nom: 'Burger raclette végé', description: 'servi avec des frites : oignon, steak végé, salade, tomate, raclette, sauce',source : require('./assets/defaut_photo.png') },
+  { nom: 'Burger raclette', description: 'servi, avec des frites : oignon, steak de bœuf, salade, tomate, raclette, sauce',source : require('./assets/defaut_photo.png') },
+  { nom: 'Desserts', description: '??',source : require('./assets/defaut_photo.png') },
+  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png') },
   
 
 ];
 
 //Dimanche
 const data3 = [
-  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane' },
-  { nom: 'Pain pita aux falafels', description: 'falafels, tomate, salade, oignon, épices à kebab, sauce blanche' },
-  { nom: 'Pain pita au poulet', description: 'poulet, tomate, salade, oignon, épices à kebab, sauce blanche' },
-  { nom: 'Desserts', description: '??' },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes'}
+  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/defaut_photo.png') },
+  { nom: 'Pain pita aux falafels', description: 'falafels, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/defaut_photo.png') },
+  { nom: 'Pain pita au poulet', description: 'poulet, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/defaut_photo.png') },
+  { nom: 'Desserts', description: '??',source : require('./assets/defaut_photo.png') },
+  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png')}
   
 ];
 
@@ -298,9 +298,10 @@ const BoutonsDeroulant = ({ data, key }) => {
   const renderHeader = (content, index, isActive, section, ref) => (
     <View
       ref={isActive ? ref : null}
-      style={[styles.itemContainer_defi, isActive && styles.selectedHeader,specificStyles.shadowBoutonDeroulant]}
+      style={[{flexDirection : "column"},styles.itemContainer_defi, isActive && styles.selectedHeader,specificStyles.shadowBoutonDeroulant]}
     >
-      <Text style={[styles.itemText]}>{content.nom}</Text>
+  <Image source={content.source} style={{ width :  Dimensions.get('window').width/3, height :  Dimensions.get('window').width/3, resizeMode: 'contain' }} />
+      <Text style={[{flex : 1},styles.itemText]}>{content.nom}</Text>
     </View>
   );
 
@@ -475,6 +476,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 22,
     fontWeight: 'bold',
+    flex : 1
   },
   descriptionContainer: {
     

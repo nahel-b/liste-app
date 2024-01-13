@@ -4,6 +4,7 @@ import couleurs  from './Couleurs';
 import Accordion from 'react-native-collapsible/Accordion';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer,useNavigation } from '@react-navigation/native';
+import {Footer,Retour} from './foot';
 
 
 const CommandePage = () => {
@@ -96,8 +97,12 @@ const CommandePage = () => {
     { nom: 'SAMEDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
   ];
 
+  const navigation = useNavigation();
+
   return (
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
+        <Retour onPress={() => navigation.navigate('SOSPageAccueil')}/>
+
       <Image source={require('./assets/carte.jpg')} style={{ height: 200, aspectRatio: 1, alignSelf: 'center' }} />
       <ScrollView style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
 
