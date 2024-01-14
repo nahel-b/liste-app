@@ -5,6 +5,7 @@ import couleurs from './Couleurs';
 import { ScrollView } from 'react-native-gesture-handler';
 import Accordion from 'react-native-collapsible/Accordion';
 import Footer from './foot';
+import moment from 'moment';
 
 //import { loadFonts, body_font } from './FontManager';
 // const body_font = ''
@@ -150,41 +151,48 @@ const CustomComponent = ({ selectedButtons, handlePress }) => {
 
 const CALPage = ({ navigation }) => {
 
-  // useEffect(() => {
-  //   loadFonts();
-  // }, []);
+  useEffect(() => {
+    setSelectedItem(findInitialIndex());
+  }, []);
 
   const handlePress = (page) => {
     navigation.navigate(page);
   };
  
-  
-  const calendrierData = [
-    {jour: 'Ven', num: '26', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Goûter Campus', description : 'Miam'},{nom : 'EVENT AUTRE LISTE', description : 'SAT'}]},
-    {jour: 'Sam', num: '27', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Soirée', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Libre'}]},
-    {jour: 'Dim', num: '28', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Event Sport', description : ''}]},
-    {jour: 'Lun', num: '29', mois: 'Janvier', selectedButtons:[{nom : 'Kfet', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus'}]},
-    {jour: 'Mar', num: '30', mois: 'Janvier', selectedButtons:[{nom : 'Fakelistes', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}]},
-    {jour: 'Mer', num: '31', mois: 'Janvier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nKfet'}]},
-    {jour: 'Jeu', num: '01', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event DD', description : ' '}]},
-    {jour: 'Ven', num: '02', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nSoirée Zik'}]},
-    {jour: 'Sam', num: '03', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'EVENT AUTRE LISTE', description : 'Event Libre\nSoirée'}]},
-    {jour: 'Dim', num: '04', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event Sport', description : ' '}]},
-    {jour: 'Lun', num: '05', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nSAT'}]},
-    {jour: 'Mar', num: '06', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}]},
-    {jour: 'Mer', num: '07', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}]},
-    {jour: 'Jeu', num: '08', mois: 'Fevrier', selectedButtons:[{nom : 'Goûter Minatec',description :' '},{nom : 'EVENT AUTRE LISTE', description : 'Soirée Zik'}]},
-    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nKfet'}]},
-    {jour: 'Sam', num: '10', mois: 'Fevrier', selectedButtons:[{nom : 'Soirée', description : ''}]},
-    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'Débat des Prez', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Sport'}]},
-
+  const findInitialIndex = () => {
+    const currentDate = moment();
+    const todayIndex = calendrierData.findIndex(item =>
+      moment(`${item.num} ${item.moisNumero}`, 'DD M').isSame(currentDate, 'day')
+    );
     
+    return todayIndex >= 0 ? todayIndex : 0;
+  };
+  
+
+  const calendrierData = [
+    {jour: 'Ven', num: '26', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Goûter Campus', description : 'Miam'},{nom : 'EVENT AUTRE LISTE', description : 'SAT'}], moisNumero: 1},
+    {jour: 'Sam', num: '27', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Soirée', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Libre'}], moisNumero: 1},
+    {jour: 'Dim', num: '28', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Event Sport', description : ''}], moisNumero: 1},
+    {jour: 'Lun', num: '29', mois: 'Janvier', selectedButtons:[{nom : 'Kfet', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus'}], moisNumero: 1},
+    {jour: 'Mar', num: '30', mois: 'Janvier', selectedButtons:[{nom : 'Fakelistes', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 1},
+    {jour: 'Mer', num: '31', mois: 'Janvier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nKfet'}], moisNumero: 1},
+    {jour: 'Jeu', num: '01', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event DD', description : ' '}], moisNumero: 2},
+    {jour: 'Ven', num: '02', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nSoirée Zik'}], moisNumero: 2},
+    {jour: 'Sam', num: '03', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'EVENT AUTRE LISTE', description : 'Event Libre\nSoirée'}], moisNumero: 2},
+    {jour: 'Dim', num: '04', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event Sport', description : ' '}], moisNumero: 2},
+    {jour: 'Lun', num: '05', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nSAT'}], moisNumero: 2},
+    {jour: 'Mar', num: '06', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 2},
+    {jour: 'Mer', num: '07', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 2},
+    {jour: 'Jeu', num: '08', mois: 'Fevrier', selectedButtons:[{nom : 'Goûter Minatec',description :' '},{nom : 'EVENT AUTRE LISTE', description : 'Soirée Zik'}], moisNumero: 2},
+    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nKfet'}], moisNumero: 2},
+    {jour: 'Sam', num: '10', mois: 'Fevrier', selectedButtons:[{nom : 'Soirée', description : ''}], moisNumero: 2},
+    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'Débat des Prez', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Sport'}], moisNumero: 2}
   ];
 
   
 
 
-  const [selectedItem, setSelectedItem] = useState(0);
+const [selectedItem, setSelectedItem] = useState(findInitialIndex());
 
 
   const onSnapToItem = (index) => {
@@ -215,7 +223,7 @@ const renderItem = ({ item, index }) => {
         itemHorizontalMargin={1}
         containerCustomStyle={{ height: 'auto'}}
         inactiveSlideOpacity={1}
-
+        firstItem={selectedItem}
 
       />
       </View>
