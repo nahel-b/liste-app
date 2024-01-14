@@ -186,18 +186,22 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginBottom: 0,
       color : 'white',
+      fontSize : 20,
+      fontFamily:'body_font'
     },
     textNom: 
     {
         color : 'white',
-        fontSize : 25,
-        fontWeight : 'bold'
+        fontSize : 30,
+        fontWeight : 'bold',
+        fontFamily:'body_font'
     },
     textPoint: 
     {
         color : 'white',
-        fontSize : 15,
-        fontWeight : 'bold'
+        fontSize : 22,
+        fontWeight : 'bold',
+        fontFamily:'body_font'
     },
     image: { width: 40, height: 40 }
   });
