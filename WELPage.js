@@ -462,7 +462,7 @@ const styles = StyleSheet.create({
     backgroundColor: couleurs.buttonColor1,
     borderRadius: 10,
     
-    padding: 16,
+    padding: 14,
     alignItems: 'center',
     justifyContent: 'center',
 
@@ -474,9 +474,11 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: 'white',
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: 'bold',
-    flex : 1
+    flex : 1,
+    fontFamily: 'body_font',
+    marginTop : 10,
   },
   descriptionContainer: {
     

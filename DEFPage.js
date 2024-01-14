@@ -31,10 +31,10 @@ const Row1 = ({ handlePress }) => {
   return (
     <View style={[stylesPage.row]}>
       <TouchableOpacity onPress={() => handlePress(0)} style={stylesPage.imageContainer}>
-        <Image source={require("./assets/hublots/DEF/quotidien.png")} style={stylesPage.image} />
+        <Image source={require("./assets/hublots/DEF/dd.png")} style={stylesPage.image} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handlePress(1)} style={stylesPage.imageContainer}>
-        <Image source={require("./assets/hublots/DEF/classique.png")} style={stylesPage.image} />
+        <Image source={require("./assets/hublots/DEF/d_l.png")} style={stylesPage.image} />
       </TouchableOpacity>
     </View>
   ); 
@@ -42,12 +42,15 @@ const Row1 = ({ handlePress }) => {
 
 const Row2 = ({ handlePress }) => {
   return (
-    <View style={[stylesPage.row]}>
+    <View style={[stylesPage.row,{alignItems: 'flex-start'}]}>
       <TouchableOpacity onPress={() => handlePress(2)}  style={stylesPage.imageContainer} >
-        <Image source={require("./assets/hublots/DEF/la_liste.png")} style={stylesPage.image} />
+        <Image source={require("./assets/hublots/DEF/d_p.png")} style={stylesPage.image} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handlePress(3)} style={stylesPage.imageContainer}>
-        <Image source={require("./assets/hublots/DEF/liste.png")} style={stylesPage.image} />
+      <TouchableOpacity onPress={() => handlePress(3)} style={[stylesPage.imageContainer, {position: 'relative', top: '-20%' }]}>
+        <Image source={require("./assets/hublots/DEF/d_c.png")} style={stylesPage.image} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handlePress(4)} style={stylesPage.imageContainer}>
+        <Image source={require("./assets/hublots/DEF/d_q.png")} style={stylesPage.image} />
       </TouchableOpacity>
     </View>
   );
@@ -79,6 +82,12 @@ const Row2 = ({ handlePress }) => {
 
 
  </View>
+
+ <View style={{ flex: 'auto', backgroundColor: 'transparent' }}>
+
+<Text style={{margin : 10, textAlign : 'center',fontSize : 20,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>Tout défi devra être envoyé au compte instagram de la liste: (Top1inp)</Text>
+  
+  </View>
      
      <View style={{ flex: 1,backgroundColor : 'transparent' }}>
 
@@ -107,6 +116,8 @@ const stylesPage = StyleSheet.create({
   
   image: {
     flex : 0.9,
+    margin : 10,
+    
        // ajustez la largeur selon vos besoins
       aspectRatio: 1,// Ajustez la hauteur selon vos besoins
       resizeMode: 'cover', // Optional: Add border radius for rounded corners
@@ -276,16 +287,30 @@ const BoutonsDeroulant = ({ data, key }) => {
 };
 
 
+const Def5 = () => {
+
+
+  return (
+
+    <View style={{ flex: 1, backgroundColor: couleurs.backgroundColor }}>
+    <Text style={{margin : 10, textAlign : 'center',fontSize : 20,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>voir compte insta : ici</Text>
+    </View>
+  )
+}
+
+
 
 const PageOuverte = ({ route }) => {
   const { selectedIndex } = route.params;
   const [selectedItem, setSelectedItem] = useState(selectedIndex);
 
   const calendrierData = [
-    { key: '1',image_src: require('./assets/hublots/DEF/quotidien.png'), elements: <BoutonsDeroulant data={dataDefi1} key="1" /> },
-    { key: '2',image_src: require('./assets/hublots/DEF/classique.png'), elements: <BoutonsDeroulant data={dataDefi2} key="2" /> },
-    { key: '3',image_src: require('./assets/hublots/DEF/la_liste.png'), elements: <BoutonsDeroulant data={dataDefi3} key="3" /> },
-    { key: '4',image_src: require('./assets/hublots/DEF/liste.png'), elements: <BoutonsDeroulant data={dataDefi4} key="4" /> },
+    { key: '1',image_src: require('./assets/hublots/DEF/dd.png'), elements: <BoutonsDeroulant data={dataDefi1} key="1" /> },
+    { key: '2',image_src: require('./assets/hublots/DEF/d_l.png'), elements: <BoutonsDeroulant data={dataDefi2} key="2" /> },
+    { key: '3',image_src: require('./assets/hublots/DEF/d_p.png'), elements: <BoutonsDeroulant data={dataDefi3} key="3" /> },
+    { key: '4',image_src: require('./assets/hublots/DEF/d_c.png'), elements: <BoutonsDeroulant data={dataDefi4} key="4" /> },
+    { key: '5',image_src: require('./assets/hublots/DEF/d_q.png'), elements: <Def5 /> },
+
   ];
 
   const onSnapToItem = (index) => {
@@ -370,7 +395,7 @@ const styles = StyleSheet.create({
     backgroundColor: couleurs.buttonColor1,
     borderRadius: 10,
 
-    padding: 16,
+    padding: 15,
     alignItems: 'center',
     justifyContent: 'center',
     width : Dimensions.get('window').width/2.2,
@@ -381,8 +406,9 @@ const styles = StyleSheet.create({
   },
   itemText: {
     color: 'white',
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: 'bold',
+    fontFamily : 'body_font'
   },
   descriptionContainer: {
     backgroundColor: couleurs.buttonColor3,
