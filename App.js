@@ -4,12 +4,11 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import * as Font from 'expo-font';
+import { useFonts } from 'expo-font';
+
+import * as Font from 'expo-font'
 
 import customFonts from './FontManager.js'
-
-
-console.log(customFonts)
 
 
 //https://docs.expo.dev/versions/latest/sdk/splash-screen/ <- pour le splash screen
@@ -157,6 +156,8 @@ const BottomBar = () => {
 const App = () => {
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  
   async function loadFontsAsync() {
     await Font.loadAsync(customFonts);
     setFontsLoaded(true);
@@ -170,6 +171,12 @@ const App = () => {
     return null;
   }
 
+  // let [fontsLoaded] = useFonts({
+  //   'body_font': require('./assets/BebasNeue-Regular.ttf'),
+  // });
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
 
 
   const bottomBarRef = React.createRef();
@@ -191,6 +198,34 @@ const App = () => {
 
   );
 };
+
+
+// function App() {
+//   const [fontsLoaded, setFontsLoaded] = useState(false);
+
+//   let customFonts = {
+//     'body_font': require('./assets/BebasNeue-Regular.ttf'),
+//   };
+//   async function loadFontsAsync() {
+//     await Font.loadAsync(customFonts);
+//     setFontsLoaded(true);
+//   }
+
+//   useEffect(() => {
+//     loadFontsAsync();
+//   }, []);
+
+//   if (!fontsLoaded) {
+//     return null;
+//   }
+
+
+//   return(
+//     <Text style={{ fontFamily: 'body_font', fontSize: 30 }}>Inter Black</Text>
+
+//   )
+// }
+
 
 const styles = StyleSheet.create({
   header: {

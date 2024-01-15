@@ -76,7 +76,7 @@ const CommandePage = () => {
     itemText: {
       color: 'white',
       fontSize: 22,
-      fontWeight: 'bold',
+      //fontWeight: 'bold',
     },
     descriptionContainer: {
       backgroundColor: couleurs.buttonColor3,
@@ -197,7 +197,7 @@ const WELPageContent = () => {
       textAlign: 'center',
       textAlignVertical: 'center',
       overflow: 'hidden',
-      fontWeight: 'bold',
+      //fontWeight: 'bold',
       fontFamily: 'body_font',
       textShadowColor:'#585858',
       textShadowOffset:{width: 5, height: 5},
@@ -475,7 +475,7 @@ const styles = StyleSheet.create({
   itemText: {
     color: 'white',
     fontSize: 25,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     flex : 1,
     fontFamily: 'body_font',
     marginTop : 10,
@@ -492,10 +492,11 @@ const styles = StyleSheet.create({
     
   },
   descriptionText: {
-    color: 'gray',
-    fontSize: 16,
+    color: '#A1A1A1',
+    fontSize: 20,
     textAlign: 'center',
-    fontWeight : 'bold'
+    fontFamily : 'body_font'
+    //fontWeight : 'bold'
   },
   column: 
   {

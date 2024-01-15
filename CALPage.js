@@ -7,9 +7,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 import Footer from './foot';
 import moment from 'moment';
 
-//import { loadFonts, body_font } from './FontManager';
-// const body_font = ''
-// const loadFonts = () => {}
+
 
 const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
 
@@ -23,7 +21,7 @@ const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
 };
 
 
-const BoutonDeroulant = ({ data }) => 
+const BoutonDeroulant = ({ data,key }) => 
 {
 
   const stylesAccordion = StyleSheet.create({
@@ -38,10 +36,10 @@ const BoutonDeroulant = ({ data }) =>
       alignItems: 'center',
       justifyContent: 'center',
       //overflow: 'hidden',
-      shadowColor: 'black',
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.5,
-      shadowRadius: 3,
+      // shadowColor: 'black',
+      // shadowOffset: { width: 0, height: 4 },
+      // shadowOpacity: 0.5,
+      // shadowRadius: 3,
       marginBottom: 0,
       width: Dimensions.get('window').width*0.9,
     },
@@ -53,7 +51,7 @@ const BoutonDeroulant = ({ data }) =>
     itemText: {
       color: 'white',
       fontSize: 45,
-      fontWeight: 'bold',
+      //fontWeight: 'bold',
       fontFamily: 'body_font',
     },
     descriptionContainer: {
@@ -131,6 +129,7 @@ const CustomComponent = ({ selectedButtons, handlePress }) => {
       {selectedButtons.map((buttonName, index) => {
         const button = availableButtons[buttonName];
         const accor = availableAccordion[buttonName]
+        
         if (button) {
           return (
             <TouchableOpacity key={index} style={[styles.button, { backgroundColor: button.backgroundColor }]} onPress={() => handlePress(buttonName)}>
@@ -139,7 +138,8 @@ const CustomComponent = ({ selectedButtons, handlePress }) => {
           );
         }
         else if (buttonName["nom"]) {
-          return <BoutonDeroulant data={[{ nom: buttonName["nom"], description: buttonName["description"]}]} />;
+          index = index +1
+          return <BoutonDeroulant data={[{key : `${index}`, nom: buttonName["nom"], description: buttonName["description"]}]} />;
         }
         
         return null; // Ignorer les boutons inconnus
@@ -151,10 +151,13 @@ const CustomComponent = ({ selectedButtons, handlePress }) => {
 
 const CALPage = ({ navigation }) => {
 
+  
   useEffect(() => {
     setSelectedItem(findInitialIndex());
   }, []);
+  
 
+  
   const handlePress = (page) => {
     navigation.navigate(page);
   };
@@ -170,6 +173,7 @@ const CALPage = ({ navigation }) => {
   
 
   const calendrierData = [
+
     {jour: 'Ven', num: '26', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Goûter Campus', description : 'Miam'},{nom : 'EVENT AUTRE LISTE', description : 'SAT'}], moisNumero: 1},
     {jour: 'Sam', num: '27', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Soirée', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Libre'}], moisNumero: 1},
     {jour: 'Dim', num: '28', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Event Sport', description : ''}], moisNumero: 1},
@@ -177,7 +181,7 @@ const CALPage = ({ navigation }) => {
     {jour: 'Mar', num: '30', mois: 'Janvier', selectedButtons:[{nom : 'Fakelistes', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 1},
     {jour: 'Mer', num: '31', mois: 'Janvier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nKfet'}], moisNumero: 1},
     {jour: 'Jeu', num: '01', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event DD', description : ' '}], moisNumero: 2},
-    {jour: 'Ven', num: '02', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nSoirée Zik'}], moisNumero: 2},
+    {jour: 'Ven', num: '02', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nSoirée Zik'}], moisNumero: 2},  
     {jour: 'Sam', num: '03', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'EVENT AUTRE LISTE', description : 'Event Libre\nSoirée'}], moisNumero: 2},
     {jour: 'Dim', num: '04', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event Sport', description : ' '}], moisNumero: 2},
     {jour: 'Lun', num: '05', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nSAT'}], moisNumero: 2},
@@ -259,10 +263,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
+    // shadowColor: 'black',
+    // shadowOffset: {width: 0, height: 4},
+    // shadowOpacity: 0.5,
+    // shadowRadius: 3,
     marginBottom : 10,
   },
   monthText: {
@@ -311,12 +315,12 @@ const styles = StyleSheet.create({
     margin : 0 ,
     fontSize: 45,
     color: 'white',
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     fontFamily: 'body_font',
+  
   },
   selectedItem: {
     backgroundColor: couleurs.buttonColor1,
-
   },
 });
 

@@ -80,7 +80,7 @@ const CommandePage = () => {
       padding: 16,
       marginHorizontal: 8,
       marginTop: -8,
-      
+      fontWeight : 'bold'
     },
     descriptionText: {
       color: 'white',
@@ -431,8 +431,8 @@ const ElementSOS = ({data,key}) =>
 
     <View style={{ flex: 1 }}>
 
-    <View style={{flex : 1,backgroundColor : 'transparent',justifyContent : 'center',alignItems : 'center', margin : 10,borderRadius : 25}}>
-    <Text style={{margin : 10,fontWeight : '900', textAlign : 'center',fontSize : 20,fontFamily : '',color : couleurs.buttonColor1}}>{data.texte}</Text>
+    <View style={{flex : 1,backgroundColor : '#AF9D78' ,justifyContent : 'center',alignItems : 'center', margin : 10,borderRadius : 25}}>
+    <Text style={{color : couleurs.buttonColor1,margin : 10,lineHeight: 25,padding : 5, textAlign : 'center',fontSize : 20,fontFamily : 'paragraphe_font'}}>""{data.texte}""</Text>
     </View>
     <BoutonsDeroulant data={data.boutonData} key={key} />
 
@@ -550,7 +550,7 @@ const styles = StyleSheet.create({
   itemText: {
     color: 'white',
     fontSize: 25,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     fontFamily : 'body_font'
   },
   descriptionContainer: {
@@ -561,11 +561,13 @@ const styles = StyleSheet.create({
     marginTop: -8,
     alignSelf : 'center',
     width : Dimensions.get('window').width/2.4,
+    fontFamily : 'body_font'
   },
   descriptionText: {
-    color: 'gray',
-    fontSize: 16,
+    color: '#A1A1A1',
+    fontSize: 20,
     textAlign: 'center',
+    fontFamily : 'body_font'
   },
   column: 
   {

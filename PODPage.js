@@ -21,38 +21,53 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-const renderItem = ({ item, index }) => {
-    let backgroundColor;
+const renderItem = ({ item, index,data }) => {
+  const minIndex = 0;
+  const maxIndex = data.length - 1;
   
-    if (index <= 2) {
-      backgroundColor = couleurs.buttonColor1;
-    } else if (index <= 5) {
-      backgroundColor = couleurs.buttonColor2;
-    } else {
-      backgroundColor = couleurs.buttonColor3;
-    }
-  
-    const dynamicStyles = {
-      backgroundColor: backgroundColor,
-    };
-  
-    return (
-      <View style={[styles.rectangle, dynamicStyles]}>
-        <View style={styles.leftColumn}>
-          <Image
-            source={require('./assets/hublot.png')}
-            style={styles.image} // Ajustez la taille selon vos besoins
-          />
-          <Text style={styles.position}>{index + 1}{index === 0 ? "er " : "eme"}</Text>
-        </View>
-        <View style={styles.rightColumn}>
-          <Text style={styles.textNom}>{item.prenom} {item.nom}</Text>
-          <Text style={styles.textPoint}>Points : {item.point}</Text>
-        </View>
-      </View>
-    );
+  // Calculer la position normalisée de l'élément dans la liste
+  const position = (index - minIndex) / (maxIndex - minIndex);
+  // Interpolation linéaire pour obtenir une couleur intermédiaire
+  const backgroundColor = interpolateColor(couleurs.buttonColor1, couleurs.buttonColor3, position);
+
+  const dynamicStyles = {
+    backgroundColor: backgroundColor,
   };
 
+  return (
+    <View style={[styles.rectangle, dynamicStyles]}>
+      <View style={styles.leftColumn}>
+        <Image
+          source={require('./assets/hublot.png')}
+          style={styles.image} // Ajustez la taille selon vos besoins
+        />
+        <Text style={styles.position}>{index + 1}{index === 0 ? "er " : "eme"}</Text>
+      </View>
+      <View style={styles.rightColumn}>
+        <Text style={styles.textNom}>{item.prenom} {item.nom}</Text>
+        <Text style={styles.textPoint}>Points : {item.point}</Text>
+      </View>
+    </View>
+  );
+};
+
+const interpolateColor = (color1, color2, position) => {
+  const interpolateChannel = (channel1, channel2) => Math.ceil(channel1 * (1 - position) + channel2 * position);
+
+  const r1 = parseInt(color1.match(/\d+/g)[0], 10);
+  const g1 = parseInt(color1.match(/\d+/g)[1], 10);
+  const b1 = parseInt(color1.match(/\d+/g)[2], 10);
+
+  const r2 = parseInt(color2.match(/\d+/g)[0], 10);
+  const g2 = parseInt(color2.match(/\d+/g)[1], 10);
+  const b2 = parseInt(color2.match(/\d+/g)[2], 10);
+
+  const r = interpolateChannel(r1, r2);
+  const g = interpolateChannel(g1, g2);
+  const b = interpolateChannel(b1, b2);
+
+  return `rgb(${r},${g},${b})`;
+};
 
   const ClassementListe = () => {
     const [data, setData] = useState([]);
@@ -133,8 +148,8 @@ const renderItem = ({ item, index }) => {
         <FlatList
           data={data}
           keyExtractor={(item) => item.username}
-          renderItem={renderItem} 
-        />
+          renderItem={({ item, index }) => renderItem({ item, index, data })}
+          />
         
       </View>
     );
@@ -183,24 +198,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     position: {
-      fontWeight: 'bold',
+      //fontWeight: 'bold',
       marginBottom: 0,
       color : 'white',
-      fontSize : 20,
+      fontSize : 17,
       fontFamily:'body_font'
     },
     textNom: 
     {
         color : 'white',
         fontSize : 30,
-        fontWeight : 'bold',
+        //fontWeight : 'bold',
         fontFamily:'body_font'
     },
     textPoint: 
     {
         color : 'white',
         fontSize : 22,
-        fontWeight : 'bold',
+        //fontWeight : 'bold',
         fontFamily:'body_font'
     },
     image: { width: 40, height: 40 }

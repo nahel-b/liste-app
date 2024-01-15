@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, Image,TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image,TouchableOpacity,Linking } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Accordion from 'react-native-collapsible/Accordion';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -64,43 +64,43 @@ const Row2 = ({ handlePress }) => {
   };
 
   return (
+
+    
     <ScrollView contentContainerStyle={{
       flex: 1,
       justifyContent: 'space-between'
   }} style={{ backgroundColor: couleurs.backgroundColor}}>
 
   
-    <View style={{ flex: 1, backgroundColor: couleurs.backgroundColor }}>
-     
-    <View style={{ flex: 0.6, backgroundColor: 'transparent',justifyContent :'flex-end' }}>
+            <View style={{ flex: 1, backgroundColor: couleurs.backgroundColor }}>
+            
+            <View style={{ flex: 0.6, backgroundColor: 'transparent',justifyContent :'flex-end' }}>
 
-{    //  <Text style={[stylesPage.titre,{height: Dimensions.get('window').height/3}]}>DEFIS</Text>
-}    
-<Image source={require("./assets/DEF_titre.png")} 
-      style={{flex : 0.8,aspectRatio : 2.8, resizeMode: 'contain',alignSelf : "center"}}/>
-      
+        <Image source={require("./assets/DEF_titre.png")} 
+              style={{flex : 0.8,aspectRatio : 2.8, resizeMode: 'contain',alignSelf : "center"}}/>
+              
 
 
- </View>
+        </View>
 
- <View style={{ flex: 'auto', backgroundColor: 'transparent' }}>
+        <View style={{  backgroundColor: 'transparent' }}>
 
-<Text style={{margin : 10, textAlign : 'center',fontSize : 20,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>Tout défi devra être envoyé au compte instagram de la liste: (Top1inp)</Text>
-  
-  </View>
-     
-     <View style={{ flex: 1,backgroundColor : 'transparent' }}>
+        <Text style={{margin : 10, textAlign : 'center',fontSize : 23,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>Tout défi devra être envoyé au compte instagram de la liste: @Top1inp</Text>
+          
+          </View>
+            
+            <View style={{ flex: 1,backgroundColor : 'transparent' }}>
 
-      <Row1 handlePress={handlePress} />
-      </View>
+              <Row1 handlePress={handlePress} />
+              </View>
 
-    <View style={{ flex: 1, backgroundColor : 'transparent' }}>
+            <View style={{ flex: 1, backgroundColor : 'transparent' }}>
 
-      <Row2 handlePress={handlePress} />
-      </View>
+              <Row2 handlePress={handlePress} />
+              </View>
 
 
-    </View>
+            </View>
     </ScrollView>
   );
 };
@@ -130,7 +130,7 @@ const stylesPage = StyleSheet.create({
     textAlign: 'center',  
     textAlignVertical: 'center',
     overflow: 'hidden',
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     fontFamily: 'body_font',
   },
 });
@@ -289,12 +289,18 @@ const BoutonsDeroulant = ({ data, key }) => {
 
 const Def5 = () => {
 
+  const handlePress = (url) => {
+    Linking.openURL(url);
+  };
 
   return (
+    <TouchableOpacity onPress={() => handlePress('https://www.instagram.com')}>
 
-    <View style={{ flex: 1, backgroundColor: couleurs.backgroundColor }}>
-    <Text style={{margin : 10, textAlign : 'center',fontSize : 20,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>voir compte insta : ici</Text>
+    <View style={{ flex: 1,height : "auto" }}>
+    <Text  style={{margin : 10, textAlign : 'center',fontSize : 20,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>regarde notre compte insta pour voir les défis quotidiens : @Top1inp</Text>
     </View>
+    </TouchableOpacity>
+
   )
 }
 
@@ -407,7 +413,7 @@ const styles = StyleSheet.create({
   itemText: {
     color: 'white',
     fontSize: 25,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     fontFamily : 'body_font'
   },
   descriptionContainer: {
@@ -420,9 +426,10 @@ const styles = StyleSheet.create({
     width : Dimensions.get('window').width/2.4,
   },
   descriptionText: {
-    color: 'gray',
-    fontSize: 16,
+    color: '#A1A1A1',
+    fontSize: 20,
     textAlign: 'center',
+    fontFamily : 'body_font'
   },
   column: 
   {
