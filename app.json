@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LOGO_APP.png",
+        "foregroundImage": "./assets/LOGO_APP.jpg",
         "backgroundColor": "#F5733"
       },
       "package": "com.nahelb.listeapp"
