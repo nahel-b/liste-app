@@ -7,33 +7,24 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#F5733"
+      "backgroundColor": "#ffffff"
     },
-    
-    
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.nahelb.phlow"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LOGO_APP.png",
-        "backgroundColor": "#CEB789"
-      },
-      "package": "com.nahelb.listeapp"
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "910c6e6e-02f9-4c58-ad77-506d29756a44"
-      }
     }
   }
 }
