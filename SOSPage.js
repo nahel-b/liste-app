@@ -14,6 +14,9 @@ const CommandePage = () => {
   const itemContainerRefColonne1 = useRef();
   const itemContainerRefColonne2 = useRef();
 
+
+  const navigation = useNavigation();
+
   const renderHeader = (content, index, isActive, section, ref) => (
     <View
       ref={isActive ? ref : null}
@@ -71,8 +74,9 @@ const CommandePage = () => {
     },
     itemText: {
       color: 'white',
-      fontSize: 22,
-      fontWeight: 'bold',
+      fontSize: 30,
+      fontFamily: 'body_font',
+      //fontWeight: 'bold',
     },
     descriptionContainer: {
       backgroundColor: couleurs.buttonColor3,
@@ -80,12 +84,14 @@ const CommandePage = () => {
       padding: 16,
       marginHorizontal: 8,
       marginTop: -8,
-      fontWeight : 'bold'
+      
+      
     },
     descriptionText: {
       color: 'white',
-      fontSize: 20,
+      fontSize: 24,
       textAlign: 'center',
+      fontFamily: 'body_font',
     },
 
   });
@@ -99,13 +105,15 @@ const CommandePage = () => {
     { nom: 'SAMEDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
   ];
 
-  const navigation = useNavigation();
-
-  return (
+  return ( 
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
-        <Retour onPress={() => navigation.navigate('SOSPageAccueil')}/>
+            <Retour onPress={() => navigation.navigate('SOSPageAccueil')}/>
 
-      <Image source={require('./assets/carte.jpg')} style={{ height: 200, aspectRatio: 1, alignSelf: 'center' }} />
+
+<TouchableOpacity onPress={() => navigation.navigate('PageCarte')} style={{alignSelf : 'center',margin : 10}}>
+      <Image source={require('./assets/carte.jpg')} style={{ margin : 10,height: 200, aspectRatio: 1, alignSelf: 'center' }} />
+      
+      </TouchableOpacity>
       <ScrollView style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
 
         <Accordion
@@ -126,6 +134,7 @@ const CommandePage = () => {
   );
 };
 
+
 const DEFPage = () => {
 
 
@@ -142,6 +151,7 @@ const DEFPage = () => {
       <Stack.Screen name="SOSPageAccueil" component={SOSPageAccueil} />
       <Stack.Screen name="CommandePage" component={CommandePage} />
       <Stack.Screen name="PageOuverte" component={PageOuverte} />
+      <Stack.Screen name="PageCarte" component={PageCarte} />
     </Stack.Navigator>
   );
 };
@@ -261,6 +271,29 @@ const SOSPageAccueil = () => {
     </ScrollView>
   );
 };
+
+
+const PageCarte = () => 
+{
+
+  const navigation = useNavigation()
+
+  return (
+
+
+    <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1,alignContent : 'space-around' }}>
+
+
+      <Retour onPress={() => navigation.navigate('CommandePage')}/>
+
+      <Image source={require('./assets/carte.jpg')} style={{ resizeMode : "contain", aspectRatio: 1, alignSelf: 'center' }} />
+
+
+      </View>
+
+  )
+
+ }
 
 // CATEGORIE OUVERTE
 

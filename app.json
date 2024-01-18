@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "liste-app",
-    "slug": "liste-app",
+    "name": "phlow",
+    "slug": "phlow",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,8 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.nahelb.listeapp"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {

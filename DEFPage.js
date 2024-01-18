@@ -296,8 +296,16 @@ const Def5 = () => {
   return (
     <TouchableOpacity onPress={() => handlePress('https://www.instagram.com')}>
 
-    <View style={{ flex: 1,height : "auto" }}>
-    <Text  style={{margin : 10, textAlign : 'center',fontSize : 20,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>regarde notre compte insta pour voir les défis quotidiens : @Top1inp</Text>
+    <View style={{ flex: 1,height : "auto", marginBottom : "10%",marginTop : "5%" }}>
+    {//<Text  style={{margin : 10, textAlign : 'center',fontSize : 20,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>regarde notre compte insta pour voir les défis quotidiens : @Top1inp</Text>
+   }
+    <View style={{flex: 1, backgroundColor: couleurs.buttonColor2, justifyContent: 'center', alignItems: 'center', margin: 10, borderRadius: 25}}>
+    <Text style={{color: 'white', margin: 10, lineHeight: 25, padding: 5, textAlign: 'center', fontSize: 20, fontFamily: 'paragraphe_font'}}>
+        Regarde notre compte insta pour voir les défis quotidiens : 
+        <Text style={{color: 'gray', fontFamily: 'paragraphe_font'}}> @Top1inp</Text>
+    </Text>
+    <Text style={{color: 'white', marginTop: -25, marginBottom: 0, lineHeight: 25, padding: 5, textAlign: 'center', fontSize: 10, fontFamily: 'paragraphe_font'}}>(clique ici)</Text>
+</View>
     </View>
     </TouchableOpacity>
 

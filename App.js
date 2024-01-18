@@ -18,7 +18,10 @@ import CALPage from './CALPage.js'
 import SOSPage from './SOSPage.js'
 import WELPage from './WELPage.js'
 import {DEFPage} from './DEFPage.js'
+import Countdown from './Countdown.js'
 import couleurs from './Couleurs.js'
+
+
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -54,8 +57,27 @@ const HeaderBar = () => {
     </View>
   );
 }; 
+ 
+
 
 const BottomBar = () => {
+
+  const yourDateLimit = new Date('2024-01-18T00:42:00.000Z'); // Remplacez par votre date limite
+  const [showSOS, setShowSOS] = useState(true);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const currentDate = new Date();
+      setShowSOS(currentDate >= yourDateLimit);
+    }, 1000);
+
+    // Nettoyage de l'intervalle lorsque le composant est démonté
+    return () => clearInterval(intervalId);
+  }, [yourDateLimit]);
+
+
+
+
   
   return (
     <View style={{ flex: 1,backgroundColor:couleurs.backgroundColor }}>
@@ -95,18 +117,43 @@ const BottomBar = () => {
             ),
           }}
         />
-        <Tab.Screen
-          name="SOS"
-          component={SOSPage}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <Image
-                source={require('./assets/sos.png')}
-                style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
-              />
-            ),
-          }}
-        />
+
+
+
+
+  
+
+{showSOS ? ( 
+          <Tab.Screen
+            name="SOS"
+            component={SOSPage}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Image
+                  source={require('./assets/sos.png')}
+                  style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
+                />
+              ),
+            }}
+          />
+        ) : (
+          <Tab.Screen
+            name="Countdown"
+            component={() => <Countdown date_limit={yourDateLimit} />}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <Image
+                  source={require('./assets/sos.png')}
+                  style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
+                />
+              ),
+            }}
+          />
+        )}
+
+
+
+
         <Tab.Screen
           name="CAL"
           component={CALPage}

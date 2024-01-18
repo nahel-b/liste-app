@@ -75,7 +75,8 @@ const CommandePage = () => {
     },
     itemText: {
       color: 'white',
-      fontSize: 22,
+      fontSize: 30,
+      fontFamily: 'body_font',
       //fontWeight: 'bold',
     },
     descriptionContainer: {
@@ -85,11 +86,13 @@ const CommandePage = () => {
       marginHorizontal: 8,
       marginTop: -8,
       
+      
     },
     descriptionText: {
       color: 'white',
-      fontSize: 20,
+      fontSize: 24,
       textAlign: 'center',
+      fontFamily: 'body_font',
     },
 
   });
@@ -107,7 +110,11 @@ const CommandePage = () => {
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
             <Retour onPress={() => navigation.navigate('WELPageContent')}/>
 
+
+<TouchableOpacity onPress={() => navigation.navigate('PageCarte')} style={{alignSelf : 'center',margin : 10}}>
       <Image source={require('./assets/carte.jpg')} style={{ margin : 10,height: 200, aspectRatio: 1, alignSelf: 'center' }} />
+      
+      </TouchableOpacity>
       <ScrollView style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
 
         <Accordion
@@ -139,6 +146,9 @@ const WELPage = () => {
       <Stack.Screen name="WELPageContent" component={WELPageContent} />
       <Stack.Screen name="PageOuverte" component={PageOuverte} />
     <Stack.Screen name="CommandePage" component={CommandePage} />
+
+    <Stack.Screen name="PageCarte" component={PageCarte} />
+
     </Stack.Navigator>
   );
 };
@@ -242,6 +252,29 @@ const WELPageContent = () => {
   );
   
 };
+
+
+const PageCarte = () => 
+{
+
+  const navigation = useNavigation()
+
+  return ( 
+
+
+    <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1,alignContent : 'space-around' }}>
+
+
+      <Retour onPress={() => navigation.navigate('CommandePage')}/>
+
+      <Image source={require('./assets/carte.jpg')} style={{ resizeMode : "contain", aspectRatio: 1, alignSelf: 'center' }} />
+
+
+      </View>
+
+  )
+
+ }
 
 
 
