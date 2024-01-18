@@ -13,6 +13,14 @@
     "production": {}
   },
   "submit": {
-    "production": {}
+    "production": 
+    {
+      "ios" : 
+      {
+        "appleId": "nahelbelma@gmail.com",
+        "ascAppId": "6476297216",
+        "appleTeamId": "LRMN3YMJQQ"
+      }
+    }
   }
 }
