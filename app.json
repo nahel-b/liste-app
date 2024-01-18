@@ -4,7 +4,7 @@
     "slug": "phlow",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/LOGO_APP.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/Logo.png",
@@ -17,7 +17,8 @@
     "ios": {
       "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true,
-      "bundleIdentifier": "com.nahelb.phlow"
+      "bundleIdentifier": "com.nahelb.phlow",
+      "buildNumber": "2"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
@@ -38,14 +39,19 @@
     "plugins": [
       "@react-native-firebase/app",
       [
-          "expo-build-properties",
-          {
-            "ios": {
-              "useFrameworks": "static"
-            }
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
           }
-        ]
-    ]
-    
+        }
+      ]
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/bf15b207-818e-471a-a0ad-b614ace8f99a"
+    }
   }
 }

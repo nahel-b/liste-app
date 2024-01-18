@@ -31,7 +31,8 @@
     "react-native-snap-carousel": "*",
     "react-native-tab-view": "^3.0.0",
     "expo-splash-screen": "~0.20.5",
-    "expo-build-properties": "~0.8.3"
+    "expo-build-properties": "~0.8.3",
+    "expo-updates": "~0.18.19"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
