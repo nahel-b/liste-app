@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCoMdpnalWpKhy_RrhiapuTUnKaD-oAkZU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>151475659058</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nahelb.phlow</string>
+	<key>PROJECT_ID</key>
+	<string>list-app-eebc2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>list-app-eebc2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:151475659058:ios:81332f09f30546ea63772b</string>
+	<key>DATABASE_URL</key>
+	<string>https://list-app-eebc2-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

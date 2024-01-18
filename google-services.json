@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "151475659058",
+    "firebase_url": "https://list-app-eebc2-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "list-app-eebc2",
+    "storage_bucket": "list-app-eebc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151475659058:android:7fa08862ac14522f63772b",
+        "android_client_info": {
+          "package_name": "com.nahelb.phlow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0DN25wU63yaiYEgYGb_NKY7TPJZF0nLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

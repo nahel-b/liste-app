@@ -15,9 +15,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nahelb.phlow"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/LOGO_APP.png",
         "backgroundColor": "#ffffff"
@@ -29,8 +32,20 @@
     },
     "extra": {
       "eas": {
-        "projectId": "910c6e6e-02f9-4c58-ad77-506d29756a44"
+        "projectId": "bf15b207-818e-471a-a0ad-b614ace8f99a"
       }
-    }
+    },
+    "plugins": [
+      "@react-native-firebase/app",
+      [
+          "expo-build-properties",
+          {
+            "ios": {
+              "useFrameworks": "static"
+            }
+          }
+        ]
+    ]
+    
   }
 }
