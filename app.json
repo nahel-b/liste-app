@@ -26,7 +26,8 @@
         "foregroundImage": "./assets/LOGO_APP.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.nahelb.listeapp"
+      "package": "com.nahelb.phlow",
+      "versionCode":  1
     },
     "web": {
       "favicon": "./assets/favicon.png"
