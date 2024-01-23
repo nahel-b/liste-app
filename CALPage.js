@@ -173,27 +173,66 @@ const CALPage = ({ navigation }) => {
     return todayIndex >= 0 ? todayIndex : 0;
   };
   
-
   const calendrierData = [
 
-    {jour: 'Ven', num: '26', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Goûter Campus', description : 'Miam'},{nom : 'EVENT AUTRE LISTE', description : 'SAT'}], moisNumero: 1},
-    {jour: 'Sam', num: '27', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Soirée', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Libre'}], moisNumero: 1},
-    {jour: 'Dim', num: '28', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Event Sport', description : ''}], moisNumero: 1},
-    {jour: 'Lun', num: '29', mois: 'Janvier', selectedButtons:[{nom : 'Kfet', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus'}], moisNumero: 1},
-    {jour: 'Mar', num: '30', mois: 'Janvier', selectedButtons:[{nom : 'Fakelistes', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 1},
-    {jour: 'Mer', num: '31', mois: 'Janvier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nKfet'}], moisNumero: 1},
-    {jour: 'Jeu', num: '01', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event DD', description : ' '}], moisNumero: 2},
-    {jour: 'Ven', num: '02', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nSoirée Zik'}], moisNumero: 2},  
-    {jour: 'Sam', num: '03', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'EVENT AUTRE LISTE', description : 'Event Libre\nSoirée'}], moisNumero: 2},
-    {jour: 'Dim', num: '04', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event Sport', description : ' '}], moisNumero: 2},
-    {jour: 'Lun', num: '05', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nSAT'}], moisNumero: 2},
-    {jour: 'Mar', num: '06', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 2},
-    {jour: 'Mer', num: '07', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 2},
-    {jour: 'Jeu', num: '08', mois: 'Fevrier', selectedButtons:[{nom : 'Goûter Minatec',description :' '},{nom : 'EVENT AUTRE LISTE', description : 'Soirée Zik'}], moisNumero: 2},
-    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nKfet'}], moisNumero: 2},
-    {jour: 'Sam', num: '10', mois: 'Fevrier', selectedButtons:[{nom : 'Soirée', description : ''}], moisNumero: 2},
-    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'Débat des Prez', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Sport'}], moisNumero: 2}
+ 
+
+    {jour: 'Ven', num: '26', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Goûter Campus', description : 'Les plus beaux des poissons vous ont préparé le plus beau des goûters, préparez vous vos 4 heures seront des plus tristes après ce jour'},{nom : 'EVENT AUTRES LISTE', description : 'SAT Pizzaioliste'}], moisNumero: 1},
+
+    {jour: 'Sam', num: '27', mois: 'Janvier', selectedButtons:['SOS',{nom : 'EVENT AUTRES LISTE', description : 'EVENT LIBRE Révoliste\nSOIREE Aliste'}], moisNumero: 1},
+
+    {jour: 'Dim', num: '28', mois: 'Janvier', selectedButtons:['SOS',{nom : 'EVENT AUTRES LISTE', description : 'EVENT SPORT Préhistoliste'}], moisNumero: 1},
+
+    {jour: 'Lun', num: '29', mois: 'Janvier', selectedButtons:[{nom : 'Soirée MINP', description : "Un soirée MINP sans alocool..., de toute façon c'est pas ça qui faisait venir les gens à la KFET non?"},{nom : 'EVENT AUTRE LISTE', description : 'GOUTER CAMPUS Révoliste'}], moisNumero: 1},
+
+    {jour: 'Mar', num: '30', mois: 'Janvier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'GOUTER MINATEC Pizzaiolitse'}], moisNumero: 1},
+
+    {jour: 'Mer', num: '31', mois: 'Janvier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'GOUTER CAMPUS Préhistoliste\nMINP Aliste'}], moisNumero: 1},
+
+    {jour: 'Jeu', num: '01', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event DD', description : "C'est le moment de montrer que même à Phelma on est plus durables qu'au Cube"}], moisNumero: 2},
+
+    {jour: 'Ven', num: '02', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'GOUTER MINATEC Aliste\nSoirée Zik Révoliste'}], moisNumero: 2}, 
+
+    {jour: 'Sam', num: '03', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'EVENT AUTRE LISTE', description : 'EVENT LIBRE Pizzaioliste\nSOIREE Préhistoliste'}], moisNumero: 2},
+
+    {jour: 'Dim', num: '04', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event Sport', description : 'Rejoignez le navire, la Phlow vous a préparé une activité GARGANTUESQUE!'}], moisNumero: 2},
+
+    {jour: 'Lun', num: '05', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'GOUTER CAMPUS Pizzaioliste\nSAT Révoliste'}], moisNumero: 2},
+
+    {jour: 'Mar', num: '06', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'GOUTER MINATEC Préhistoliste'}], moisNumero: 2},
+
+    {jour: 'Mer', num: '07', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'GOUTER MINATEC Révoliste'}], moisNumero: 2},
+
+    {jour: 'Jeu', num: '08', mois: 'Fevrier', selectedButtons:[{nom : 'Goûter Minatec',description :'Le premier vous a pas suffit? Nos poissons sont de retours avec de nouvelles saveurs qui rendraient doux les plus féroces des requins'},{nom : 'EVENT AUTRE LISTE', description : 'SOIREE ZIK Pizzaioliste '}], moisNumero: 2},
+
+    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'GOUTER CAMPUS Aliste\nMINP Préhistoliste'}], moisNumero: 2},
+
+    {jour: 'Sam', num: '10', mois: 'Fevrier', selectedButtons:[{nom : 'Soirée', description : "Ne prévoyez rien non plus Dimanche, ce sera pour vous une déception après la soirée de folie qui vous attends aujourd'hui"}], moisNumero: 2},
+
+    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'Débat des Prez', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'EVENT SPORT Aliste'}], moisNumero: 2}
+
   ];
+
+  // const calendrierData = [
+
+  //   {jour: 'Ven', num: '26', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Goûter Campus', description : 'Miam'},{nom : 'EVENT AUTRE LISTE', description : 'SAT'}], moisNumero: 1},
+  //   {jour: 'Sam', num: '27', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Soirée', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Libre'}], moisNumero: 1},
+  //   {jour: 'Dim', num: '28', mois: 'Janvier', selectedButtons:['SOS',{nom : 'Event Sport', description : ''}], moisNumero: 1},
+  //   {jour: 'Lun', num: '29', mois: 'Janvier', selectedButtons:[{nom : 'Kfet', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus'}], moisNumero: 1},
+  //   {jour: 'Mar', num: '30', mois: 'Janvier', selectedButtons:[{nom : 'Fakelistes', description : ' '},{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 1},
+  //   {jour: 'Mer', num: '31', mois: 'Janvier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nKfet'}], moisNumero: 1},
+  //   {jour: 'Jeu', num: '01', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event DD', description : ' '}], moisNumero: 2},
+  //   {jour: 'Ven', num: '02', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec\nSoirée Zik'}], moisNumero: 2},  
+  //   {jour: 'Sam', num: '03', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'EVENT AUTRE LISTE', description : 'Event Libre\nSoirée'}], moisNumero: 2},
+  //   {jour: 'Dim', num: '04', mois: 'Fevrier', selectedButtons:['WEL',{nom : 'Event Sport', description : ' '}], moisNumero: 2},
+  //   {jour: 'Lun', num: '05', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nSAT'}], moisNumero: 2},
+  //   {jour: 'Mar', num: '06', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 2},
+  //   {jour: 'Mer', num: '07', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Minatec'}], moisNumero: 2},
+  //   {jour: 'Jeu', num: '08', mois: 'Fevrier', selectedButtons:[{nom : 'Goûter Minatec',description :' '},{nom : 'EVENT AUTRE LISTE', description : 'Soirée Zik'}], moisNumero: 2},
+  //   {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'EVENT AUTRE LISTE', description : 'Goûter Campus\nKfet'}], moisNumero: 2},
+  //   {jour: 'Sam', num: '10', mois: 'Fevrier', selectedButtons:[{nom : 'Soirée', description : ''}], moisNumero: 2},
+  //   {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'Débat des Prez', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'Event Sport'}], moisNumero: 2}
+  // ];
 
   
 
