@@ -97,12 +97,10 @@ const CommandePage = () => {
   });
 
   const dataJour = [
-    { nom: 'LUNDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'MARDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'MERCREDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'JEUDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'VENDREDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+   { nom: 'VENDREDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
     { nom: 'SAMEDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+    { nom: 'DIMANCHE', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+
   ];
 
   return ( 
@@ -347,7 +345,7 @@ const dataDefi4 = {
   texte : 'Plongez dans les offres promotionnelles les plus folles de ces mers. Découvrez des packs adaptés à toutes sortes de situations, nous somme sûr que vous en trouverez un à votre goût.',
   boutonData : [
   { nom: 'RC', description: 'RC + Mulet + Chicha' },
-  { nom: 'Remise en forme après une descente aux Abysses', description: 'RedBull + bacon + oeufs' },
+  { nom: 'Remise en forme après une descente aux Abysses', description: 'Brunch ( boisson froide( RedBull ou jus de fruit) plus boisson chaude (Café ou chocolat) + oeufs brouillés (supplément bacon) + viennoiserie)' },
   { nom: 'Apéro', description: 'Bière + Chips + Jambon de Bayonne + Tomates cerises' },
   { nom: 'Goûter au Krusty-Krab', description: 'Chocolat chaud + Cookies' },
   { nom: 'Ambiance TitaNique', description: 'Aide pour trouver cadeau de St Valentin + Conseils de drague + Fleur à offrir' },
@@ -507,6 +505,16 @@ const PageOuverte = ({ route }) => {
   const { width: viewportWidth } = Dimensions.get('window');
   const ITEM_WIDTH = viewportWidth * 0.35;
 
+  const Row3 = ({ image1Source, image2Source }) => {
+    return (
+      <View style={[ { marginTop: 0,alignItems : 'center' }]}>
+          <TouchableOpacity onPress={() => navigation.navigate('CommandePage')} >
+              <Image source={require("./assets/bateau.png")} style={[{width : 150,height : 150,aspectRatio: 1}]} />
+          </TouchableOpacity>
+      </View>
+    );
+  };
+
   const navigation = useNavigation();
   return (
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
@@ -537,6 +545,8 @@ const PageOuverte = ({ route }) => {
       <ScrollView style={{ flex: 1 }}>
       
       {calendrierData[selectedItem]?.elements}
+
+      <Row3/>
       <Footer/>
       
     </ScrollView>
@@ -554,6 +564,19 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      alignContent : "center",
+      flex : 1,
+      },
+    image: {
+      flex : 1,
+      aspectRatio: 1, // Ajustez la largeur selon vos besoins
+      resizeMode: 'cover',
+      alignSelf : 'center',
+      margin : 10,
+    },
   },
   image: {
     width: 200,

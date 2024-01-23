@@ -294,7 +294,7 @@ const Def5 = () => {
   };
 
   return (
-    <TouchableOpacity onPress={() => handlePress('https://www.instagram.com')}>
+    <TouchableOpacity onPress={() => handlePress('https://www.instagram.com/spiderliste/')}>
 
     <View style={{ flex: 1,height : "auto", marginBottom : "10%",marginTop : "5%" }}>
     {//<Text  style={{margin : 10, textAlign : 'center',fontSize : 20,fontFamily : 'body_font',color : 'rgb(148,136,111)'}}>regarde notre compte insta pour voir les défis quotidiens : @Top1inp</Text>

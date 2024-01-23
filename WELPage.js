@@ -98,12 +98,10 @@ const CommandePage = () => {
   });
 
   const dataJour = [
-    { nom: 'LUNDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'MARDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'MERCREDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
     { nom: 'JEUDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'VENDREDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
     { nom: 'SAMEDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+    { nom: 'DIMANCHE', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+
   ];
 
   return (
@@ -292,7 +290,8 @@ const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
 const data1 = [
   { nom: 'Wok aux légumes', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons',source : require('./assets/defaut_photo.png') },
   { nom: 'Wok au poulet', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons, poulet',source : require('./assets/defaut_photo.png') },
-  { nom: 'Dessert', description: 'mousse au choc',source : require('./assets/defaut_photo.png') },
+  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/defaut_photo.png') },
+  { nom: 'Dessert', description: 'fondant (PAS de metro) + verrine',source : require('./assets/defaut_photo.png') },
   { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png') },
 ];
 
@@ -301,7 +300,8 @@ const data2 = [
   { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/defaut_photo.png') },
   { nom: 'Burger raclette végé', description: 'servi avec des frites : oignon, steak végé, salade, tomate, raclette, sauce',source : require('./assets/defaut_photo.png') },
   { nom: 'Burger raclette', description: 'servi, avec des frites : oignon, steak de bœuf, salade, tomate, raclette, sauce',source : require('./assets/defaut_photo.png') },
-  { nom: 'Desserts', description: '??',source : require('./assets/defaut_photo.png') },
+  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/defaut_photo.png') },
+  { nom: 'Desserts', description: 'tiramisu + fondant',source : require('./assets/defaut_photo.png') },
   { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png') },
   
 
@@ -312,7 +312,8 @@ const data3 = [
   { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/defaut_photo.png') },
   { nom: 'Pain pita aux falafels', description: 'falafels, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/defaut_photo.png') },
   { nom: 'Pain pita au poulet', description: 'poulet, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/defaut_photo.png') },
-  { nom: 'Desserts', description: '??',source : require('./assets/defaut_photo.png') },
+  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/defaut_photo.png') },
+  { nom: 'Desserts', description: 'mousse au choc + crumble',source : require('./assets/defaut_photo.png') },
   { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png')}
   
 ];
@@ -430,6 +431,17 @@ const PageOuverte = ({ route }) => {
 
   const navigation = useNavigation();
 
+
+  const Row3 = ({ image1Source, image2Source }) => {
+    return (
+      <View style={[ { marginTop: 0,alignItems : 'center' }]}>
+          <TouchableOpacity onPress={() => navigation.navigate('CommandePage')} >
+              <Image source={require("./assets/bateau.png")} style={[{width : 150,height : 150,aspectRatio: 1}]} />
+          </TouchableOpacity>
+      </View>
+    );
+  };
+
   return (
     <View style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
       <Retour onPress={() => navigation.navigate('WELPageContent')}/>
@@ -459,6 +471,7 @@ const PageOuverte = ({ route }) => {
         <View style={{ flex : 1, alignItems: 'center',marginBottom:20 }}>
         {calendrierData[selectedItem]?.elements}
         </View>
+        <Row3/>
         <View style={{ flex : 1, alignItems: 'center',justifyContent : 'flex-end' }}>
         <Footer/>
         </View>

@@ -7,12 +7,14 @@ import Accordion from 'react-native-collapsible/Accordion';
 import Footer from './foot';
 import moment from 'moment';
 
+import { specificStyles } from './specificStyles';
+
 
 
 const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
 
   return (
-    <View style={[styles.itemContainer, isSelected && styles.selectedItem]}>
+    <View style={[styles.itemContainer, isSelected && styles.selectedItem,specificStyles.shadowBoutonDeroulant]}>
       <Text style={styles.monthText}>{item.mois}</Text>
       <Text style={styles.numText}>{item.num}</Text>
       <Text style={styles.dayText}>{item.jour}</Text>
@@ -76,7 +78,7 @@ const BoutonDeroulant = ({ data,key }) =>
   const renderHeader = (content, index, isActive, section) => 
   {
     return(  
-    <View  style={[stylesAccordion.itemContainer_defi]} >
+    <View  style={[stylesAccordion.itemContainer_defi,specificStyles.shadowBoutonDeroulant]} >
       <Text style={stylesAccordion.itemText}>{content.nom}</Text>
     </View>
   )}

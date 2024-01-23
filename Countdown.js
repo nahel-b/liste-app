@@ -34,8 +34,8 @@ const CountdownComponent = ({date_limit}) => {
 
   return (
     <React.Fragment >
-        <View style={{flex : 1,backgroundColor : couleurs.backgroundColor,alignItems : 'center'}} >
-      <Text style={styles.titre} >Countdown:</Text>
+      <View style={{flex : 1,backgroundColor : couleurs.backgroundColor,alignItems : 'center'}} >
+      <Text style={styles.titre} >Soit patient :</Text>
       <Text style={styles.txt} >{timeRemaining.days}j</Text>
       <Text style={styles.txt} > {timeRemaining.hours}h</Text>
       <Text style={styles.txt} >{timeRemaining.minutes}m</Text>

@@ -38,14 +38,14 @@ const HeaderBar = () => {
     <SafeAreaView>
       <View style={styles.header}>
         <View style={styles.logoContainer}>
-          <TouchableOpacity onPress={() => handlePress('https://www.instagram.com')}>
+          <TouchableOpacity onPress={() => handlePress('https://www.instagram.com/spiderliste/')}>
             <Image source={require('./assets/instagram.png')} style={styles.logo} resizeMode="contain" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handlePress('https://www.facebook.com')}>
+          <TouchableOpacity onPress={() => handlePress('https://www.facebook.com/profile.php?id=61555892932426')}>
             <Image source={require('./assets/facebook.png')} style={styles.logo} resizeMode="contain" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handlePress('https://www.youtube.com')}>
-            <Image source={require('./assets/youtube.png')} style={styles.logo} resizeMode="contain" />
+          <TouchableOpacity onPress={() => handlePress('http://www.youtube.com/@SpiderlisteFakeliste')}>
+            <Image source={require('./assets/youtube.png')} style={[styles.logo,{height: 35,width: 40,marginLeft : 2}]} resizeMode="contain" />
           </TouchableOpacity>
         </View>
         <View style={styles.titleContainer}>
@@ -62,7 +62,9 @@ const HeaderBar = () => {
 
 const BottomBar = () => {
 
-  const yourDateLimit = new Date('2024-01-18T00:42:00.000Z'); // Remplacez par votre date limite
+  //const yourDateLimit = new Date('2024-01-25T00:42:00.000Z'); // Remplacez par votre date limite
+  const yourDateLimit = new Date('2024-01-10T00:42:00.000Z'); // Remplacez par votre date limite
+
   const [showSOS, setShowSOS] = useState(true);
 
   useEffect(() => {
