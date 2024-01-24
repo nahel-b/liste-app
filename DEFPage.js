@@ -31,10 +31,10 @@ const Row1 = ({ handlePress }) => {
   return (
     <View style={[stylesPage.row]}>
       <TouchableOpacity onPress={() => handlePress(0)} style={stylesPage.imageContainer}>
-        <Image source={require("./assets/hublots/DEF/dd.png")} style={stylesPage.image} />
+        <Image source={require("./assets/hublots/DEF/dd_.png")} style={stylesPage.image} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handlePress(1)} style={stylesPage.imageContainer}>
-        <Image source={require("./assets/hublots/DEF/d_l.png")} style={stylesPage.image} />
+        <Image source={require("./assets/hublots/DEF/d_l_.png")} style={stylesPage.image} />
       </TouchableOpacity>
     </View>
   ); 
@@ -44,13 +44,13 @@ const Row2 = ({ handlePress }) => {
   return (
     <View style={[stylesPage.row,{alignItems: 'flex-start'}]}>
       <TouchableOpacity onPress={() => handlePress(2)}  style={stylesPage.imageContainer} >
-        <Image source={require("./assets/hublots/DEF/d_p.png")} style={stylesPage.image} />
+        <Image source={require("./assets/hublots/DEF/d_p_.png")} style={stylesPage.image} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handlePress(3)} style={[stylesPage.imageContainer, {position: 'relative', top: '-20%' }]}>
-        <Image source={require("./assets/hublots/DEF/d_c.png")} style={stylesPage.image} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => handlePress(4)} style={stylesPage.imageContainer}>
-        <Image source={require("./assets/hublots/DEF/d_q.png")} style={stylesPage.image} />
+      {/* <TouchableOpacity onPress={() => handlePress(3)} style={[stylesPage.imageContainer, {position: 'relative', top: '-20%' }]}>
+        <Image source={require("./assets/hublots/DEF/d_c_.png")} style={stylesPage.image} />
+      </TouchableOpacity> */}
+      <TouchableOpacity onPress={() => handlePress(3)} style={stylesPage.imageContainer}>
+        <Image source={require("./assets/hublots/DEF/d_c_.png")} style={stylesPage.image} />
       </TouchableOpacity>
     </View>
   );
@@ -115,7 +115,7 @@ const stylesPage = StyleSheet.create({
   },
   
   image: {
-    flex : 0.9,
+    flex : 1,
     margin : 10,
     
        // ajustez la largeur selon vos besoins
@@ -152,45 +152,61 @@ const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
 
 //defis DD
 const dataDefi1 = [
-  { nom: 'Lundi vert', description: 'Manger végé le lundi (et faire une photo?)' },
-  { nom: 'Affiche green', description: 'Faire une affiche de sensibilisation pour afficher dans Phelma (ex: pollution des cigarettes, éteindre les lumières, pollution de l’avion…)' },
-  { nom: 'Clean Walk', description: 'Faire une clean walk et ramener un sac de déchet' },
-  { nom: 'Bilan carbone', description: 'Faire son bilan carbone sur Nos Gestes Climats.fr' },
-  { nom: 'Nouvelle cuisine', description: 'Cuisiner des épluchures' },
-  { nom: 'Achat local', description: 'Acheter des légumes d’un producteur à moins de 50km de Grenoble' },
-  { nom: 'Range tes mails', description: 'Supprimer ses mails lus et inutiles' },
-  { nom: 'Compost', description: 'Composter les déchets alimentaires de ses repas pendant une semaine (ou plus)' },
-  { nom: 'Seconde main', description: 'Trier et donner ses vêtements qu’on ne porte plus' },
-  { nom: 'Home-made', description: 'Fabriquer soi-même un produit ménager (gel nettoyant, produit à vitre…)' },
+  { nom: 'Lundi vert 10pts', description: 'Manger végé le lundi (et faire une photo?)' },
+  { nom: 'Affiche green 30pts', description: 'Faire une affiche de sensibilisation pour afficher dans Phelma (ex: pollution des cigarettes, éteindre les lumières, pollution de l’avion…)' },
+  { nom: 'Clean Walk 30pts', description: 'Faire une clean walk et ramener un sac de déchet' },
+  { nom: 'Bilan carbone 20pts', description: 'Faire son bilan carbone sur Nos Gestes Climats.fr' },
+  { nom: 'Nouvelle cuisine 10pts', description: 'Cuisiner des épluchures' },
+  { nom: 'Achat local 30pts', description: 'Acheter des légumes d’un producteur à moins de 50km de Grenoble' },
+  { nom: 'Range tes mails 20pts', description: 'Supprimer ses mails lus et inutiles' },
+  { nom: 'Compost 20pts', description: 'Composter les déchets alimentaires de ses repas pendant une semaine (ou plus)' },
+  { nom: 'Seconde main 30pts', description: 'Trier et donner ses vêtements qu’on ne porte plus' },
+  { nom: 'Home-made 20pts', description: 'Fabriquer soi-même un produit ménager (gel nettoyant, produit à vitre…)' },
 ];
 
 //defie la liste
 const dataDefi2 = [
-  { nom: 'F1 5pts classique', description: 'Description de F1' },
-  { nom: 'F2 15pts', description: 'Description de F2' },
-  { nom: 'F3 10pts', description: 'Description de F3' },
-  { nom: 'F4 5pts', description: 'Description de F4' },
-  { nom: 'F5 50pts', description: 'Description de F5' },
-  { nom: 'F6 25pts', description: 'Description de F6' },
-  { nom: 'F7 15pts', description: 'Description de F7' },
-  { nom: 'F8 20pts', description: 'Description de F8' },
-
+  { nom: 'Théo VETTORATO 10pts', description: 'Préparer une meilleure Chicha que lui' },
+  { nom: 'Manon PARNAUDEAU 10pts', description: 'La battre en 1v1 jongles' },
+  { nom: 'Mathis HURSTEL 50pts', description: 'Réussir à monter dans un camion de pompiers' },
+  { nom: 'Youss MOHAMED 10pts', description: 'Le battre en 1v1 SKATE' },
+  { nom: 'Théo GIOVANNI 20pts', description: 'Le battre au baby foot' },
+  { nom: 'Julien BELIARD 10pts', description: 'Lui placer un COUBEH' },
+  { nom: 'Maxime DESCOS 50pts', description: 'Battre son meilleur STRAVA en course à pied' },
+  { nom: 'Clément METAYER 60pts', description: 'Prendre une photo sur un Âne' },
+  { nom: 'Roman CASCALES 10pts', description: 'Le checker en même temps que BASMA' },
+  { nom: 'Iris THOUARD 150pts', description: 'Monter dans un hélico en vol' },
+  { nom: 'Mathieu WHITE 20pts', description: 'Assumer une sauce pimentée en pokerface préparée par lui-même' },
+  { nom: 'Baptiste GRANET 20pts', description: 'Lui donner un gâteau maison' },
+  { nom: 'Camille MOUTIN 10pts', description: 'Se lever 10 min avant ses partiels' },
+  { nom: 'Juliette LECOMPTE 20pts', description: 'La faire vomir' },
+  { nom: 'Pierre DEVALROGER 20pts', description: 'Le battre en 1v1 Clash Royal' },
+  { nom: 'Lucas GRANGEORGE 10pts', description: 'Assumer un plaquage par ce monstre' },
+  { nom: 'Julian MARTINEAU 10pts', description: 'Partager une pinte de blonde avec lui' },
+  { nom: 'DImantino AGR 20pts', description: 'Venir jongler devant lui en collant' },
+  { nom: 'Guillaume BNN 10pts', description: 'Lui donner 1 euro' },
+  { nom: 'Ellie OUDET 10pts', description: 'Lui apprendre quelque chose sur le DD' },
+  { nom: 'Hortense ARNOUX 20pts', description: 'La battre en 1v1 temps de danse sur la piste à une soirée' },
+  { nom: 'Cassandre SALAME 50pts', description: 'Réussir à la staffer' },
+  { nom: 'Alice GIRAUD 10pts', description: 'Lui faire un showcase de Werenoi' },
 ];
+
 
 //défis phlow
 const dataDefi3 = [
-  { nom: 'D1', description: 'Photo à la piscine' },
-  { nom: 'D2', description: 'Faire même Spiderman à chaque événement' },
-  { nom: 'D3', description: 'Ne parler qu’en Spiderman avec un inconnu' },
-  { nom: 'D4', description: 'Venir en cours avec des accessoires de plongée (tuba, combi, palme...)' },
-  { nom: 'D5', description: 'Faire un aqua poppy' },
-  { nom: 'D6', description: 'Descendre une piste de ski en maillot' },
-  { nom: 'D7', description: 'Venir en marinière à la soirée' },
-  { nom: 'D8', description: 'Pêcher un poisson dans l’Isère' },
-  { nom: 'D9', description: 'Boire avec le tuba' },
-  { nom: 'D10', description: 'Danser le refrain de la chorée' },
-  { nom: 'D11', description: 'Faire un showcase au chalet avec notre rap' },
+  { nom: 'D1 10pts', description: 'Photo à la piscine' },
+  { nom: 'D2 10pts', description: 'Faire même Spiderman à chaque événement' },
+  { nom: 'D3 20pts', description: 'Ne parler qu’en Spiderman avec un inconnu' },
+  { nom: 'D4 50pts', description: 'Venir en cours avec des accessoires de plongée (tuba, combi, palme...)' },
+  { nom: 'D5 50pts', description: 'Descendre une piste de ski en maillot' },
+  { nom: 'D6 30pts', description: 'Venir en marinière à la soirée' },
+  { nom: 'D7 50pts', description: 'Pêcher un poisson dans l’Isère' },
+  { nom: 'D8 10pts', description: 'Boire avec le tuba' },
+  { nom: 'D9 10pts', description: 'Danser le refrain de la chorée' },
+  { nom: 'D10 40pts', description: 'Faire un showcase au chalet avec notre rap' },
+  { nom: 'D11 100pts', description: 'Prendre une photo avec chaque membre de la liste' },
 ];
+
 
 //Défis classiques
 const dataDefi4 = [
@@ -319,11 +335,11 @@ const PageOuverte = ({ route }) => {
   const [selectedItem, setSelectedItem] = useState(selectedIndex);
 
   const calendrierData = [
-    { key: '1',image_src: require('./assets/hublots/DEF/dd.png'), elements: <BoutonsDeroulant data={dataDefi1} key="1" /> },
-    { key: '2',image_src: require('./assets/hublots/DEF/d_l.png'), elements: <BoutonsDeroulant data={dataDefi2} key="2" /> },
-    { key: '3',image_src: require('./assets/hublots/DEF/d_p.png'), elements: <BoutonsDeroulant data={dataDefi3} key="3" /> },
-    { key: '4',image_src: require('./assets/hublots/DEF/d_c.png'), elements: <BoutonsDeroulant data={dataDefi4} key="4" /> },
-    { key: '5',image_src: require('./assets/hublots/DEF/d_q.png'), elements: <Def5 /> },
+    { key: '1',image_src: require('./assets/hublots/DEF/dd_.png'), elements: <BoutonsDeroulant data={dataDefi1} key="1" /> },
+    { key: '2',image_src: require('./assets/hublots/DEF/d_l_.png'), elements: <BoutonsDeroulant data={dataDefi2} key="2" /> },
+    { key: '3',image_src: require('./assets/hublots/DEF/d_p_.png'), elements: <BoutonsDeroulant data={dataDefi3} key="3" /> },
+    //{ key: '4',image_src: require('./assets/hublots/DEF/d_c_.png'), elements: <BoutonsDeroulant data={dataDefi4} key="4" /> },
+    { key: '4',image_src: require('./assets/hublots/DEF/d_c_.png'), elements: <Def5 /> },
 
   ];
 

@@ -132,7 +132,8 @@ const BottomBar = () => {
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Image
-                  source={require('./assets/sos.png')}
+                source={require('./assets/bottom_bar/sos.png')}
+                //source={require('./assets/sos.png')}
                   style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
                 />
               ),
@@ -145,7 +146,8 @@ const BottomBar = () => {
             options={{
               tabBarIcon: ({ color, size }) => (
                 <Image
-                  source={require('./assets/sos.png')}
+                  //source={require('./assets/sos.png')}
+                  source={require('./assets/bottom_bar/sos.png')}
                   style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
                 />
               ),
@@ -174,8 +176,10 @@ const BottomBar = () => {
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image
-                source={require('./assets/burger.png')}
-                style={{ width: 30, height: 30, tintColor: color, alignSelf: 'center' }}
+                //source={require('./assets/burger.png')}
+                source={require('./assets/bottom_bar/wel.png')}
+
+                style={{ width: 30, height: 35, tintColor: color, alignSelf: 'center' }}
               
               />
               
@@ -188,8 +192,9 @@ const BottomBar = () => {
           options={{
             tabBarIcon: ({ color, size }) => (
               <Image
-                source={require('./assets/defi.png')}
-                style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
+                //source={require('./assets/defi.png')}
+                source={require('./assets/bottom_bar/def.png')}
+                style={{ width: 30, height: 35, tintColor: color, alignSelf: 'center' }}
               
               />
               

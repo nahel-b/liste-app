@@ -98,9 +98,9 @@ const CommandePage = () => {
   });
 
   const dataJour = [
-    { nom: 'JEUDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'SAMEDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'DIMANCHE', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+    { nom: 'JEUDI', description: '17h-00h\nrouge : 07 61 38 43 70 \nverte : 06 04 02 67 02\nbleu : 07 77 03 47 13' },
+    { nom: 'SAMEDI', description: '9h-15h\nrouge : 07 82 28 79 09\nverte : 07 61 38 43 70 \nbleu : 06 27 65 47 70\n\n15h-21h\nrouge : 07 82 28 79 09\nverte : 06 49 06 92 44\nbleu : 07 82 87 49 31' },
+    { nom: 'DIMANCHE', description: '9h-14h\nrouge : 06 52 30 24 24\nverte : 06 49 06 92 44\nbleu : 07 67 13 81 64\n\n14h-19h\nrouge : 07 83 90 86 03\nverte : 06 70 75 50 02\nbleu : 06 59 76 43 71\n\n19h-00h\nrouge : 06 27 02 25 35\nverte : 06 47 38 33 49\nbleu : 06 88 10 34 49' },
 
   ];
 
@@ -110,7 +110,7 @@ const CommandePage = () => {
 
 
 <TouchableOpacity onPress={() => navigation.navigate('PageCarte')} style={{alignSelf : 'center',margin : 10}}>
-      <Image source={require('./assets/carte.jpg')} style={{ margin : 10,height: 200, aspectRatio: 1, alignSelf: 'center' }} />
+      <Image source={require('./assets/carte_wel.jpg')} style={{ margin : 10,height: 200, aspectRatio: 1, alignSelf: 'center' }} />
       
       </TouchableOpacity>
       <ScrollView style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
@@ -160,13 +160,13 @@ const WELPageContent = () => {
     return (
       <View style={[styles.row, { marginTop: 0 }]}>
           <TouchableOpacity onPress={() => handlePress(0)} style={{margin : 0}}>
-              <Image source={require("./assets/hublots/WEL/j.png")} style={styles.image} />
+              <Image source={require("./assets/hublots/WEL/j_.png")} style={styles.image} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress(1)} style={{alignSelf : 'flex-end'}} >
-              <Image source={require("./assets/hublots/WEL/s.png")} style={styles.image} />
+              <Image source={require("./assets/hublots/WEL/s_.png")} style={styles.image} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress(1)} style={{margin : 0}}>
-              <Image source={require("./assets/hublots/WEL/d.png")} style={styles.image} />
+              <Image source={require("./assets/hublots/WEL/d_.png")} style={styles.image} />
           </TouchableOpacity>
       </View>
     );
@@ -265,7 +265,7 @@ const PageCarte = () =>
 
       <Retour onPress={() => navigation.navigate('CommandePage')}/>
 
-      <Image source={require('./assets/carte.jpg')} style={{ resizeMode : "contain", aspectRatio: 1, alignSelf: 'center' }} />
+      <Image source={require('./assets/carte_wel.jpg')} style={{ resizeMode : "contain", aspectRatio: 1, alignSelf: 'center' }} />
 
 
       </View>
@@ -288,33 +288,33 @@ const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
 
 //Jeudi Soir
 const data1 = [
-  { nom: 'Wok aux légumes', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons',source : require('./assets/defaut_photo.png') },
-  { nom: 'Wok au poulet', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons, poulet',source : require('./assets/defaut_photo.png') },
-  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/defaut_photo.png') },
-  { nom: 'Dessert', description: 'fondant (PAS de metro) + verrine',source : require('./assets/defaut_photo.png') },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png') },
+  { nom: 'Wok aux légumes', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons',source : require('./assets/wel_plat/3.jpg') },
+  { nom: 'Wok au poulet', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons, poulet',source : require('./assets/wel_plat/4.jpg') },
+  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/5.jpg') },
+  { nom: 'Dessert', description: 'fondant (PAS de metro) + verrine',source : require('./assets/wel_plat/6.jpg') },
+  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/7.jpg') },
 ];
 
 //Samedi
 const data2 = [
-  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/defaut_photo.png') },
-  { nom: 'Burger raclette végé', description: 'servi avec des frites : oignon, steak végé, salade, tomate, raclette, sauce',source : require('./assets/defaut_photo.png') },
-  { nom: 'Burger raclette', description: 'servi, avec des frites : oignon, steak de bœuf, salade, tomate, raclette, sauce',source : require('./assets/defaut_photo.png') },
-  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/defaut_photo.png') },
-  { nom: 'Desserts', description: 'tiramisu + fondant',source : require('./assets/defaut_photo.png') },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png') },
+  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/wel_plat/9.jpg') },
+  { nom: 'Burger raclette végé', description: 'servi avec des frites : oignon, steak végé, salade, tomate, raclette, sauce',source : require('./assets/wel_plat/10.jpg') },
+  { nom: 'Burger raclette', description: 'servi, avec des frites : oignon, steak de bœuf, salade, tomate, raclette, sauce',source : require('./assets/wel_plat/12.jpg') },
+  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/11.jpg') },
+  { nom: 'Desserts', description: 'tiramisu + fondant',source : require('./assets/wel_plat/13.jpg') },
+  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/14.jpg') },
   
 
 ];
 
 //Dimanche
 const data3 = [
-  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/defaut_photo.png') },
-  { nom: 'Pain pita aux falafels', description: 'falafels, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/defaut_photo.png') },
-  { nom: 'Pain pita au poulet', description: 'poulet, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/defaut_photo.png') },
-  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/defaut_photo.png') },
-  { nom: 'Desserts', description: 'mousse au choc + crumble',source : require('./assets/defaut_photo.png') },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/defaut_photo.png')}
+  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/wel_plat/16.jpg') },
+  { nom: 'Pain pita aux falafels', description: 'falafels, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/wel_plat/17.jpg') },
+  { nom: 'Pain pita au poulet', description: 'poulet, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/wel_plat/18.jpg') },
+  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/19.jpg') },
+  { nom: 'Desserts', description: 'mousse au choc + crumble',source : require('./assets/wel_plat/20.jpg') },
+  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/21.jpg')}
   
 ];
 
@@ -406,9 +406,9 @@ const PageOuverte = ({ route }) => {
   const [selectedItem, setSelectedItem] = useState(selectedIndex);
 
   const calendrierData = [
-    { key: '1', image_src: require('./assets/hublots/WEL/j.png'), elements: <BoutonsDeroulant data={data1} key="1" /> },
-    { key: '2', image_src: require('./assets/hublots/WEL/s.png'), elements: <BoutonsDeroulant data={data2} key="2" /> },
-    { key: '3', image_src: require('./assets/hublots/WEL/d.png'), elements: <BoutonsDeroulant data={data3} key="3" /> },
+    { key: '1', image_src: require('./assets/hublots/WEL/j_.png'), elements: <BoutonsDeroulant data={data1} key="1" /> },
+    { key: '2', image_src: require('./assets/hublots/WEL/s_.png'), elements: <BoutonsDeroulant data={data2} key="2" /> },
+    { key: '3', image_src: require('./assets/hublots/WEL/d_.png'), elements: <BoutonsDeroulant data={data3} key="3" /> },
   ];
 
   const onSnapToItem = (index) => {

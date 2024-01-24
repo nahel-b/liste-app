@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer,useNavigation } from '@react-navigation/native';
 import {Footer,Retour} from './foot';
 import { specificStyles } from './specificStyles';
-
+import { Linking } from 'react-native';
 
 const CommandePage = () => {
   const [activeSectionsColonne1, setActiveSectionsColonne1] = useState([]);
@@ -97,9 +97,9 @@ const CommandePage = () => {
   });
 
   const dataJour = [
-   { nom: 'VENDREDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'SAMEDI', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
-    { nom: 'DIMANCHE', description: '18h-5h \n\n zone 1 : 06 81 87 67 55 \n\n zone 2 : 09 67 54 24 56 \n\n zone 3 : 07 83 56 35 44' },
+   { nom: 'VENDREDI', description: '16h-20h\nzone 1 : 07 69 40 78 52 \nzone 2 : 06 27 02 25 35 \n\n20h-00h\nzone 1 : 05 07 82 81 71\nzone 2 : 06 16 20 15 12' },
+    { nom: 'SAMEDI', description: '8h-12h:\nZone 1: 06 51 49 57 42\nZone 2: 06 70 75 50 02\n\n12h-16h:\nZone 1: 06 65 07 78 52\nZone 2: 07 52 02 59 87\n\n16h-18h:\nZone 1: 06 74 91 50 38\nZone 2: 07 68 03 56 25\n\n18h-20h:\nZone 1: 06 12 90 09 71\nZone 2: 07 67 13 81 64\n\n00h-03h:\nZone 1: 07 69 00 65 31\nZone 2: 06 51 43 95 43' },
+    { nom: 'DIMANCHE', description: '8h-12h:\nZone 1: 07 69 00 65 31\nZone 2: 07 61 38 43 70\n\n12h-16h:\nZone 1: 07 81 16 29 13\nZone 2: 07 82 08 46 75\n\n16h-19h:\nZone 1: 06 42 56 54 51\nZone 2: 06 63 78 80 04\n\n19h-22h:\nZone 1: 06 62 47 38 57\nZone 2: 06 42 15 85 29\n\n22h-00h:\nZone 1: 06 95 97 07 57\nZone 2: 07 67 25 22 17' },
 
   ];
 
@@ -109,7 +109,7 @@ const CommandePage = () => {
 
 
 <TouchableOpacity onPress={() => navigation.navigate('PageCarte')} style={{alignSelf : 'center',margin : 10}}>
-      <Image source={require('./assets/carte.jpg')} style={{ margin : 10,height: 200, aspectRatio: 1, alignSelf: 'center' }} />
+      <Image source={require('./assets/carte_sos.jpg')} style={{ margin : 10,height: 200, aspectRatio: 1, alignSelf: 'center' }} />
       
       </TouchableOpacity>
       <ScrollView style={{ backgroundColor: couleurs.backgroundColor, flex: 1 }}>
@@ -193,10 +193,10 @@ const SOSPageAccueil = () => {
               <Image source={require("./assets/hublots/SOS/bob.png")} style={styles.image} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress(1)} style={{alignSelf : 'flex-end'}} >
-              <Image source={require("./assets/hublots/SOS/phlow_talent.png")} style={styles.image} />
+              <Image source={require("./assets/hublots/SOS/phlow_talent_.png")} style={styles.image} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress(2)} style={{margin : 0}}>
-              <Image source={require("./assets/hublots/SOS/alter.png")} style={styles.image} />
+              <Image source={require("./assets/hublots/SOS/alter_.png")} style={styles.image} />
           </TouchableOpacity>
       </View>
     );
@@ -206,13 +206,13 @@ const SOSPageAccueil = () => {
     return (
       <View style={[styles.row, { marginTop: 0 }]}>
           <TouchableOpacity onPress={() => handlePress(3)} style={{margin : 0}}>
-              <Image source={require("./assets/hublots/SOS/phlow_packs.png")} style={[styles.image,{flex : 1}]} />
+              <Image source={require("./assets/hublots/SOS/phlow_packs_.png")} style={[styles.image,{flex : 1}]} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress(4)} style={{alignSelf : 'flex-end'}} >
-              <Image source={require("./assets/hublots/SOS/kraken.png")}  style={[styles.image,{flex : 1}]} />
+              <Image source={require("./assets/hublots/SOS/kraken_.png")}  style={[styles.image,{flex : 1}]} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => handlePress(5)} style={{margin : 0}}>
-              <Image source={require("./assets/hublots/SOS/animation.png")} style={styles.image} />
+              <Image source={require("./assets/hublots/SOS/animation_spider__.png")} style={styles.image} />
           </TouchableOpacity>
           
       </View>
@@ -284,7 +284,7 @@ const PageCarte = () =>
 
       <Retour onPress={() => navigation.navigate('CommandePage')}/>
 
-      <Image source={require('./assets/carte.jpg')} style={{ resizeMode : "contain", aspectRatio: 1, alignSelf: 'center' }} />
+      <Image source={require('./assets/carte_sos.jpg')} style={{ resizeMode : "contain", aspectRatio: 1, alignSelf: 'center' }} />
 
 
       </View>
@@ -479,11 +479,11 @@ const PageOuverte = ({ route }) => {
 
   const calendrierData = [
     { key: '1',image_src: require('./assets/hublots/SOS/bob.png'), elements: <ElementSOS data={dataDefi1} key="1" /> },
-    { key: '2',image_src: require('./assets/hublots/SOS/phlow_talent.png'), elements: <ElementSOS data={dataDefi2} key="2" /> },
-    { key: '3',image_src: require('./assets/hublots/SOS/alter.png'), elements: <ElementSOS data={dataDefi3} key="3" /> },
-    { key: '4',image_src: require('./assets/hublots/SOS/phlow_packs.png'), elements: <ElementSOS data={dataDefi4} key="4" /> },
-    { key: '5',image_src: require('./assets/hublots/SOS/kraken.png'), elements: <ElementSOS data={dataDefi5} key="5" />  },
-    { key: '6',image_src: require('./assets/hublots/SOS/animation_spider.png'), elements: <ElementSOS data={dataDefi6} key="6" />  },
+    { key: '2',image_src: require('./assets/hublots/SOS/phlow_talent_.png'), elements: <ElementSOS data={dataDefi2} key="2" /> },
+    { key: '3',image_src: require('./assets/hublots/SOS/alter_.png'), elements: <ElementSOS data={dataDefi3} key="3" /> },
+    { key: '4',image_src: require('./assets/hublots/SOS/phlow_packs_.png'), elements: <ElementSOS data={dataDefi4} key="4" /> },
+    { key: '5',image_src: require('./assets/hublots/SOS/kraken_.png'), elements: <ElementSOS data={dataDefi5} key="5" />  },
+    { key: '6',image_src: require('./assets/hublots/SOS/animation_spider__.png'), elements: <ElementSOS data={dataDefi6} key="6" />  },
 
   ];
 
