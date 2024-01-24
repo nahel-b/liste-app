@@ -23,7 +23,7 @@ const CalendrierItem = ({ item, isSelected,selectedItem,index }) => {
 };
 
 
-const BoutonDeroulant = ({ data,key }) => 
+const BoutonDeroulant = ({ data,key,bg_color = couleurs.buttonColor3 }) => 
 {
 
   const stylesAccordion = StyleSheet.create({
@@ -32,7 +32,7 @@ const BoutonDeroulant = ({ data,key }) =>
     itemContainer_defi: {
       marginTop: 18,
       marginHorizontal: 8,
-      backgroundColor: couleurs.buttonColor3,
+      backgroundColor: bg_color,
       borderRadius: 20,
       padding: 10,
       alignItems: 'center',
@@ -117,7 +117,7 @@ const CustomComponent = ({ selectedButtons, handlePress }) => {
 
   const availableButtons = {
     SOS: { label: 'SOS', backgroundColor: couleurs.buttonColor1 },
-    WEL: { label: 'WEL', backgroundColor: couleurs.buttonColor2 },
+    WEL: { label: 'WEL', backgroundColor: couleurs.buttonColor1 },
     
   };
   const availableAccordion = 
@@ -141,7 +141,15 @@ const CustomComponent = ({ selectedButtons, handlePress }) => {
         }
         else if (buttonName["nom"]) {
           index = index +1
-          return <BoutonDeroulant data={[{key : `${index}`, nom: buttonName["nom"], description: buttonName["description"]}]} />;
+          let bg_color = couleurs.buttonColor1
+          if (buttonName["nom"] == "EVENT AUTRES LISTE" || buttonName["nom"] == "EVENT AUTRE LISTE")
+          {
+              bg_color = couleurs.buttonColor3
+          }
+
+          return <BoutonDeroulant data={[{key : `${index}`, nom: buttonName["nom"], description: buttonName["description"]}]} bg_color={bg_color} />;
+
+
         }
         
         return null; // Ignorer les boutons inconnus

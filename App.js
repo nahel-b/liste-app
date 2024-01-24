@@ -102,7 +102,7 @@ const BottomBar = () => {
             justifyContent: 'center',
           },
           indicatorStyle: {
-            backgroundColor: 'black',
+            backgroundColor: couleurs.buttonColor1,
           },
           showLabel: false,
         }}
@@ -114,7 +114,7 @@ const BottomBar = () => {
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={require('./assets/classement.png')}
-                style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
+                style={{ width: 35, height: 35, tintColor: couleurs.buttonColor1, alignSelf: 'center' }}
               />
             ),
           }}
@@ -134,7 +134,7 @@ const BottomBar = () => {
                 <Image
                 source={require('./assets/bottom_bar/sos.png')}
                 //source={require('./assets/sos.png')}
-                  style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
+                  style={{ width: 35, height: 35, tintColor: couleurs.buttonColor1, alignSelf: 'center' }}
                 />
               ),
             }}
@@ -148,7 +148,7 @@ const BottomBar = () => {
                 <Image
                   //source={require('./assets/sos.png')}
                   source={require('./assets/bottom_bar/sos.png')}
-                  style={{ width: 35, height: 35, tintColor: color, alignSelf: 'center' }}
+                  style={{ width: 35, height: 35, tintColor: couleurs.buttonColor1, alignSelf: 'center' }}
                 />
               ),
             }}
@@ -165,7 +165,7 @@ const BottomBar = () => {
             tabBarIcon: ({ color, size }) => (
               <Image
                 source={require('./assets/calendrier.png')}
-                style={{ width: 30, height: 30, tintColor: color, alignSelf: 'center' }}
+                style={{ width: 30, height: 30, tintColor: couleurs.buttonColor1, alignSelf: 'center' }}
               />
             ),
           }}
@@ -179,7 +179,7 @@ const BottomBar = () => {
                 //source={require('./assets/burger.png')}
                 source={require('./assets/bottom_bar/wel.png')}
 
-                style={{ width: 30, height: 35, tintColor: color, alignSelf: 'center' }}
+                style={{ width: 30, height: 35, tintColor: couleurs.buttonColor1, alignSelf: 'center' }}
               
               />
               
@@ -194,7 +194,7 @@ const BottomBar = () => {
               <Image
                 //source={require('./assets/defi.png')}
                 source={require('./assets/bottom_bar/def.png')}
-                style={{ width: 30, height: 35, tintColor: color, alignSelf: 'center' }}
+                style={{ width: 30, height: 35, tintColor: couleurs.buttonColor1, alignSelf: 'center' }}
               
               />
               

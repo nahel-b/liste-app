@@ -97,8 +97,8 @@ const CommandePage = () => {
   });
 
   const dataJour = [
-   { nom: 'VENDREDI', description: '16h-20h\nzone 1 : 07 69 40 78 52 \nzone 2 : 06 27 02 25 35 \n\n20h-00h\nzone 1 : 05 07 82 81 71\nzone 2 : 06 16 20 15 12' },
-    { nom: 'SAMEDI', description: '8h-12h:\nZone 1: 06 51 49 57 42\nZone 2: 06 70 75 50 02\n\n12h-16h:\nZone 1: 06 65 07 78 52\nZone 2: 07 52 02 59 87\n\n16h-18h:\nZone 1: 06 74 91 50 38\nZone 2: 07 68 03 56 25\n\n18h-20h:\nZone 1: 06 12 90 09 71\nZone 2: 07 67 13 81 64\n\n00h-03h:\nZone 1: 07 69 00 65 31\nZone 2: 06 51 43 95 43' },
+   { nom: 'VENDREDI', description: '16h-20h\nzone 1 : 07 69 40 78 52 \nzone 2 : 06 27 02 25 35 \n\n20h-00h\nzone 1 : 07 82 81 71 50\nzone 2 : 06 16 20 15 12\n\n00h-03h:\nZone 1: 07 69 00 65 31\nZone 2: 06 51 43 95 43' },
+    { nom: 'SAMEDI', description: '8h-12h:\nZone 1: 06 51 49 57 42\nZone 2: 06 70 75 50 02\n\n12h-16h:\nZone 1: 06 65 07 78 52\nZone 2: 07 52 02 59 87\n\n16h-18h:\nZone 1: 06 74 91 50 38\nZone 2: 07 68 03 56 25\n\n18h-21h:\nZone 1: 06 12 90 09 71\nZone 2: 07 67 13 81 64' },
     { nom: 'DIMANCHE', description: '8h-12h:\nZone 1: 07 69 00 65 31\nZone 2: 07 61 38 43 70\n\n12h-16h:\nZone 1: 07 81 16 29 13\nZone 2: 07 82 08 46 75\n\n16h-19h:\nZone 1: 06 42 56 54 51\nZone 2: 06 63 78 80 04\n\n19h-22h:\nZone 1: 06 62 47 38 57\nZone 2: 06 42 15 85 29\n\n22h-00h:\nZone 1: 06 95 97 07 57\nZone 2: 07 67 25 22 17' },
 
   ];
@@ -312,7 +312,9 @@ const dataDefi1 =
   { nom: 'Plonge', description: 'Nos plongeurs font votre plonge' },
   { nom: 'Rangement', description: 'Rangement et nettoyage pour que votre appart ait du Phlow' },
   { nom: 'Ariel', description: 'On vous fait votre lessive en chantant' },
-  ]
+  { nom: 'Ménage au choix', description: 'Fait nous part de tes désirs' },
+
+]
 }
 ;
 
@@ -324,7 +326,7 @@ const dataDefi2 = {
   { nom: 'Talents de styliste', description: 'Relooking pour que tu sois encore plus frais qu’un crustacé' },
   { nom: 'Talents de chanteurs', description: 'concerts privés de Nico et Manon' },
   { nom: 'Talents de cuist’eau', description: 'Un Colin vous cuisine du Colin' },
-
+  { nom: 'Talent au choix', description: 'Fait nous part de tes désirs' }
 ]};
 
 //Alter égo
@@ -336,7 +338,7 @@ const dataDefi3 = {
   { nom: 'Partenaire de sport', description: 'il te faut un collègue pour partir en randonnée, danser, un bowling ou encore un footing ?' },
   { nom: 'Partenaire de soirée, apéro', description: 'besoin express de quelqu’un pour t’accompagner en soirée, partager un apéro ou même un repas…' },
   { nom: 'partenaire confession', description: 'promis on oublie tout comme Dory' },
-  { nom: 'Partenaire autre', description: 'aisse parler ton imagination, tu cherches forcément un duo pour quelque chose ?' },
+  { nom: 'Partenaire au choix', description: 'laisse parler ton imagination, tu cherches forcément un duo pour quelque chose ?' },
  
 ]};
 
@@ -344,10 +346,10 @@ const dataDefi3 = {
 const dataDefi4 = {
   texte : 'Plongez dans les offres promotionnelles les plus folles de ces mers. Découvrez des packs adaptés à toutes sortes de situations, nous somme sûr que vous en trouverez un à votre goût.',
   boutonData : [
-  { nom: 'RC', description: 'RC + Mulet + Chicha' },
-  { nom: 'Remise en forme après une descente aux Abysses', description: 'Brunch ( boisson froide( RedBull ou jus de fruit) plus boisson chaude (Café ou chocolat) + oeufs brouillés (supplément bacon) + viennoiserie)' },
-  { nom: 'Apéro', description: 'Bière + Chips + Jambon de Bayonne + Tomates cerises' },
-  { nom: 'Goûter au Krusty-Krab', description: 'Chocolat chaud + Cookies' },
+  { nom: 'RC 5€', description: 'RC + Mulet + Chicha' },
+  { nom: 'Brunch après une descente aux Abysses 2,3€', description: 'Brunch ( boisson froide( RedBull ou jus de fruit) + boisson chaude (Café ou chocolat) + oeufs brouillés (supplément bacon 2,7€) + viennoiserie)' },
+  { nom: 'Apéro 4,5€', description: 'Bière + Chips + Jambon de Bayonne + Tomates cerises' },
+  { nom: 'Goûter au Krusty-Krab 1€', description: 'Chocolat chaud + Cookies' },
   { nom: 'Ambiance TitaNique', description: 'Aide pour trouver cadeau de St Valentin + Conseils de drague + Fleur à offrir' },
 ]};
 
@@ -357,8 +359,9 @@ const dataDefi5 = {
   boutonData : [
   { nom: 'Massage', description: 'Un massage au fond musical “vagues”' },
   { nom: 'Soin du visage', description: 'Un soin privé de votre visage aux algues' },
-  { nom: 'Soin des pieds', description: ' Les meilleurs poissons pour votre meilleure pédicure' },
-  
+  { nom: 'Soin des pieds', description: 'Les meilleurs poissons pour votre meilleure pédicure' },
+  { nom: 'Soin au choix', description: 'Fait nous part de tes désirs' },
+
 ]};
 
 //animation
@@ -367,9 +370,9 @@ const dataDefi6 = {
   boutonData : [
   { nom: 'Dents de la mer', description: 'Jeux de liste (alcool et sans alcool)' },
   { nom: 'Spider Sauvetage', description: 'On vient vous chercher en Spider-Mobile' },
-  { nom: 'Showcase', description: 'Un Showcase du rap de la liste' },
   { nom: 'Spider-Tease', description: '3 SpiderMans débarquent et se dessapent (que la combi)' },
- 
+  { nom: 'Pack au choix', description: 'Fait nous part de tes désirs' },
+
 ]};
 
 //Boutons deroulants

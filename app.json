@@ -18,7 +18,7 @@
       "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true,
       "bundleIdentifier": "com.nahelb.phlow",
-      "buildNumber": "2"
+      "buildNumber": "5"
     },
     "android": {
       "googleServicesFile": "./google-services.json",

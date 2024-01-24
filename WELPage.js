@@ -288,33 +288,32 @@ const CalendrierItem = ({ item, isSelected, selectedItem, index }) => {
 
 //Jeudi Soir
 const data1 = [
-  { nom: 'Wok aux légumes', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons',source : require('./assets/wel_plat/3.jpg') },
-  { nom: 'Wok au poulet', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons, poulet',source : require('./assets/wel_plat/4.jpg') },
-  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/5.jpg') },
-  { nom: 'Dessert', description: 'fondant (PAS de metro) + verrine',source : require('./assets/wel_plat/6.jpg') },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/7.jpg') },
+  { nom: 'Wok aux légumes 1,5€', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons',source : require('./assets/wel_plat/3.jpg') },
+  { nom: 'Wok au poulet 2€', description: 'champignons de Paris, sauce soja, carottes, nouilles, oignons, avec ou sans poivrons, poulet',source : require('./assets/wel_plat/4.jpg') },
+  { nom: 'Petite faim 1€', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/5.jpg') },
+  { nom: 'Dessert 1€', description: 'fondant (PAS de metro) ou verrine',source : require('./assets/wel_plat/6.jpg') },
+  { nom: 'Panier de toxico 1,5€', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/7.jpg') },
 ];
 
 //Samedi
 const data2 = [
-  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/wel_plat/9.jpg') },
-  { nom: 'Burger raclette végé', description: 'servi avec des frites : oignon, steak végé, salade, tomate, raclette, sauce',source : require('./assets/wel_plat/10.jpg') },
-  { nom: 'Burger raclette', description: 'servi, avec des frites : oignon, steak de bœuf, salade, tomate, raclette, sauce',source : require('./assets/wel_plat/12.jpg') },
-  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/11.jpg') },
-  { nom: 'Desserts', description: 'tiramisu + fondant',source : require('./assets/wel_plat/13.jpg') },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/14.jpg') },
-  
+  { nom: 'Formule phel’matin', description: "Malheureusement nous n'avons que très peu d’infos sur cette formule gargantuesque, regardez nos storys insta pour en savoir plus…",source : require('./assets/wel_plat/9.jpg') },
+  { nom: 'Burger raclette végé 3€', description: 'servi avec des frites (oignon, steak végé, salade, tomate, raclette, sauce)',source : require('./assets/wel_plat/10.jpg') },
+  { nom: 'Burger raclette 3€', description: 'servi avec des frites (oignon, steak de bœuf, salade, tomate, raclette, sauce )',source : require('./assets/wel_plat/12.jpg') },
+  { nom: 'Petite faim 1€', description: ': lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/11.jpg') },
+  { nom: 'Desserts 1€', description: 'tiramisu ou fondant',source : require('./assets/wel_plat/13.jpg') },
+  { nom: 'Panier de toxico 1,5€', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/7.jpg') },  
 
 ];
 
 //Dimanche
 const data3 = [
-  { nom: 'Formule phel’matin', description: 'panier brunch : pain, beurre, confiture, nutella, gaufres, salade de fruits, café ou thé ou tisane',source : require('./assets/wel_plat/16.jpg') },
-  { nom: 'Pain pita aux falafels', description: 'falafels, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/wel_plat/17.jpg') },
-  { nom: 'Pain pita au poulet', description: 'poulet, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/wel_plat/18.jpg') },
-  { nom: 'Petite faim', description: 'lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/19.jpg') },
-  { nom: 'Desserts', description: 'mousse au choc + crumble',source : require('./assets/wel_plat/20.jpg') },
-  { nom: 'Panier de toxico', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/21.jpg')}
+  { nom: 'Formule phel’matin', description: "Malheureusement nous n'avons que très peu d’infos sur cette formule gargantuesque, regardez nos storys insta pour en savoir plus…",source : require('./assets/wel_plat/9.jpg') },
+  { nom: 'Pain pita aux falafels 2€', description: 'falafels, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/wel_plat/17.jpg') },
+  { nom: 'Pain pita au poulet 1.5€', description: 'poulet, tomate, salade, oignon, épices à kebab, sauce blanche',source : require('./assets/wel_plat/18.jpg') },
+  { nom: 'Petite faim 1€', description: ': lot de 3 briques (oeufs, patate, thon, kiri)',source : require('./assets/wel_plat/11.jpg') },
+  { nom: 'Desserts 1€', description: 'mousse au choc ou crumble',source : require('./assets/wel_plat/20.jpg') },
+  { nom: 'Panier de toxico 1,5€', description: '1 redbull + 3 clopes',source : require('./assets/wel_plat/7.jpg') },
   
 ];
 
