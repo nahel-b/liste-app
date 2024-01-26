@@ -217,7 +217,7 @@ const CALPage = ({ navigation }) => {
 
     {jour: 'Sam', num: '10', mois: 'Fevrier', selectedButtons:[{nom : 'Soirée', description : "Ne prévoyez rien non plus Dimanche, ce sera pour vous une déception après la soirée de folie qui vous attends aujourd'hui"}], moisNumero: 2},
 
-    {jour: 'Ven', num: '09', mois: 'Fevrier', selectedButtons:[{nom : 'Débat des Prez', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'EVENT SPORT Aliste'}], moisNumero: 2}
+    {jour: 'Dim', num: '11', mois: 'Fevrier', selectedButtons:[{nom : 'Débat des Prez', description : ''},{nom : 'EVENT AUTRE LISTE', description : 'EVENT SPORT Aliste'}], moisNumero: 2}
 
   ];
 

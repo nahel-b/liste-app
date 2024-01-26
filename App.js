@@ -62,8 +62,8 @@ const HeaderBar = () => {
 
 const BottomBar = () => {
 
-  //const yourDateLimit = new Date('2024-01-25T00:42:00.000Z'); // Remplacez par votre date limite
-  const yourDateLimit = new Date('2024-01-10T00:42:00.000Z'); // Remplacez par votre date limite
+  //const yourDateLimit = new Date('2024-01-31T00:00:00.000Z'); // Remplacez par votre date limite
+  const yourDateLimit = new Date('2024-01-31T00:00:00.000Z'); // Remplacez par votre date limite
 
   const [showSOS, setShowSOS] = useState(true);
 
@@ -119,14 +119,7 @@ const BottomBar = () => {
             ),
           }}
         />
-
-
-
-
-  
-
-{showSOS ? ( 
-          <Tab.Screen
+<Tab.Screen
             name="SOS"
             component={SOSPage}
             options={{
@@ -139,21 +132,8 @@ const BottomBar = () => {
               ),
             }}
           />
-        ) : (
-          <Tab.Screen
-            name="Countdown"
-            component={() => <Countdown date_limit={yourDateLimit} />}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Image
-                  //source={require('./assets/sos.png')}
-                  source={require('./assets/bottom_bar/sos.png')}
-                  style={{ width: 35, height: 35, tintColor: couleurs.buttonColor1, alignSelf: 'center' }}
-                />
-              ),
-            }}
-          />
-        )}
+
+
 
 
 
@@ -170,6 +150,8 @@ const BottomBar = () => {
             ),
           }}
         />
+
+{showSOS ? ( 
         <Tab.Screen
           name="WEL"
           component={WELPage}
@@ -186,6 +168,22 @@ const BottomBar = () => {
             ),
           }}
         />
+                    
+          ) : (
+            <Tab.Screen
+              name="Countdown"
+              component={() => <Countdown date_limit={yourDateLimit} />}
+              options={{
+                tabBarIcon: ({ color, size }) => (
+                  <Image
+                    //source={require('./assets/sos.png')}
+                    source={require('./assets/bottom_bar/wel.png')}
+                    style={{ width: 30, height: 35, tintColor: couleurs.buttonColor1, alignSelf: 'center' }}
+                  />
+                ),
+              }}
+            />
+          )}
         <Tab.Screen
           name="DEF"
           component={DEFPage}

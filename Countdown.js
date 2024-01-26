@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, Image } from 'react-native';
 import couleurs from './Couleurs';
 
 const CountdownComponent = ({date_limit}) => {
@@ -34,14 +34,23 @@ const CountdownComponent = ({date_limit}) => {
 
   return (
     <React.Fragment >
-      <View style={{flex : 1,backgroundColor : couleurs.backgroundColor,alignItems : 'center'}} >
-      <Text style={styles.titre} >Soit patient :</Text>
+      <View style={{marginTop : 0, flex: 0.6, backgroundColor: couleurs.backgroundColor,justifyContent :'flex-end' }}>
+
+      <Image source={require("./assets/wes.png")} 
+      style={{flex : 0.8,aspectRatio : 2, resizeMode: 'contain',alignSelf : "center"}}/>
+      
+    </View>
+
+    
+      <View style={{flex : 1.5,backgroundColor : couleurs.backgroundColor,alignItems : 'center',justifyContent :'flex-start'}} >
+      {/* <Text style={[styles.titre]} ></Text> */}
       <Text style={styles.txt} >{timeRemaining.days}j</Text>
       <Text style={styles.txt} > {timeRemaining.hours}h</Text>
       <Text style={styles.txt} >{timeRemaining.minutes}m</Text>
       <Text style={styles.txt} >{timeRemaining.seconds}s</Text>
-    <View style={{flex : 10}}></View>
+    
       </View>
+      {/* <View style={{flex : 7}}></View> */}
     </React.Fragment>
   );
 };
@@ -60,9 +69,9 @@ const styles = StyleSheet.create({
       },
       txt: {
         color: 'black',
-        fontSize: 35,
+        fontSize: 55,
         //fontWeight: 'bold',
-        fontFamily: 'paragraphe_font',
+        fontFamily: 'body_font',
         margin : 10,
         flex : 1,
         

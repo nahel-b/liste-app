@@ -348,7 +348,7 @@ const dataDefi4 = {
   boutonData : [
   { nom: 'RC 5€', description: 'RC + Mulet + Chicha' },
   { nom: 'Brunch après une descente aux Abysses 2,3€', description: 'Brunch ( boisson froide( RedBull ou jus de fruit) + boisson chaude (Café ou chocolat) + oeufs brouillés (supplément bacon 2,7€) + viennoiserie)' },
-  { nom: 'Apéro 4,5€', description: 'Bière + Chips + Jambon de Bayonne + Tomates cerises' },
+  { nom: 'Apéro 4pers 4,5€ ', description: 'Bière ou redbull + Tortilla + Guacamole + Jambon de Bayonne' },
   { nom: 'Goûter au Krusty-Krab 1€', description: 'Chocolat chaud + Cookies' },
   { nom: 'Ambiance TitaNique', description: 'Aide pour trouver cadeau de St Valentin + Conseils de drague + Fleur à offrir' },
 ]};

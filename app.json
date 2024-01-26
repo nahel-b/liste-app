@@ -2,7 +2,7 @@
   "expo": {
     "name": "phlow",
     "slug": "phlow",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/LOGO_APP.png",
     "userInterfaceStyle": "light",
@@ -18,13 +18,13 @@
       "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": true,
       "bundleIdentifier": "com.nahelb.phlow",
-      "buildNumber": "5"
+      "buildNumber": "7"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/LOGO_APP.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ceb789"
       },
       "package": "com.nahelb.phlow",
       "versionCode":  2
